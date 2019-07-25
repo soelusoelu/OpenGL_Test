@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include "Player.h"
 #include "View.h"
+#include <gslib.h>
 #include <iostream>
 
 void Camera::update(const Player& player) const {
@@ -39,7 +40,7 @@ void Camera::create() {
         View::myPerspective(
             &p,
             45.f,
-            640.f / 480.f,
+            1280.f / 720.f,
             0.2f,
             1000.f
         );

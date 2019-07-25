@@ -36,10 +36,11 @@ void Octree::intersectGround(Player* player) {
         gsGetOctree(mOctreeID), //オクツリー
         &player->getPosition(), //レイの位置
         &ray, //レイの方向
-        &intersectPos, //レイとの交点
+        //&intersectPos, //レイとの交点
+        &player->getPosition(),
         nullptr) //衝突した面の平面パラメータ
         ) {
-        player->intersectShiftPosition(GSvector3(player->getPosition().x, intersectPos.y, player->getPosition().z));
+        //player->intersectShiftPosition(GSvector3(player->getPosition().x, intersectPos.y, player->getPosition().z));
     }
 }
 

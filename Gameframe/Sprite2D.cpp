@@ -80,7 +80,7 @@ void Sprite2D::draw() {
 
     //透視変換行列の設定
     glLoadIdentity();
-    gluOrtho2D(0, 640, 480, 0);
+    gluOrtho2D(0, 1280, 720, 0);
 
     //モデルビュー変換行列の退避
     glMatrixMode(GL_MODELVIEW);
@@ -105,7 +105,7 @@ void Sprite2D::draw() {
     glRotatef(mRotate, 0.f, 0.f, 1.f);
 
     //拡大縮小
-    glScalef(mScale.x, mScale.y, 1.f);
+    glScalef(mScale.x * 100, mScale.y * 100, 1.f);
 
     //テクスチャカラー
     glColor4fv(reinterpret_cast<GLfloat*>(&mColor));

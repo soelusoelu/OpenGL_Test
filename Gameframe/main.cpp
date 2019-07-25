@@ -15,8 +15,7 @@ class MyGame : public gslib::Game {
 private:
 	void start() {
         mSprite = std::make_unique<Sprite2D>(0, "./res/kuppa.png");
-        mSprite->setScale(GSvector2(100.f, 100.f));
-        mSprite->setPosition(GSvector2(580.f, 60.f));
+        mSprite->setPosition(GSvector2(1200.f, 60.f));
         mPlayer = std::make_unique<Player>(0, "./res/character");
         mSkyBox = std::make_unique<SkyBox>(1, "./res/skybox.msh");
         mMap = std::make_unique<Octree>(0, "./res/map.oct");

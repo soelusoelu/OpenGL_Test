@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-Player::Player(unsigned int id, std::string filename) :
+Player::Player(unsigned int id, const std::string& filename) :
     mID(id),
     mFilename(filename),
     animationTimer(0.f),
@@ -69,10 +69,6 @@ void Player::draw(unsigned int animationNo) const {
 
 void Player::vector3FromHorizontalDir(GSvector3* out) const {
     gsVector3FromEleDir(out, 0.f, mAngle);
-}
-
-void Player::intersectShiftPosition(const GSvector3& amount) {
-    mPosition = amount;
 }
 
 const GSvector3& Player::getPosition() const {
