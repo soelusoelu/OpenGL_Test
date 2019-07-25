@@ -14,6 +14,10 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SE.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Scene\GamePlay.cpp" />
+    <ClCompile Include="Scene\SceneBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -28,5 +32,9 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SE.h" />
     <ClInclude Include="Sprite2D.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="Scene\GamePlay.h" />
+    <ClInclude Include="Scene\SceneBase.h" />
   </ItemGroup>
 </Project>

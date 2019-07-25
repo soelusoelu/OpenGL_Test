@@ -64,7 +64,7 @@ void Player::draw(unsigned int animationNo) const {
     gsDrawMesh(mID);
     glPopMatrix();
 
-    StringRenderer::printf(0.f, 0.f, "Angle:%6.1f", mAngle);
+    //StringRenderer::printf(0.f, 0.f, "Angle:%6.1f", mAngle);
 }
 
 void Player::vector3FromHorizontalDir(GSvector3* out) const {

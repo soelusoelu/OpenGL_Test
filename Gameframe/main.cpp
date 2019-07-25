@@ -7,13 +7,25 @@
 #include "StringRenderer.h"
 #include "BGM.h"
 #include "SE.h"
+#include "Scene/SceneBase.h"
+#include "Scene/GamePlay.h"
 #include <GSgame.h>
 #include <memory>
 
 // スキニングメッシュシェーダーテスト
 class MyGame : public gslib::Game {
+public:
+    enum Scene {
+        Title,
+        Game,
+        Ending
+    };
+
 private:
 	void start() {
+        mScene = Scene::Game;
+        mBase = std::make_unique<GamePlay>();
+
         mSprite = std::make_unique<Sprite2D>(0, "./res/kuppa.png");
         mSprite->setPosition(GSvector2(1200.f, 60.f));
         mPlayer = std::make_unique<Player>(0, "./res/character");
@@ -31,6 +43,8 @@ private:
 	}
 
 	void update(float deltaTime) {
+        mBase->update(deltaTime);
+
         mSkyBox->update(deltaTime);
         mPlayer->update(deltaTime);
         mWall->intersectWall(mPlayer.get());
@@ -57,6 +71,9 @@ private:
     std::unique_ptr<Octree> mWall;
     std::unique_ptr<BGM> mBGM;
     std::unique_ptr<SE> mSE;
+
+    Scene mScene;
+    std::unique_ptr<SceneBase> mBase;
 };
 
 int main() {
