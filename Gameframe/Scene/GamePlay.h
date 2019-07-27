@@ -7,6 +7,7 @@
 
 class Actor;
 class Player;
+class OctreeActor;
 class CameraActor;
 
 class GamePlay : public SceneBase {
@@ -38,6 +39,8 @@ private:
 
     //生き死にがある場合は生、ないならスマート
     PlayerActor* mPlayer;
+    std::unique_ptr<OctreeActor> mGround;
+    std::unique_ptr<OctreeActor> mWall;
     std::unique_ptr<CameraActor> mCamera;
 };
 

@@ -11,14 +11,12 @@ Actor::Actor(GamePlay& game) :
     mState(State::Active),
     mPosition(GSvector3(0.f, 0.f, 0.f)),
     mRotation(0.f),
-    mScale(1.f),
+    mScale(GSvector3(1.f, 1.f, 1.f)),
     mGame(game) {
     mGame.addActor(this);
 }
 
 Actor::~Actor() {
-    std::cout << "Actor destructor" << std::endl;
-
     mGame.removeActor(this);
 
     while (!mComponents.empty()) {
@@ -77,11 +75,11 @@ void Actor::setRotation(const float rotation) {
     mRotation = rotation;
 }
 
-float Actor::getScale() const {
+const GSvector3& Actor::getScale() const {
     return mScale;
 }
 
-void Actor::setScale(const float scale) {
+void Actor::setScale(const GSvector3& scale) {
     mScale = scale;
 }
 

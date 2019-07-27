@@ -1,6 +1,7 @@
 #include "GamePlay.h"
 #include "..//Actor.h"
 #include "..//PlayerActor.h"
+#include "..//OctreeActor.h"
 #include "..//CameraActor.h"
 #include <vector>
 #include <memory>
@@ -12,14 +13,17 @@ GamePlay::GamePlay() :
     mUpdatingActors(false),
     mState(GameState::Play),
     mPlayer(new PlayerActor(*this, 0)),
-    mCamera(std::make_unique<CameraActor>(*this, *mPlayer)) {
+    mCamera(std::make_unique<CameraActor>(*this, *mPlayer)),
+    mGround(std::make_unique<OctreeActor>(*this, 0, "./res/map.oct", *mPlayer)),
+    mWall(std::make_unique<OctreeActor>(*this, 1, "./res/wall.oct", *mPlayer, OctreeActor::Type::Wall)) {
+    std::cout << "Actor total count : " << std::to_string(mActors.size()) << std::endl;
 }
 
 GamePlay::~GamePlay() {
     mActors.clear();
     mPendingActors.clear();
 
-    std::cout << "GamePlay destructor" << std::endl;
+    std::cout << "Actor total count : " << std::to_string(mActors.size()) << std::endl;
 }
 
 void GamePlay::update(float deltaTime) {
@@ -59,8 +63,6 @@ void GamePlay::addActor(Actor* actor) {
         mPendingActors.emplace(actor);
     } else {
         mActors.emplace(actor);
-
-        std::cout << "Actor total count : " << std::to_string(mActors.size()) << std::endl;
     }
 }
 
@@ -74,8 +76,6 @@ void GamePlay::removeActor(Actor* actor) {
     if (itr != mActors.end()) {
         mActors.erase(actor);
     }
-
-    std::cout << "Actor total count : " << std::to_string(mActors.size()) << std::endl;
 }
 
 GamePlay::GameState GamePlay::getState() const {

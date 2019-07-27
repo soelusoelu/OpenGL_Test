@@ -17,10 +17,15 @@ CameraActor::CameraActor(GamePlay& game, PlayerActor& player) :
     );
     // モデルビューモードに変更
     //glMatrixMode(GL_MODELVIEW);
-}
 
-CameraActor::~CameraActor() {
-    std::cout << "CameraActor destructor" << std::endl;
+    static float bgColor[] = { 0.6f, 0.6f, 1.f, 1.f }; //背景色
+    glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]); //画面クリア時のカラーの設定
+
+    glEnable(GL_FOG);
+    glFogi(GL_FOG_MODE, GL_LINEAR);
+    glFogf(GL_FOG_START, 400.f - 50.f);
+    glFogf(GL_FOG_END, 400.f);
+    glFogfv(GL_FOG_COLOR, bgColor);
 }
 
 void CameraActor::updateActor(float deltaTime) {

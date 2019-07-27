@@ -30,8 +30,8 @@ public:
     void setPosition(const GSvector3& pos);
     float getRotation() const;
     void setRotation(const float rotation);
-    float getScale() const;
-    void setScale(const float scale);
+    const GSvector3& getScale() const;
+    void setScale(const GSvector3& scale);
     State getState() const;
     void setState(State state);
     GamePlay& getGame() const;
@@ -44,7 +44,7 @@ protected:
     State mState;
     GSvector3 mPosition;
     float mRotation;
-    float mScale;
+    GSvector3 mScale;
     GamePlay& mGame;
 };
 

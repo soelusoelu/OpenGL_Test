@@ -9,8 +9,6 @@ Component::Component(Actor& owner, int updateOrder) :
 }
 
 Component::~Component() {
-    std::cout << "Component destructor" << std::endl;
-
     mOwner.removeComponent(this);
 }
 

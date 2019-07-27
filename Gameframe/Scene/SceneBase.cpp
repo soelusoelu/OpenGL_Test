@@ -3,5 +3,4 @@
 #include <iostream>
 
 SceneBase::~SceneBase() {
-    std::cout << "SceneBase destructor" << std::endl;
 }

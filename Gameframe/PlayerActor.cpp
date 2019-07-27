@@ -1,6 +1,5 @@
 #include "PlayerActor.h"
 #include "Scene/GamePlay.h"
-#include "Octree.h"
 #include "PlayerMoveComponent.h"
 #include <gslib.h>
 #include <iostream>
@@ -21,16 +20,11 @@ PlayerActor::~PlayerActor() {
     gsDeleteMesh(mID);
     gsDeleteSkeleton(mID);
     gsDeleteAnimation(mID);
-    std::cout << "Player destructor" << std::endl;
 }
 
 void PlayerActor::updateActor(float deltaTime) {
-    mAnimationTimer += 2.f * deltaTime;
+    mAnimationTimer += 1.5f * deltaTime;
     mPlayerMove->update(deltaTime);
-
-    if (mAnimationTimer > 300.f) {
-        Actor::setState(Actor::State::Dead);
-    }
 }
 
 void PlayerActor::drawActor() const {
@@ -40,6 +34,7 @@ void PlayerActor::drawActor() const {
     glPushMatrix();
     glTranslatef(mPosition.x, mPosition.y, mPosition.z);
     glRotatef(mRotation, 0.f, 1.f, 0.f);
+    glScalef(mScale.x, mScale.y, mScale.z);
     gsDrawMesh(mID);
     glPopMatrix();
 }
