@@ -2,7 +2,7 @@
 
 #include <gslib.h>
 
-class Player;
+class PlayerActor;
 
 class Octree {
 public:
@@ -12,8 +12,8 @@ public:
         const char* filename,
         const GSvector3& position);
     ~Octree();
-    void intersectGround(Player* player);
-    void intersectWall(Player* player);
+    void intersectGround(PlayerActor* player);
+    void intersectWall(PlayerActor* player);
     void draw() const;
 
 private:

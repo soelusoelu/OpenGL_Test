@@ -1,5 +1,5 @@
 #include "Octree.h"
-#include "Player.h"
+#include "PlayerActor.h"
 #include <gslib.h>
 #include <iostream>
 
@@ -28,7 +28,7 @@ Octree::~Octree() {
     std::cout << "Octree destructor" << std::endl;
 }
 
-void Octree::intersectGround(Player* player) {
+void Octree::intersectGround(PlayerActor* player) {
     //地面との衝突判定
     GSvector3 ray(0.f, -1.f, 0.f);
     GSvector3 intersectPos;
@@ -36,25 +36,24 @@ void Octree::intersectGround(Player* player) {
         gsGetOctree(mOctreeID), //オクツリー
         &player->getPosition(), //レイの位置
         &ray, //レイの方向
-        //&intersectPos, //レイとの交点
-        &player->getPosition(),
+        &intersectPos, //レイとの交点
         nullptr) //衝突した面の平面パラメータ
         ) {
-        //player->intersectShiftPosition(GSvector3(player->getPosition().x, intersectPos.y, player->getPosition().z));
+        player->setPosition(GSvector3(player->getPosition().x, intersectPos.y, player->getPosition().z));
     }
 }
 
-void Octree::intersectWall(Player* player) {
+void Octree::intersectWall(PlayerActor* player) {
     //壁との衝突判定
     GSvector3 out;
     gsOctreeCollisionSphere(
         gsGetOctree(1), //オクツリー
         &player->getPosition(), //球体の位置
         player->getRadius(), //球体の半径
-        //&out //補正後の球体の位置
-        &player->getPosition()
+        &out //補正後の球体の位置
+        //&player->getPosition()
     );
-    //player->intersectShiftPosition(out);
+    player->setPosition(out);
 }
 
 void Octree::draw() const {

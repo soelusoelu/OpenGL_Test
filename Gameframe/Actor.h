@@ -1,6 +1,7 @@
 #pragma once
 
 #include <gslib.h>
+#include <vector>
 #include <unordered_set>
 
 class Component;
@@ -14,30 +15,36 @@ public:
         Dead
     };
 
-    Actor(GamePlay* game);
+    Actor(GamePlay& game);
     virtual ~Actor();
-    void upadte(float deltaTime);
+
+    void update(float deltaTime);
     void updateComponents(float deltaTime);
     virtual void updateActor(float deltaTime) = 0;
-    void processInput(const GKEYCODE& key);
-    virtual void actorInput(const GKEYCODE& key) = 0;
+    virtual void drawActor() const = 0;
     void addComponent(Component* component);
     void removeComponent(Component* component);
 
     //ゲッター、セッター
     const GSvector3& getPosition() const;
     void setPosition(const GSvector3& pos);
-    const float getRotation() const;
-    GamePlay* getGame() const;
-    const std::unordered_set<Component*>& getComponents() const;
+    float getRotation() const;
+    void setRotation(const float rotation);
+    float getScale() const;
+    void setScale(const float scale);
+    State getState() const;
+    void setState(State state);
+    GamePlay& getGame() const;
+    const std::vector<Component*>& getComponents() const;
 
 private:
-    std::unordered_set<Component*> mComponents;
+    std::vector<Component*> mComponents;
 
 protected:
     State mState;
     GSvector3 mPosition;
     float mRotation;
-    GamePlay* mGame;
+    float mScale;
+    GamePlay& mGame;
 };
 
