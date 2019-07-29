@@ -1,35 +1,21 @@
-#include "SkyBox.h"
-#include "View.h"
+#include "SkyBoxActor.h"
+#include "Actor.h"
 #include <gslib.h>
-#include <iostream>
 
-SkyBox::SkyBox(unsigned int meshID, const char* filename) :
+SkyBoxActor::SkyBoxActor(GamePlay& game, unsigned int meshID) :
+    Actor(game),
     mMeshID(meshID),
-    mFilename(filename),
     mViewRoll(0.f),
     mViewPitch(0.f),
     mViewYow(0.f) {
-    gsLoadMesh(mMeshID, mFilename);
+    gsLoadMesh(mMeshID, "./res/skybox.msh");
 }
 
-SkyBox::~SkyBox() {
+SkyBoxActor::~SkyBoxActor() {
     gsDeleteMesh(mMeshID);
-    std::cout << "SkyBox destructor" << std::endl;
 }
 
-void SkyBox::update(float deltaTime) {
-    //if (gsGetKeyState(GKEY_Z)) {
-    //    mViewRoll -= 1.f * deltaTime;
-    //}
-    //if (gsGetKeyState(GKEY_X)) {
-    //    mViewRoll += 1.f * deltaTime;
-    //}
-    //if (gsGetKeyState(GKEY_UP)) {
-    //    mViewPitch -= 1.f * deltaTime;
-    //}
-    //if (gsGetKeyState(GKEY_DOWN)) {
-    //    mViewPitch += 1.f * deltaTime;
-    //}
+void SkyBoxActor::updateActor(float deltaTime) {
     if (gsGetKeyState(GKEY_LEFT) || gsGetKeyState(GKEY_A)) {
         mViewYow -= 1.f * deltaTime;
     }
@@ -38,7 +24,7 @@ void SkyBox::update(float deltaTime) {
     }
 }
 
-void SkyBox::draw() {
+void SkyBoxActor::drawActor() const {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glRotatef(mViewRoll, 0.f, 0.f, 1.f); //zŽ²‰ñ“]

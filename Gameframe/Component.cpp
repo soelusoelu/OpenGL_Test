@@ -12,6 +12,9 @@ Component::~Component() {
     mOwner.removeComponent(this);
 }
 
+void Component::onUpdateWorldTransform() {
+}
+
 int Component::getUpdateOrder() const {
     return mUpdateOrder;
 }

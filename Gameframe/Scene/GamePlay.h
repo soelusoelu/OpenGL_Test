@@ -1,14 +1,15 @@
 #pragma once
 
 #include "SceneBase.h"
-#include "..//PlayerActor.h"
 #include <unordered_set>
 #include <memory>
 
 class Actor;
-class Player;
+class PlayerActor;
+class SkyBoxActor;
 class OctreeActor;
-class CameraActor;
+class CubeActor;
+class Renderer;
 
 class GamePlay : public SceneBase {
 public:
@@ -30,17 +31,20 @@ public:
     GameState getState() const;
     void setState(GameState state);
     const std::unordered_set<Actor*>& getActors() const;
+    Renderer& getRenderer() const;
 
 private:
     std::unordered_set<Actor*> mActors;
     std::unordered_set<Actor*> mPendingActors;
     bool mUpdatingActors;
     GameState mState;
+    std::unique_ptr<Renderer> mRenderer;
 
-    //生き死にがある場合は生、ないならスマート
-    PlayerActor* mPlayer;
-    std::unique_ptr<OctreeActor> mGround;
-    std::unique_ptr<OctreeActor> mWall;
-    std::unique_ptr<CameraActor> mCamera;
+    //全部生ポインタじゃないとエラー出る
+    //PlayerActor* mPlayer;
+    //OctreeActor* mGround;
+    //std::unique_ptr<SkyBoxActor> mSkyBox;
+    //std::unique_ptr<OctreeActor> mWall;
+    CubeActor* mCube;
 };
 

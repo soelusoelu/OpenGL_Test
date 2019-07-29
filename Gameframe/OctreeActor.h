@@ -13,7 +13,7 @@ public:
         Wall
     };
 
-    OctreeActor(GamePlay& game, unsigned int id, std::string filename, PlayerActor& player, Type type = Type::Ground);
+    OctreeActor(GamePlay& game, unsigned int octreeID, const std::string& filename, PlayerActor& player, Type octreeType);
     ~OctreeActor();
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
@@ -21,7 +21,7 @@ public:
     void intersectWall();
 
 private:
-    unsigned int mID;
+    unsigned int mOctreeID;
     Type mType;
     PlayerActor& mPlayer;
 };

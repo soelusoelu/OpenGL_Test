@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sprite3D.cpp" />
-    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="StringRenderer.cpp" />
@@ -15,14 +14,21 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
-    <ClCompile Include="CameraActor.cpp" />
     <ClCompile Include="PlayerActor.cpp" />
     <ClCompile Include="PlayerMoveComponent.cpp" />
     <ClCompile Include="OctreeActor.cpp" />
+    <ClCompile Include="SkyBoxActor.cpp" />
+    <ClCompile Include="CubeActor.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="TransformComponent.cpp" />
+    <ClCompile Include="MeshComponent.cpp" />
+    <ClCompile Include="IDManager.cpp" />
+    <ClCompile Include="AnimationComponent.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SkeletonComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
-    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="StringRenderer.h" />
@@ -34,9 +40,17 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Scene\GamePlay.h" />
     <ClInclude Include="Scene\SceneBase.h" />
-    <ClInclude Include="CameraActor.h" />
     <ClInclude Include="PlayerActor.h" />
     <ClInclude Include="PlayerMoveComponent.h" />
     <ClInclude Include="OctreeActor.h" />
+    <ClInclude Include="SkyBoxActor.h" />
+    <ClInclude Include="CubeActor.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="MeshComponent.h" />
+    <ClInclude Include="IDManager.h" />
+    <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SkeletonComponent.h" />
   </ItemGroup>
 </Project>

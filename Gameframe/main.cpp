@@ -1,11 +1,16 @@
 #include "Sprite2D.h"
-#include "SkyBox.h"
 #include "Light.h"
 #include "StringRenderer.h"
 #include "Scene/SceneBase.h"
 #include "Scene/GamePlay.h"
+#include "IDManager.h"
 #include <GSgame.h>
 #include <memory>
+
+//メモリリーク検出用
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 // スキニングメッシュシェーダーテスト
 class MyGame : public gslib::Game {
@@ -18,39 +23,37 @@ public:
 
 private:
 	void start() {
-        mScene = Scene::Game;
+        float bgColor[] = { 0.6f, 0.6f, 1.f, 1.f }; //背景色
+        glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]); //画面クリア時のカラーの設定
+
+        glEnable(GL_FOG);
+        glFogi(GL_FOG_MODE, GL_LINEAR);
+        glFogf(GL_FOG_START, 400.f - 50.f);
+        glFogf(GL_FOG_END, 400.f);
+        glFogfv(GL_FOG_COLOR, bgColor);
+
         mGame = std::make_unique<GamePlay>();
 
-        //mSprite = std::make_unique<Sprite2D>(0, "./res/kuppa.png");
-        //mSprite->setPosition(GSvector2(1200.f, 60.f));
-        //mSkyBox = std::make_unique<SkyBox>(1, "./res/skybox.msh");
-
         Light::update();
-        StringRenderer::loadFontTexture(1, "./res/font.bmp");
+        StringRenderer::loadFontTexture("./res/font.bmp");
 	}
 
 	void update(float deltaTime) {
         mGame->update(deltaTime);
-
-        //mSkyBox->update(deltaTime);
 	}
 
 	void draw() {
         mGame->draw();
-
-        //mSkyBox->draw();
-        //mMap->draw();
-        //mWall->draw();
-        //mSprite->draw();
 	}
 
 	void end() {
+        StringRenderer::unloadFontTexture();
+        IDManager::reset();
+        //メモリリーク検出関数
+        _CrtDumpMemoryLeaks();
 	}
 
-    //std::unique_ptr<Sprite2D> mSprite;
-    //std::unique_ptr<SkyBox> mSkyBox;
-
-    Scene mScene;
+    //絶対スマートポインタ
     std::unique_ptr<GamePlay> mGame;
 };
 

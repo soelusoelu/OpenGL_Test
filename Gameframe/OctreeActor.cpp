@@ -1,20 +1,21 @@
 #include "OctreeActor.h"
 #include "Actor.h"
 #include "PlayerActor.h"
+#include "TransformComponent.h"
 #include "Scene/GamePlay.h"
 #include <gslib.h>
 #include <string>
 
-OctreeActor::OctreeActor(GamePlay& game, unsigned int id, std::string filename, PlayerActor& player, OctreeActor::Type type) :
+OctreeActor::OctreeActor(GamePlay& game, unsigned int mOctreeID, const std::string& filename, PlayerActor& player, OctreeActor::Type type) :
     Actor(game),
-    mID(id),
+    mOctreeID(mOctreeID),
     mType(type),
     mPlayer(player) {
-    gsLoadOctree(mID, filename.c_str());
+    gsLoadOctree(mOctreeID, filename.c_str());
 }
 
 OctreeActor::~OctreeActor() {
-    gsDeleteOctree(mID);
+    gsDeleteOctree(mOctreeID);
 }
 
 void OctreeActor::updateActor(float deltaTime) {
@@ -29,32 +30,32 @@ void OctreeActor::updateActor(float deltaTime) {
 }
 
 void OctreeActor::drawActor() const {
-    gsDrawOctree(mID);
+    gsDrawOctree(mOctreeID);
 }
 
 void OctreeActor::intersectGround() {
     //地面との衝突判定
     GSvector3 ray(0.f, -1.f, 0.f);
-    GSvector3 position = mPlayer.getPosition();
+    GSvector3 position = mPlayer.getTransform().getPosition();
     if (gsOctreeCollisionRay(
-        gsGetOctree(mID), //オクツリー
-        &mPlayer.getPosition(), //レイの位置
+        gsGetOctree(mOctreeID), //オクツリー
+        &mPlayer.getTransform().getPosition(), //レイの位置
         &ray, //レイの方向
         &position, //レイとの交点
         nullptr) //衝突した面の平面パラメータ
         ) {
-        mPlayer.setPosition(position);
+        mPlayer.getTransform().setPosition(position);
     }
 }
 
 void OctreeActor::intersectWall() {
     //壁との衝突判定
-    GSvector3 position = mPlayer.getPosition();
+    GSvector3 position = mPlayer.getTransform().getPosition();
     gsOctreeCollisionSphere(
-        gsGetOctree(mID), //オクツリー
-        &mPlayer.getPosition(), //球体の位置
+        gsGetOctree(mOctreeID), //オクツリー
+        &mPlayer.getTransform().getPosition(), //球体の位置
         mPlayer.getRadius(), //球体の半径
         &position //補正後の球体の位置
     );
-    mPlayer.setPosition(position);
+    mPlayer.getTransform().setPosition(position);
 }

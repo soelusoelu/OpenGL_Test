@@ -5,6 +5,9 @@
 
 class GamePlay;
 class PlayerMoveComponent;
+class MeshComponent;
+class SkeltonComponent;
+class AnimationComponent;
 
 class PlayerActor : public Actor {
 public:
@@ -18,10 +21,10 @@ public:
     float getRadius() const;
 
 private:
-    unsigned int mID;
-    float mAnimationTimer;
-    unsigned int mAnimationNo;
     float mRadius;
     PlayerMoveComponent* mPlayerMove;
+    MeshComponent* mMesh;
+    SkeltonComponent* mSkelton;
+    AnimationComponent* mAnimation;
 };
 

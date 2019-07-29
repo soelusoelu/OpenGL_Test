@@ -2,28 +2,37 @@
 #include "..//Actor.h"
 #include "..//PlayerActor.h"
 #include "..//OctreeActor.h"
-#include "..//CameraActor.h"
+#include "..//SkyBoxActor.h"
+#include "..//Camera.h"
+#include "..//CubeActor.h"
+#include "..//TransformComponent.h"
+#include "..//Renderer.h"
+#include "..//StringRenderer.h"
+#include <gslib.h>
 #include <vector>
+#include <unordered_set>
 #include <memory>
 #include <iostream>
 #include <string>
-#include <unordered_set>
 
 GamePlay::GamePlay() :
     mUpdatingActors(false),
     mState(GameState::Play),
-    mPlayer(new PlayerActor(*this, 0)),
-    mCamera(std::make_unique<CameraActor>(*this, *mPlayer)),
-    mGround(std::make_unique<OctreeActor>(*this, 0, "./res/map.oct", *mPlayer)),
-    mWall(std::make_unique<OctreeActor>(*this, 1, "./res/wall.oct", *mPlayer, OctreeActor::Type::Wall)) {
-    std::cout << "Actor total count : " << std::to_string(mActors.size()) << std::endl;
+    mRenderer(std::make_unique<Renderer>()) {
+    //mPlayer = new PlayerActor(*this, 0);
+    //mGround = new OctreeActor(*this, 0, "./res/map.oct", *mPlayer, OctreeActor::Type::Ground);
+    Camera::create();
+    mCube = new CubeActor(*this);
 }
 
 GamePlay::~GamePlay() {
-    mActors.clear();
-    mPendingActors.clear();
-
-    std::cout << "Actor total count : " << std::to_string(mActors.size()) << std::endl;
+    Camera::destroy();
+    while (!mPendingActors.empty()) {
+        delete* mPendingActors.begin();
+    }
+    while (!mActors.empty()) {
+        delete* mActors.begin();
+    }
 }
 
 void GamePlay::update(float deltaTime) {
@@ -35,6 +44,7 @@ void GamePlay::update(float deltaTime) {
         mUpdatingActors = false;
 
         for (auto pending : mPendingActors) {
+            pending->computeWorldTransform();
             mActors.emplace(pending);
         }
         mPendingActors.clear();
@@ -49,12 +59,25 @@ void GamePlay::update(float deltaTime) {
             delete actor;
             actor = nullptr;
         }
+
+        if (gsGetKeyTrigger(GKEY_SPACE)) {
+            mState = GameState::Paused;
+        }
+    } else if (mState == GameState::Paused) {
+        if (gsGetKeyTrigger(GKEY_SPACE)) {
+            mState = GameState::Play;
+        }
     }
 }
 
 void GamePlay::draw() const {
     for (auto actor : mActors) {
         actor->drawActor();
+    }
+    //Camera::instance().update(nullptr);
+
+    if (mState == GameState::Paused) {
+        StringRenderer::printf(600.f, 300.f, "Pause");
     }
 }
 
@@ -88,4 +111,8 @@ void GamePlay::setState(GameState state) {
 
 const std::unordered_set<Actor*>& GamePlay::getActors() const {
     return mActors;
+}
+
+Renderer& GamePlay::getRenderer() const {
+    return *mRenderer;
 }

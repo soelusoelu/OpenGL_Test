@@ -1,8 +1,11 @@
 #pragma once
 
+#include <string>
+
 class StringRenderer {
 public:
-    static void loadFontTexture(unsigned int textureID, const char* filename);
+    static void loadFontTexture(std::string filename);
+    static void unloadFontTexture();
     static void drawChar(float x, float y, char c);
     static void drawString(float x, float y, const char str[]);
     static void printf(float x, float y, const char str[], ...);

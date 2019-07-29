@@ -7,6 +7,8 @@ public:
     Component(Actor& owner, int updateOrder = 100);
     virtual ~Component();
     virtual void update(float deltaTime) = 0;
+    //オーナーのTransformが更新されたら
+    virtual void onUpdateWorldTransform();
 
     int getUpdateOrder() const;
     Actor& getOwner();

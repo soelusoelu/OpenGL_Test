@@ -1,11 +1,16 @@
 #include "StringRenderer.h"
 #include "Sprite3D.h"
+#include "IDManager.h"
 #include <gslib.h>
 
-void StringRenderer::loadFontTexture(unsigned int textureID, const char* filename) {
-    mTextureID = textureID;
-    gsLoadTexture(mTextureID, filename);
-    gsTextureColorKeyMode(GS_TEXCOLOR_KEY_AUTO);
+void StringRenderer::loadFontTexture(std::string filename) {
+    mTextureID = IDManager::pop(IDManager::Type::Texture);
+    gsLoadTexture(mTextureID, filename.c_str());
+}
+
+void StringRenderer::unloadFontTexture() {
+    gsDeleteTexture(mTextureID);
+    IDManager::push(mTextureID, IDManager::Type::Texture);
 }
 
 void StringRenderer::drawChar(float x, float y, char c) {

@@ -1,18 +1,16 @@
 #include "Actor.h"
 #include "Scene/GamePlay.h"
 #include "Component.h"
+#include "TransformComponent.h"
 #include <gslib.h>
 #include <vector>
+#include <memory>
 #include <string>
-#include <algorithm>
-#include <iostream>
 
 Actor::Actor(GamePlay& game) :
+    mGame(game),
     mState(State::Active),
-    mPosition(GSvector3(0.f, 0.f, 0.f)),
-    mRotation(0.f),
-    mScale(GSvector3(1.f, 1.f, 1.f)),
-    mGame(game) {
+    mTransform(new TransformComponent(*this)) {
     mGame.addActor(this);
 }
 
@@ -26,8 +24,12 @@ Actor::~Actor() {
 
 void Actor::update(float deltaTime) {
     if (mState == State::Active) {
+        computeWorldTransform();
+
         updateComponents(deltaTime);
         updateActor(deltaTime);
+
+        computeWorldTransform();
     }
 }
 
@@ -46,8 +48,6 @@ void Actor::addComponent(Component* component) {
         }
     }
     mComponents.insert(itr, component);
-
-    std::cout << "Component total count : " << std::to_string(mComponents.size()) << std::endl;
 }
 
 void Actor::removeComponent(Component* component) {
@@ -55,32 +55,38 @@ void Actor::removeComponent(Component* component) {
     if (itr != mComponents.end()) {
         mComponents.erase(itr);
     }
-
-    std::cout << "Component total count : " << std::to_string(mComponents.size()) << std::endl;
 }
 
-const GSvector3& Actor::getPosition() const {
-    return mPosition;
+void Actor::computeWorldTransform() { //C³•K—v‚©‚à
+    if (mTransform->getRecomputeTransform()) {
+        mTransform->setRecomputeTransform(false);
+
+        glPushMatrix();
+        glTranslatef(mTransform->getPosition().x, mTransform->getPosition().y, mTransform->getPosition().z);
+        glRotatef(mTransform->getRotation(), 0.f, 1.f, 0.f);
+        glScalef(mTransform->getScale().x, mTransform->getScale().y, mTransform->getScale().z);
+
+        drawActor();
+
+        glPopMatrix();
+
+        for (auto comp : mComponents) {
+            comp->onUpdateWorldTransform();
+        }
+    }
 }
 
-void Actor::setPosition(const GSvector3& pos) {
-    mPosition = pos;
+void Actor::instantiate(Actor* actor, const GSvector3& position, float rotation) {
+    actor->getTransform().setPosition(position);
+    actor->getTransform().setRotation(rotation);
 }
 
-float Actor::getRotation() const {
-    return mRotation;
+void Actor::destroy(Actor* actor) {
+    actor->mState = Actor::State::Dead;
 }
 
-void Actor::setRotation(const float rotation) {
-    mRotation = rotation;
-}
-
-const GSvector3& Actor::getScale() const {
-    return mScale;
-}
-
-void Actor::setScale(const GSvector3& scale) {
-    mScale = scale;
+TransformComponent& Actor::getTransform() const {
+    return *mTransform;
 }
 
 Actor::State Actor::getState() const {

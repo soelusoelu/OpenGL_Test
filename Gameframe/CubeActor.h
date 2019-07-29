@@ -2,16 +2,15 @@
 
 #include "Actor.h"
 
-class PlayerActor;
 class GamePlay;
 
-class CameraActor : public Actor {
+class CubeActor : public Actor {
 public:
-    CameraActor(GamePlay& game, PlayerActor& player);
+    CubeActor(GamePlay& game);
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
 
 private:
-    PlayerActor& mPlayer;
+    static float vertices[8][3];
 };
 
