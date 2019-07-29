@@ -3,7 +3,7 @@
 #include "PlayerMoveComponent.h"
 #include "TransformComponent.h"
 #include "MeshComponent.h"
-#include "SkeltonComponent.h"
+#include "SkeletonComponent.h"
 #include "AnimationComponent.h"
 #include <gslib.h>
 #include <iostream>
@@ -13,7 +13,7 @@ PlayerActor::PlayerActor(GamePlay& game, unsigned int id) :
     mRadius(2.f),
     mPlayerMove(new PlayerMoveComponent(*this)),
     mMesh(new MeshComponent(*this, "./res/character.msh")),
-    mSkelton(new SkeltonComponent(*this, "./res/character.skl")),
+    mSkelton(new SkeletonComponent(*this, "./res/character.skl")),
     mAnimation(new AnimationComponent(*this, "./res/character.anm")) {
 }
 

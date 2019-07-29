@@ -6,7 +6,7 @@
 class GamePlay;
 class PlayerMoveComponent;
 class MeshComponent;
-class SkeltonComponent;
+class SkeletonComponent;
 class AnimationComponent;
 
 class PlayerActor : public Actor {
@@ -24,7 +24,7 @@ private:
     float mRadius;
     PlayerMoveComponent* mPlayerMove;
     MeshComponent* mMesh;
-    SkeltonComponent* mSkelton;
+    SkeletonComponent* mSkelton;
     AnimationComponent* mAnimation;
 };
 

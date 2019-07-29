@@ -6,7 +6,7 @@
 #include <iostream>
 
 void Camera::update(PlayerActor* player) {
-    if (player->getState() != Actor::State::Dead || player != nullptr) {
+    if (player != nullptr) {
         GSvector3 eyeVec;
         player->vector3FromHorizontalDir(&eyeVec);
 

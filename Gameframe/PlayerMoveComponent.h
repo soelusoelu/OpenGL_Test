@@ -7,7 +7,6 @@ class Actor;
 class PlayerMoveComponent : public Component {
 public:
     PlayerMoveComponent(Actor& owner, int updateOrder = 10);
-    ~PlayerMoveComponent();
     virtual void update(float deltaTime) override;
 
     float getSpeed() const;

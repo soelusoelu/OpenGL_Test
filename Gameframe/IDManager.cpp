@@ -27,7 +27,7 @@ unsigned int IDManager::pop(IDManager::Type type) {
         }
     }
 
-    unsigned int id;
+    unsigned int id = -1;
     switch (type) {
     case IDManager::Mesh: id = *mMeshIDs.begin(); mMeshIDs.erase(id); break;
     case IDManager::Skeleton: id = *mSkeletonIDs.begin(); mSkeletonIDs.erase(id); break;
@@ -37,9 +37,3 @@ unsigned int IDManager::pop(IDManager::Type type) {
 
     return id;
 }
-
-std::set<unsigned int> IDManager::mMeshIDs;
-std::set<unsigned int> IDManager::mSkeletonIDs;
-std::set<unsigned int> IDManager::mAnimationIDs;
-std::set<unsigned int> IDManager::mTextureIDs;
-

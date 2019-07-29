@@ -1,16 +1,10 @@
 #include "StringRenderer.h"
 #include "Sprite3D.h"
-#include "IDManager.h"
+#include "Renderer.h"
 #include <gslib.h>
 
-void StringRenderer::loadFontTexture(std::string filename) {
-    mTextureID = IDManager::pop(IDManager::Type::Texture);
-    gsLoadTexture(mTextureID, filename.c_str());
-}
-
-void StringRenderer::unloadFontTexture() {
-    gsDeleteTexture(mTextureID);
-    IDManager::push(mTextureID, IDManager::Type::Texture);
+StringRenderer::StringRenderer(Renderer* renderer) {
+    mID = renderer->getTexture("./res/font.bmp");
 }
 
 void StringRenderer::drawChar(float x, float y, char c) {
@@ -30,7 +24,7 @@ void StringRenderer::drawChar(float x, float y, char c) {
 
     //•¶š‚ğ•`‰æ
     gsDrawSprite2D(
-        mTextureID,
+        mID,
         &vTranslate,
         &rSrcRect,
         &GSvector2(0.f, 0.f),
@@ -62,5 +56,3 @@ void StringRenderer::printf(float x, float y, const char str[], ...) {
     //‰Â•Ïˆø”ƒŠƒXƒg‚ÌI—¹
     va_end(args);
 }
-
-unsigned int StringRenderer::mTextureID;

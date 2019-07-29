@@ -5,9 +5,9 @@
 
 class Actor;
 
-class SkeltonComponent : public Component {
+class SkeletonComponent : public Component {
 public:
-    SkeltonComponent(Actor& owner, const std::string& filename);
+    SkeletonComponent(Actor& owner, const std::string& filename);
     virtual void update(float deltaTime) override;
 
 private:

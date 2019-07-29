@@ -18,11 +18,12 @@
 GamePlay::GamePlay() :
     mUpdatingActors(false),
     mState(GameState::Play),
-    mRenderer(std::make_unique<Renderer>()) {
-    //mPlayer = new PlayerActor(*this, 0);
-    //mGround = new OctreeActor(*this, 0, "./res/map.oct", *mPlayer, OctreeActor::Type::Ground);
+    mRenderer(std::make_unique<Renderer>()),
+    mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())) {
+    mPlayer = new PlayerActor(*this, 0);
+    mGround = new OctreeActor(*this, 0, "./res/map.oct", *mPlayer, OctreeActor::Type::Ground);
+    //mCube = new CubeActor(*this);
     Camera::create();
-    mCube = new CubeActor(*this);
 }
 
 GamePlay::~GamePlay() {
@@ -72,12 +73,19 @@ void GamePlay::update(float deltaTime) {
 
 void GamePlay::draw() const {
     for (auto actor : mActors) {
+        glPushMatrix();
+        glTranslatef(actor->getTransform().getPosition().x, actor->getTransform().getPosition().y, actor->getTransform().getPosition().z);
+        glRotatef(actor->getTransform().getRotation(), 0.f, 1.f, 0.f);
+        glScalef(actor->getTransform().getScale().x, actor->getTransform().getScale().y, actor->getTransform().getScale().z);
+
         actor->drawActor();
+
+        glPopMatrix();
     }
-    //Camera::instance().update(nullptr);
+    Camera::instance().update(mPlayer);
 
     if (mState == GameState::Paused) {
-        StringRenderer::printf(600.f, 300.f, "Pause");
+        mStringRenderer->printf(600.f, 300.f, "Pause");
     }
 }
 

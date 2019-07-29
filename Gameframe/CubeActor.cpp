@@ -46,14 +46,3 @@ void CubeActor::drawActor() const {
     //glVertex3f(1.0f, -1.0f, 1.0f);
     //glEnd();
 }
-
-float CubeActor::vertices[8][3] = {
-    { -0.5f, -0.5f, 0.5f },
-    { 0.5f, -0.5f, 0.5f },
-    { 0.5f, 0.5f, 0.5f },
-    { -0.5f, 0.5f, 0.5f },
-    { 0.5f, -0.5f, -0.5f },
-    { -0.5f, -0.5f, -0.5f },
-    { -0.5f, 0.5f, -0.5f },
-    { 0.5f, 0.5f, -0.5f }
-};

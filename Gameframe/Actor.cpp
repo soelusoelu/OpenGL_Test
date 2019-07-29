@@ -61,14 +61,14 @@ void Actor::computeWorldTransform() { //C³•K—v‚©‚à
     if (mTransform->getRecomputeTransform()) {
         mTransform->setRecomputeTransform(false);
 
-        glPushMatrix();
-        glTranslatef(mTransform->getPosition().x, mTransform->getPosition().y, mTransform->getPosition().z);
-        glRotatef(mTransform->getRotation(), 0.f, 1.f, 0.f);
-        glScalef(mTransform->getScale().x, mTransform->getScale().y, mTransform->getScale().z);
+        //glPushMatrix();
+        //glTranslatef(mTransform->getPosition().x, mTransform->getPosition().y, mTransform->getPosition().z);
+        //glRotatef(mTransform->getRotation(), 0.f, 1.f, 0.f);
+        //glScalef(mTransform->getScale().x, mTransform->getScale().y, mTransform->getScale().z);
 
-        drawActor();
+        ////drawActor();
 
-        glPopMatrix();
+        //glPopMatrix();
 
         for (auto comp : mComponents) {
             comp->onUpdateWorldTransform();

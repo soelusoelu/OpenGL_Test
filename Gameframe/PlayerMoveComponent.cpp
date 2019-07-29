@@ -4,14 +4,10 @@
 #include "Actor.h"
 #include "TransformComponent.h"
 #include <gslib.h>
-#include <iostream>
 
 PlayerMoveComponent::PlayerMoveComponent(Actor& owner, int updateOrder) :
     Component(owner, updateOrder),
     mSpeed(0.f) {
-}
-
-PlayerMoveComponent::~PlayerMoveComponent() {
 }
 
 void PlayerMoveComponent::update(float deltaTime) {

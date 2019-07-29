@@ -2,16 +2,17 @@
 
 #include <string>
 
+class Renderer;
+
 class StringRenderer {
 public:
-    static void loadFontTexture(std::string filename);
-    static void unloadFontTexture();
-    static void drawChar(float x, float y, char c);
-    static void drawString(float x, float y, const char str[]);
-    static void printf(float x, float y, const char str[], ...);
+    StringRenderer(Renderer* renderer);
+    void drawChar(float x, float y, char c);
+    void drawString(float x, float y, const char str[]);
+    void printf(float x, float y, const char str[], ...);
 
 private:
-    static unsigned int mTextureID;
+    unsigned int mID;
     static const int mWordCount = 16;
     static const int mWidth = 16;
     static const int mHeight = 16;

@@ -10,6 +10,7 @@ class SkyBoxActor;
 class OctreeActor;
 class CubeActor;
 class Renderer;
+class StringRenderer;
 
 class GamePlay : public SceneBase {
 public:
@@ -39,12 +40,13 @@ private:
     bool mUpdatingActors;
     GameState mState;
     std::unique_ptr<Renderer> mRenderer;
+    std::unique_ptr<StringRenderer> mStringRenderer;
 
     //全部生ポインタじゃないとエラー出る
-    //PlayerActor* mPlayer;
-    //OctreeActor* mGround;
+    PlayerActor* mPlayer;
+    OctreeActor* mGround;
+    //CubeActor* mCube;
     //std::unique_ptr<SkyBoxActor> mSkyBox;
     //std::unique_ptr<OctreeActor> mWall;
-    CubeActor* mCube;
 };
 

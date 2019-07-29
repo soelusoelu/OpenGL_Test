@@ -11,14 +11,14 @@ public:
         Texture
     };
 
-    static void reset();
-    static void push(unsigned int id, Type type);
-    static unsigned int pop(Type type);
+    void reset();
+    void push(unsigned int id, Type type);
+    unsigned int pop(Type type);
 
 private:
-    static std::set<unsigned int> mMeshIDs;
-    static std::set<unsigned int> mSkeletonIDs;
-    static std::set<unsigned int> mAnimationIDs;
-    static std::set<unsigned int> mTextureIDs;
+    std::set<unsigned int> mMeshIDs;
+    std::set<unsigned int> mSkeletonIDs;
+    std::set<unsigned int> mAnimationIDs;
+    std::set<unsigned int> mTextureIDs;
 };
 
