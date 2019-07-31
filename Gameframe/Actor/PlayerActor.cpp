@@ -5,6 +5,7 @@
 #include "../Component/MeshComponent.h"
 #include "../Component/SkeletonComponent.h"
 #include "../Component/AnimationComponent.h"
+#include "../Actor/CubeActor.h"
 #include <gslib.h>
 #include <iostream>
 
@@ -21,8 +22,6 @@ PlayerActor::~PlayerActor() {
 }
 
 void PlayerActor::updateActor(float deltaTime) {
-    mPlayerMove->update(deltaTime);
-    mAnimation->update(deltaTime);
 }
 
 void PlayerActor::drawActor() const {
@@ -30,7 +29,7 @@ void PlayerActor::drawActor() const {
 }
 
 void PlayerActor::vector3FromHorizontalDir(GSvector3* out) const {
-    gsVector3FromEleDir(out, 0.f, getTransform().getRotation());
+    gsVector3FromEleDir(out, 0.f, getTransform().getRotation().y);
 }
 
 float PlayerActor::getRadius() const {

@@ -5,12 +5,15 @@
 TransformComponent::TransformComponent(Actor& owner, int updateOrder) :
     Component(owner, updateOrder),
     mPosition(GSvector3(0.f, 0.f, 0.f)),
-    mRotation(0.f),
+    mRotation(GSvector3(0.f, 0.f, 0.f)),
     mScale(GSvector3(1.f, 1.f, 1.f)),
     mRecomputeTransform(true) {
 }
 
 TransformComponent::~TransformComponent() {
+}
+
+void TransformComponent::start() {
 }
 
 void TransformComponent::update(float deltaTime) {
@@ -25,17 +28,45 @@ void TransformComponent::setPosition(const GSvector3& pos) {
     mRecomputeTransform = true;
 }
 
-float TransformComponent::getRotation() const {
-    return mRotation;
-}
-
-void TransformComponent::setRotation(const float rotation) {
-    mRotation = rotation;
+void TransformComponent::translete(const GSvector3& translation) {
+    mPosition += translation;
     mRecomputeTransform = true;
 }
 
-void TransformComponent::rotate(float rotation) {
-    mRotation += rotation;
+const GSvector3& TransformComponent::getRotation() const {
+    return mRotation;
+}
+
+void TransformComponent::setRotation(const GSvector3& angle) {
+    mRotation = angle;
+    mRecomputeTransform = true;
+}
+
+void TransformComponent::setRotation(float angleX, float angleY, float angleZ) {
+    mRotation.x = angleX;
+    mRotation.y = angleY;
+    mRotation.z = angleZ;
+    mRecomputeTransform = true;
+}
+
+void TransformComponent::rotate(float angle, const GSvector3& axis) {
+    mRotation += axis * angle;
+    if (mRotation.x > 180.f) {
+        mRotation.x -= 360.f;
+    } else if (mRotation.x < -180.f) {
+        mRotation.x += 360.f;
+    }
+    if (mRotation.y > 180.f) {
+        mRotation.y -= 360.f;
+    } else if (mRotation.y < -180.f) {
+        mRotation.y += 360.f;
+    }
+    if (mRotation.z > 180.f) {
+        mRotation.z -= 360.f;
+    } else if (mRotation.z < -180.f) {
+        mRotation.z += 360.f;
+    }
+    mRecomputeTransform = true;
 }
 
 const GSvector3& TransformComponent::getScale() const {

@@ -4,11 +4,10 @@
 
 CubeActor::CubeActor(GamePlay& game) :
     Actor(game) {
-    getTransform().setPosition(GSvector3(0.f, 50.f, 0.f));
 }
 
 void CubeActor::updateActor(float deltaTime) {
-    getTransform().rotate(1.f);
+    getTransform().rotate(1.f, GSvector3(0.f, 1.f, 0.f));
 }
 
 void CubeActor::drawActor() const {

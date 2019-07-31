@@ -3,6 +3,7 @@
 #include "../Actor/Actor.h"
 #include "../Scene/GamePlay.h"
 #include "../Renderer.h"
+#include "MeshComponent.h"
 #include <gslib.h>
 
 AnimationComponent::AnimationComponent(Actor& owner, const std::string& filename) :
@@ -15,9 +16,12 @@ AnimationComponent::AnimationComponent(Actor& owner, const std::string& filename
 AnimationComponent::~AnimationComponent() {
 }
 
+void AnimationComponent::start() {
+}
+
 void AnimationComponent::update(float deltaTime) {
-    mAnimationTimer += 1.f * deltaTime;
-    if (mAnimationTimer > 1000.f) {
+    mAnimationTimer += 1.5f * deltaTime;
+    if (mAnimationTimer > 100.f) {
         mAnimationTimer = 0.f;
     }
 

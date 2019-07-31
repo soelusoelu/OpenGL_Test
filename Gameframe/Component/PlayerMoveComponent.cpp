@@ -1,5 +1,4 @@
 #include "PlayerMoveComponent.h"
-#include "../Actor/PlayerActor.h"
 #include "Component.h"
 #include "../Actor/Actor.h"
 #include "TransformComponent.h"
@@ -10,33 +9,31 @@ PlayerMoveComponent::PlayerMoveComponent(Actor& owner, int updateOrder) :
     mSpeed(0.f) {
 }
 
+void PlayerMoveComponent::start() {
+}
+
 void PlayerMoveComponent::update(float deltaTime) {
-    float rotation = getOwner().getTransform().getRotation();
+    float rotation = 0.f;
     if (gsGetKeyState(GKEY_LEFT) || gsGetKeyState(GKEY_A)) {
-        rotation += 0.5f * deltaTime;
-        if (rotation > 180.f) {
-            rotation -= 360.f;
-        }
+        rotation = 1.f;
     }
     if (gsGetKeyState(GKEY_RIGHT) || gsGetKeyState(GKEY_D)) {
-        rotation -= 0.5f * deltaTime;
-        if (rotation < -180.f) {
-            rotation += 360.f;
-        }
+        rotation = -1.f;
     }
-    getOwner().getTransform().setRotation(rotation);
+    getOwner().getTransform().rotate(rotation * deltaTime, GSvector3(0.f, 1.f, 0.f));
 
     mSpeed = 0.f;
     if (gsGetKeyState(GKEY_UP) || gsGetKeyState(GKEY_W)) {
-        mSpeed = 0.5f;
+        mSpeed = 1.f;
     }
     if (gsGetKeyState(GKEY_DOWN) || gsGetKeyState(GKEY_S)) {
-        mSpeed = -0.5;
+        mSpeed = -1.f;
     }
-    GSvector3 position = getOwner().getTransform().getPosition();
-    position.x += gsSin(getOwner().getTransform().getRotation()) * mSpeed * deltaTime;
-    position.z += gsCos(getOwner().getTransform().getRotation()) * mSpeed * deltaTime;
-    getOwner().getTransform().setPosition(position);
+    getOwner().getTransform().translete(GSvector3(
+        gsSin(getOwner().getTransform().getRotation().y) * mSpeed * deltaTime,
+        0.f,
+        gsCos(getOwner().getTransform().getRotation().y) * mSpeed * deltaTime
+    ));
 }
 
 float PlayerMoveComponent::getSpeed() const {

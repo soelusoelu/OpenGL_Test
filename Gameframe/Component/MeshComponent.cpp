@@ -6,10 +6,16 @@
 #include <gslib.h>
 #include <string>
 
-MeshComponent::MeshComponent(Actor& owner, const std::string& filename) :
-    Component(owner),
+MeshComponent::MeshComponent(Actor& owner, const std::string& filename, int updateOrder) :
+    Component(owner, updateOrder),
     mEnabled(true) {
     mID = getOwner().getGame().getRenderer().getMesh(filename);
+}
+
+MeshComponent::~MeshComponent() {
+}
+
+void MeshComponent::start() {
 }
 
 void MeshComponent::update(float deltaTime) {

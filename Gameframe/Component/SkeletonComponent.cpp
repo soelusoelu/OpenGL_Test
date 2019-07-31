@@ -11,5 +11,8 @@ SkeletonComponent::SkeletonComponent(Actor& owner, const std::string& filename) 
     gsBindSkeleton(mID);
 }
 
+void SkeletonComponent::start() {
+}
+
 void SkeletonComponent::update(float deltaTime) {
 }

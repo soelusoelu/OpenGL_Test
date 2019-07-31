@@ -45,7 +45,7 @@ void GamePlay::update(float deltaTime) {
         mUpdatingActors = false;
 
         for (auto pending : mPendingActors) {
-            //pending->computeWorldTransform();
+            pending->computeWorldTransform();
             mActors.emplace(pending);
         }
         mPendingActors.clear();
@@ -75,7 +75,9 @@ void GamePlay::draw() const {
     for (auto actor : mActors) {
         glPushMatrix();
         glTranslatef(actor->getTransform().getPosition().x, actor->getTransform().getPosition().y, actor->getTransform().getPosition().z);
-        glRotatef(actor->getTransform().getRotation(), 0.f, 1.f, 0.f);
+        glRotatef(actor->getTransform().getRotation().x, 1.f, 0.f, 0.f);
+        glRotatef(actor->getTransform().getRotation().y, 0.f, 1.f, 0.f);
+        glRotatef(actor->getTransform().getRotation().z, 0.f, 0.f, 1.f);
         glScalef(actor->getTransform().getScale().x, actor->getTransform().getScale().y, actor->getTransform().getScale().z);
 
         actor->drawActor();

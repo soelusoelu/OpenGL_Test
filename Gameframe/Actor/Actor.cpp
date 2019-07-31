@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <algorithm>
 
 Actor::Actor(GamePlay& game) :
     mGame(game),
@@ -22,10 +23,25 @@ Actor::~Actor() {
     }
 }
 
-void Actor::update(float deltaTime) {
-    if (mState == State::Active) {
-        computeWorldTransform();
+void Actor::start() {
+    for (auto comp : mStartComponents) {
+        comp->start();
 
+        int myOrder = comp->getUpdateOrder();
+        auto itr = mComponents.begin();
+        for (; itr != mComponents.end(); ++itr) {
+            if (myOrder < (*itr)->getUpdateOrder()) {
+                break;
+            }
+        }
+        mComponents.insert(itr, comp);
+    }
+    mStartComponents.clear();
+}
+
+void Actor::update(float deltaTime) {
+    start();
+    if (mState == State::Active) {
         updateComponents(deltaTime);
         updateActor(deltaTime);
 
@@ -40,14 +56,7 @@ void Actor::updateComponents(float deltaTime) {
 }
 
 void Actor::addComponent(Component* component) {
-    int myOrder = component->getUpdateOrder();
-    auto itr = mComponents.begin();
-    for (; itr != mComponents.end(); ++itr) {
-        if (myOrder < (*itr)->getUpdateOrder()) {
-            break;
-        }
-    }
-    mComponents.insert(itr, component);
+    mStartComponents.emplace(component);
 }
 
 void Actor::removeComponent(Component* component) {
@@ -76,11 +85,6 @@ void Actor::computeWorldTransform() { //C³•K—v‚©‚à
     }
 }
 
-void Actor::instantiate(Actor* actor, const GSvector3& position, float rotation) {
-    actor->getTransform().setPosition(position);
-    actor->getTransform().setRotation(rotation);
-}
-
 void Actor::destroy(Actor* actor) {
     actor->mState = Actor::State::Dead;
 }
@@ -101,6 +105,6 @@ GamePlay& Actor::getGame() const {
     return mGame;
 }
 
-const std::vector<Component*>& Actor::getComponents() const {
+const std::vector<Component*>& Actor::getAllComponents() const {
     return mComponents;
 }
