@@ -1,9 +1,7 @@
 #include "Camera.h"
-#include "PlayerActor.h"
-#include "View.h"
-#include "TransformComponent.h"
+#include "Actor/PlayerActor.h"
+#include "Component/TransformComponent.h"
 #include <gslib.h>
-#include <iostream>
 
 void Camera::update(PlayerActor* player) {
     if (player != nullptr) {
@@ -35,7 +33,7 @@ void Camera::create() {
         gluPerspective(
             45.f, //視野角
             1280.f / 720.f, //アスペクト比
-            0.2f, //近クリップ
+            0.1f, //近クリップ
             1000.f //遠クリップ
         );
     }

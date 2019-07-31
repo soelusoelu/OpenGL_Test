@@ -1,7 +1,7 @@
 #include "PlayerMoveComponent.h"
-#include "PlayerActor.h"
+#include "../Actor/PlayerActor.h"
 #include "Component.h"
-#include "Actor.h"
+#include "../Actor/Actor.h"
 #include "TransformComponent.h"
 #include <gslib.h>
 

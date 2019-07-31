@@ -1,11 +1,11 @@
 #include "GamePlay.h"
-#include "..//Actor.h"
-#include "..//PlayerActor.h"
-#include "..//OctreeActor.h"
-#include "..//SkyBoxActor.h"
-#include "..//Camera.h"
-#include "..//CubeActor.h"
-#include "..//TransformComponent.h"
+#include "../Actor/Actor.h"
+#include "../Actor/PlayerActor.h"
+#include "../Actor/OctreeActor.h"
+#include "../Actor/SkyBoxActor.h"
+#include "../Actor/CubeActor.h"
+#include "../Camera.h"
+#include "../Component/TransformComponent.h"
 #include "..//Renderer.h"
 #include "..//StringRenderer.h"
 #include <gslib.h>
@@ -22,7 +22,7 @@ GamePlay::GamePlay() :
     mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())) {
     mPlayer = new PlayerActor(*this);
     mGround = new OctreeActor(*this, 0, "./res/map.oct", *mPlayer, OctreeActor::Type::Ground);
-    //mCube = new CubeActor(*this);
+    mCube = new CubeActor(*this);
     Camera::create();
 }
 

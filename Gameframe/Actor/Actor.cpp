@@ -1,7 +1,7 @@
 #include "Actor.h"
-#include "Scene/GamePlay.h"
-#include "Component.h"
-#include "TransformComponent.h"
+#include "../Scene/GamePlay.h"
+#include "../Component/Component.h"
+#include "../Component/TransformComponent.h"
 #include <gslib.h>
 #include <vector>
 #include <memory>

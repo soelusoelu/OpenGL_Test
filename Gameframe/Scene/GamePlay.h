@@ -45,7 +45,7 @@ private:
     //全部生ポインタじゃないとエラー出る
     PlayerActor* mPlayer;
     OctreeActor* mGround;
-    //CubeActor* mCube;
+    CubeActor* mCube;
     //std::unique_ptr<SkyBoxActor> mSkyBox;
     //std::unique_ptr<OctreeActor> mWall;
 };

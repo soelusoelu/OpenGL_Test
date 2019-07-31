@@ -2,8 +2,6 @@
 
 #include "Component.h"
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 
 class Actor;
 
@@ -13,7 +11,12 @@ public:
     virtual void update(float deltaTime) override;
     void draw() const;
 
+    void setEnable(bool set);
+    bool getEnable() const;
+
 private:
     unsigned int mID;
+    bool mEnabled;
+
 };
 

@@ -1,9 +1,8 @@
 #include "AnimationComponent.h"
 #include "Component.h"
-#include"IDManager.h"
-#include "Actor.h"
-#include "Scene/GamePlay.h"
-#include "Renderer.h"
+#include "../Actor/Actor.h"
+#include "../Scene/GamePlay.h"
+#include "../Renderer.h"
 #include <gslib.h>
 
 AnimationComponent::AnimationComponent(Actor& owner, const std::string& filename) :

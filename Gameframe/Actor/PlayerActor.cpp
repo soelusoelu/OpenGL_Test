@@ -1,10 +1,10 @@
 #include "PlayerActor.h"
-#include "Scene/GamePlay.h"
-#include "PlayerMoveComponent.h"
-#include "TransformComponent.h"
-#include "MeshComponent.h"
-#include "SkeletonComponent.h"
-#include "AnimationComponent.h"
+#include "../Scene/GamePlay.h"
+#include "../Component/PlayerMoveComponent.h"
+#include "../Component/TransformComponent.h"
+#include "../Component/MeshComponent.h"
+#include "../Component/SkeletonComponent.h"
+#include "../Component/AnimationComponent.h"
 #include <gslib.h>
 #include <iostream>
 

@@ -1,8 +1,8 @@
 #include "OctreeActor.h"
 #include "Actor.h"
 #include "PlayerActor.h"
-#include "TransformComponent.h"
-#include "Scene/GamePlay.h"
+#include "../Component/TransformComponent.h"
+#include "../Scene/GamePlay.h"
 #include <gslib.h>
 #include <string>
 

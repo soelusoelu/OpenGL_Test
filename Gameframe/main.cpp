@@ -34,8 +34,6 @@ private:
         glFogfv(GL_FOG_COLOR, bgColor);
 
         mGame = std::make_unique<GamePlay>();
-
-        Light::update();
     }
 
     void update(float deltaTime) {

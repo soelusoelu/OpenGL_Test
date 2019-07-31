@@ -1,6 +1,5 @@
 #include "TransformComponent.h"
 #include "Component.h"
-#include "Actor.h"
 #include <gslib.h>
 
 TransformComponent::TransformComponent(Actor& owner, int updateOrder) :

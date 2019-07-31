@@ -10,22 +10,22 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SE.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
-    <ClCompile Include="PlayerActor.cpp" />
-    <ClCompile Include="PlayerMoveComponent.cpp" />
-    <ClCompile Include="OctreeActor.cpp" />
-    <ClCompile Include="SkyBoxActor.cpp" />
-    <ClCompile Include="CubeActor.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="TransformComponent.cpp" />
-    <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="IDManager.cpp" />
-    <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="SkeletonComponent.cpp" />
+    <ClCompile Include="Component\Component.cpp" />
+    <ClCompile Include="Component\AnimationComponent.cpp" />
+    <ClCompile Include="Component\MeshComponent.cpp" />
+    <ClCompile Include="Component\SkeletonComponent.cpp" />
+    <ClCompile Include="Component\TransformComponent.cpp" />
+    <ClCompile Include="Component\PlayerMoveComponent.cpp" />
+    <ClCompile Include="Actor\PlayerActor.cpp" />
+    <ClCompile Include="Actor\CubeActor.cpp" />
+    <ClCompile Include="Actor\Actor.cpp" />
+    <ClCompile Include="Actor\OctreeActor.cpp" />
+    <ClCompile Include="Actor\SkyBoxActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -36,21 +36,21 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SE.h" />
     <ClInclude Include="Sprite2D.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="Actor.h" />
     <ClInclude Include="Scene\GamePlay.h" />
     <ClInclude Include="Scene\SceneBase.h" />
-    <ClInclude Include="PlayerActor.h" />
-    <ClInclude Include="PlayerMoveComponent.h" />
-    <ClInclude Include="OctreeActor.h" />
-    <ClInclude Include="SkyBoxActor.h" />
-    <ClInclude Include="CubeActor.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="TransformComponent.h" />
-    <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="IDManager.h" />
-    <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="Renderer.h" />
-    <ClInclude Include="SkeletonComponent.h" />
+    <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Component\AnimationComponent.h" />
+    <ClInclude Include="Component\MeshComponent.h" />
+    <ClInclude Include="Component\SkeletonComponent.h" />
+    <ClInclude Include="Component\TransformComponent.h" />
+    <ClInclude Include="Component\PlayerMoveComponent.h" />
+    <ClInclude Include="Actor\PlayerActor.h" />
+    <ClInclude Include="Actor\CubeActor.h" />
+    <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Actor\OctreeActor.h" />
+    <ClInclude Include="Actor\SkyBoxActor.h" />
   </ItemGroup>
 </Project>
