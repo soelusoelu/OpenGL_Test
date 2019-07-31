@@ -27,7 +27,7 @@ unsigned int IDManager::pop(IDManager::Type type) {
         }
     }
 
-    unsigned int id = -1;
+    unsigned int id = 0;
     switch (type) {
     case IDManager::Mesh: id = *mMeshIDs.begin(); mMeshIDs.erase(id); break;
     case IDManager::Skeleton: id = *mSkeletonIDs.begin(); mSkeletonIDs.erase(id); break;

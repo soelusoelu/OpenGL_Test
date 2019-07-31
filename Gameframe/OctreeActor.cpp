@@ -6,9 +6,9 @@
 #include <gslib.h>
 #include <string>
 
-OctreeActor::OctreeActor(GamePlay& game, unsigned int mOctreeID, const std::string& filename, PlayerActor& player, OctreeActor::Type type) :
+OctreeActor::OctreeActor(GamePlay& game, unsigned int octreeID, const std::string& filename, PlayerActor& player, OctreeActor::Type type) :
     Actor(game),
-    mOctreeID(mOctreeID),
+    mOctreeID(octreeID),
     mType(type),
     mPlayer(player) {
     gsLoadOctree(mOctreeID, filename.c_str());

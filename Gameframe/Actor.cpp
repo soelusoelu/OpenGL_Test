@@ -66,7 +66,7 @@ void Actor::computeWorldTransform() { //C³•K—v‚©‚à
         //glRotatef(mTransform->getRotation(), 0.f, 1.f, 0.f);
         //glScalef(mTransform->getScale().x, mTransform->getScale().y, mTransform->getScale().z);
 
-        ////drawActor();
+        //drawActor();
 
         //glPopMatrix();
 

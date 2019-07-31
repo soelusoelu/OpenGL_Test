@@ -1,9 +1,6 @@
-#include "Sprite2D.h"
 #include "Light.h"
-#include "StringRenderer.h"
 #include "Scene/SceneBase.h"
 #include "Scene/GamePlay.h"
-#include "IDManager.h"
 #include <GSgame.h>
 #include <memory>
 

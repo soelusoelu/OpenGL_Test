@@ -11,7 +11,7 @@ class AnimationComponent;
 
 class PlayerActor : public Actor {
 public:
-    PlayerActor(GamePlay& game, unsigned int id);
+    PlayerActor(GamePlay& game);
     ~PlayerActor();
 
     virtual void updateActor(float deltaTime) override;

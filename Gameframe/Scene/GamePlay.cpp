@@ -20,7 +20,7 @@ GamePlay::GamePlay() :
     mState(GameState::Play),
     mRenderer(std::make_unique<Renderer>()),
     mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())) {
-    mPlayer = new PlayerActor(*this, 0);
+    mPlayer = new PlayerActor(*this);
     mGround = new OctreeActor(*this, 0, "./res/map.oct", *mPlayer, OctreeActor::Type::Ground);
     //mCube = new CubeActor(*this);
     Camera::create();
@@ -45,7 +45,7 @@ void GamePlay::update(float deltaTime) {
         mUpdatingActors = false;
 
         for (auto pending : mPendingActors) {
-            pending->computeWorldTransform();
+            //pending->computeWorldTransform();
             mActors.emplace(pending);
         }
         mPendingActors.clear();

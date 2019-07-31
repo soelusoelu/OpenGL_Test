@@ -8,7 +8,7 @@
 #include <gslib.h>
 #include <iostream>
 
-PlayerActor::PlayerActor(GamePlay& game, unsigned int id) :
+PlayerActor::PlayerActor(GamePlay& game) :
     Actor(game),
     mRadius(2.f),
     mPlayerMove(new PlayerMoveComponent(*this)),
