@@ -7,7 +7,7 @@ class Actor;
 
 class MeshComponent : public Component {
 public:
-    MeshComponent(Actor& owner, const std::string& filename, int updateOrder = 200);
+    MeshComponent(Actor* owner, const std::string& filename, int updateOrder = 200);
     ~MeshComponent();
     virtual void start() override;
     virtual void update(float deltaTime) override;

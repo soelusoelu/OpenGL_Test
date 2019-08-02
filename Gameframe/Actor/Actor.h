@@ -17,7 +17,7 @@ public:
         Dead //死ぬ
     };
 
-    Actor(GamePlay& game);
+    Actor(GamePlay* game);
     virtual ~Actor();
 
     //各コンポーネントのstartを一度だけ実行
@@ -71,14 +71,14 @@ public:
     void destroy(Actor* actor);
 
     //ゲッター、セッター
-    TransformComponent& getTransform() const;
+    TransformComponent* getTransform() const;
     State getState() const;
     void setState(State state);
-    GamePlay& getGame() const;
+    GamePlay* getGame() const;
     const std::vector<Component*>& getAllComponents() const;
 
 private:
-    GamePlay& mGame;
+    GamePlay* mGame;
     std::unordered_set<Component*> mStartComponents;
     std::vector<Component*> mComponents;
     State mState;

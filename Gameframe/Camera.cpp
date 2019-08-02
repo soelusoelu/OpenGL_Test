@@ -9,11 +9,11 @@ void Camera::update(PlayerActor* player) {
         player->vector3FromHorizontalDir(&eyeVec);
 
         mCameraPosition = GSvector3(
-            player->getTransform().getPosition().x - eyeVec.x * 30.f,
-            player->getTransform().getPosition().y + 8.f,
-            player->getTransform().getPosition().z - eyeVec.z * 30.f
+            player->getTransform()->getPosition().x - eyeVec.x * 30.f,
+            player->getTransform()->getPosition().y + 8.f,
+            player->getTransform()->getPosition().z - eyeVec.z * 30.f
         );
-        mPlayerPosition = player->getTransform().getPosition();
+        mPlayerPosition = player->getTransform()->getPosition();
     }
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();

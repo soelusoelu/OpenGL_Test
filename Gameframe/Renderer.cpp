@@ -29,8 +29,6 @@ Renderer::~Renderer() {
         mIDManager->push(texture.second, IDManager::Type::Texture);
     }
     mTextures.clear();
-
-    mIDManager->reset();
 }
 
 unsigned int Renderer::getMesh(const std::string& filename) {

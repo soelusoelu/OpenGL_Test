@@ -8,15 +8,15 @@
 #include <string>
 #include <algorithm>
 
-Actor::Actor(GamePlay& game) :
+Actor::Actor(GamePlay* game) :
     mGame(game),
     mState(State::Active),
-    mTransform(new TransformComponent(*this)) {
-    mGame.addActor(this);
+    mTransform(new TransformComponent(this)) {
+    mGame->addActor(this);
 }
 
 Actor::~Actor() {
-    mGame.removeActor(this);
+    mGame->removeActor(this);
 
     while (!mComponents.empty()) {
         delete mComponents.back();
@@ -89,8 +89,8 @@ void Actor::destroy(Actor* actor) {
     actor->mState = Actor::State::Dead;
 }
 
-TransformComponent& Actor::getTransform() const {
-    return *mTransform;
+TransformComponent* Actor::getTransform() const {
+    return mTransform;
 }
 
 Actor::State Actor::getState() const {
@@ -101,7 +101,7 @@ void Actor::setState(State state) {
     mState = state;
 }
 
-GamePlay& Actor::getGame() const {
+GamePlay* Actor::getGame() const {
     return mGame;
 }
 

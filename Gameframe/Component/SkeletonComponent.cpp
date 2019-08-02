@@ -5,9 +5,9 @@
 #include "../Renderer.h"
 #include <gslib.h>
 
-SkeletonComponent::SkeletonComponent(Actor& owner, const std::string& filename) :
+SkeletonComponent::SkeletonComponent(Actor* owner, const std::string& filename) :
     Component(owner) {
-    mID = getOwner().getGame().getRenderer().getSkeleton(filename);
+    mID = getOwner()->getGame()->getRenderer()->getSkeleton(filename);
     gsBindSkeleton(mID);
 }
 

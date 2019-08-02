@@ -32,7 +32,7 @@ public:
     GameState getState() const;
     void setState(GameState state);
     const std::unordered_set<Actor*>& getActors() const;
-    Renderer& getRenderer() const;
+    Renderer* getRenderer() const;
 
 private:
     std::unordered_set<Actor*> mActors;
@@ -42,9 +42,9 @@ private:
     std::unique_ptr<Renderer> mRenderer;
     std::unique_ptr<StringRenderer> mStringRenderer;
 
-    //全部生ポインタじゃないとエラー出る
-    PlayerActor* mPlayer;
-    OctreeActor* mGround;
-    CubeActor* mCube;
+    ////全部生ポインタじゃないとエラー出る
+    //PlayerActor* mPlayer;
+    //OctreeActor* mGround;
+    //CubeActor* mCube;
 };
 

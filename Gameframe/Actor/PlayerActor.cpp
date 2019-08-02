@@ -9,13 +9,13 @@
 #include <gslib.h>
 #include <iostream>
 
-PlayerActor::PlayerActor(GamePlay& game) :
+PlayerActor::PlayerActor(GamePlay* game) :
     Actor(game),
     mRadius(2.f),
-    mPlayerMove(new PlayerMoveComponent(*this)),
-    mMesh(new MeshComponent(*this, "./res/character.msh")),
-    mSkelton(new SkeletonComponent(*this, "./res/character.skl")),
-    mAnimation(new AnimationComponent(*this, "./res/character.anm")) {
+    mPlayerMove(new PlayerMoveComponent(this)),
+    mMesh(new MeshComponent(this, "./res/character.msh")),
+    mSkelton(new SkeletonComponent(this, "./res/character.skl")),
+    mAnimation(new AnimationComponent(this, "./res/character.anm")) {
 }
 
 PlayerActor::~PlayerActor() {
@@ -29,7 +29,7 @@ void PlayerActor::drawActor() const {
 }
 
 void PlayerActor::vector3FromHorizontalDir(GSvector3* out) const {
-    gsVector3FromEleDir(out, 0.f, getTransform().getRotation().y);
+    gsVector3FromEleDir(out, 0.f, getTransform()->getRotation().y);
 }
 
 float PlayerActor::getRadius() const {

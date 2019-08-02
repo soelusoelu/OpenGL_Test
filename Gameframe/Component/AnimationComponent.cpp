@@ -6,11 +6,11 @@
 #include "MeshComponent.h"
 #include <gslib.h>
 
-AnimationComponent::AnimationComponent(Actor& owner, const std::string& filename) :
+AnimationComponent::AnimationComponent(Actor* owner, const std::string& filename) :
     Component(owner),
     mAnimationNo(0),
     mAnimationTimer(0.f) {
-    mID = getOwner().getGame().getRenderer().getAnimation(filename);
+    mID = getOwner()->getGame()->getRenderer()->getAnimation(filename);
 }
 
 AnimationComponent::~AnimationComponent() {

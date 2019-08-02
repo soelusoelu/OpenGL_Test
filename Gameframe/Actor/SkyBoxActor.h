@@ -6,7 +6,7 @@ class GamePlay;
 
 class SkyBoxActor : public Actor {
 public:
-    SkyBoxActor(GamePlay& game, unsigned int meshID);
+    SkyBoxActor(GamePlay* game, unsigned int meshID);
     ~SkyBoxActor();
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;

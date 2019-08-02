@@ -1,7 +1,14 @@
 #include "IDManager.h"
-#include <set>
+#include <list>
 
-void IDManager::reset() {
+IDManager::IDManager() {
+    mMeshIDs.emplace_back(0);
+    mSkeletonIDs.emplace_back(0);
+    mAnimationIDs.emplace_back(0);
+    mTextureIDs.emplace_back(0);
+}
+
+IDManager::~IDManager() {
     mMeshIDs.clear();
     mSkeletonIDs.clear();
     mAnimationIDs.clear();
@@ -9,30 +16,28 @@ void IDManager::reset() {
 }
 
 void IDManager::push(unsigned int id, IDManager::Type type) {
-    switch (type) {
-    case IDManager::Mesh: mMeshIDs.emplace(id); break;
-    case IDManager::Skeleton: mSkeletonIDs.emplace(id); break;
-    case IDManager::Animation: mAnimationIDs.emplace(id); break;
-    case IDManager::Texture: mTextureIDs.emplace(id); break;
+    if (type == IDManager::Type::Mesh) {
+        mMeshIDs.emplace_back(id);
+    } else if (type == IDManager::Type::Skeleton) {
+        mSkeletonIDs.emplace_back(id);
+    } else if (type == IDManager::Type::Animation) {
+        mAnimationIDs.emplace_back(id);
+    } else if (type == IDManager::Type::Texture) {
+        mTextureIDs.emplace_back(id);
     }
 }
 
 unsigned int IDManager::pop(IDManager::Type type) {
-    if (mMeshIDs.size() == 0) {
-        for (unsigned int i = 0; i < 100; i++) {
-            mMeshIDs.emplace(i);
-            mSkeletonIDs.emplace(i);
-            mAnimationIDs.emplace(i);
-            mTextureIDs.emplace(i);
-        }
-    }
-
     unsigned int id = 0;
-    switch (type) {
-    case IDManager::Mesh: id = *mMeshIDs.begin(); mMeshIDs.erase(id); break;
-    case IDManager::Skeleton: id = *mSkeletonIDs.begin(); mSkeletonIDs.erase(id); break;
-    case IDManager::Animation: id = *mAnimationIDs.begin(); mAnimationIDs.erase(id);  break;
-    case IDManager::Texture: id = *mTextureIDs.begin(); mTextureIDs.erase(id); break;
+
+    if (type == IDManager::Type::Mesh) {
+        id = mMeshIDs.back();
+    } else if (type == IDManager::Type::Skeleton) {
+        id = mSkeletonIDs.back();
+    } else if (type == IDManager::Type::Animation) {
+        id = mAnimationIDs.back();
+    } else if (type == IDManager::Type::Texture) {
+        id = mTextureIDs.back();
     }
 
     return id;

@@ -2,7 +2,7 @@
 #include "Component.h"
 #include <gslib.h>
 
-TransformComponent::TransformComponent(Actor& owner, int updateOrder) :
+TransformComponent::TransformComponent(Actor* owner, int updateOrder) :
     Component(owner, updateOrder),
     mPosition(GSvector3(0.f, 0.f, 0.f)),
     mRotation(GSvector3(0.f, 0.f, 0.f)),

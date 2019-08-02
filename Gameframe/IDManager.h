@@ -1,6 +1,6 @@
 #pragma once
 
-#include <set>
+#include <list>
 
 class IDManager {
 public:
@@ -11,14 +11,14 @@ public:
         Texture
     };
 
-    void reset();
+    IDManager();
+    ~IDManager();
     void push(unsigned int id, Type type);
     unsigned int pop(Type type);
 
 private:
-    std::set<unsigned int> mMeshIDs;
-    std::set<unsigned int> mSkeletonIDs;
-    std::set<unsigned int> mAnimationIDs;
-    std::set<unsigned int> mTextureIDs;
+    std::list<unsigned int> mMeshIDs;
+    std::list<unsigned int> mSkeletonIDs;
+    std::list<unsigned int> mAnimationIDs;
+    std::list<unsigned int> mTextureIDs;
 };
-

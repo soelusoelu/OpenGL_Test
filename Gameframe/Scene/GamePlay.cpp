@@ -22,9 +22,9 @@ GamePlay::GamePlay() :
     mState(GameState::Play),
     mRenderer(std::make_unique<Renderer>()),
     mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())) {
-    mPlayer = new PlayerActor(*this);
-    mGround = new OctreeActor(*this, 0, "./res/map.oct", *mPlayer, OctreeActor::Type::Ground);
-    mCube = new CubeActor(*this);
+    //mPlayer = new PlayerActor(this);
+    //mGround = new OctreeActor(this, 0, "./res/map.oct", mPlayer, OctreeActor::Type::Ground);
+    //mCube = new CubeActor(this);
     Camera::create();
 }
 
@@ -74,19 +74,19 @@ void GamePlay::update(float deltaTime) {
 }
 
 void GamePlay::draw() const {
-    for (auto actor : mActors) {
+    for (const auto& actor : mActors) {
         glPushMatrix();
-        glTranslatef(actor->getTransform().getPosition().x, actor->getTransform().getPosition().y, actor->getTransform().getPosition().z);
-        glRotatef(actor->getTransform().getRotation().x, 1.f, 0.f, 0.f);
-        glRotatef(actor->getTransform().getRotation().y, 0.f, 1.f, 0.f);
-        glRotatef(actor->getTransform().getRotation().z, 0.f, 0.f, 1.f);
-        glScalef(actor->getTransform().getScale().x, actor->getTransform().getScale().y, actor->getTransform().getScale().z);
+        glTranslatef(actor->getTransform()->getPosition().x, actor->getTransform()->getPosition().y, actor->getTransform()->getPosition().z);
+        glRotatef(actor->getTransform()->getRotation().x, 1.f, 0.f, 0.f);
+        glRotatef(actor->getTransform()->getRotation().y, 0.f, 1.f, 0.f);
+        glRotatef(actor->getTransform()->getRotation().z, 0.f, 0.f, 1.f);
+        glScalef(actor->getTransform()->getScale().x, actor->getTransform()->getScale().y, actor->getTransform()->getScale().z);
 
         actor->drawActor();
 
         glPopMatrix();
     }
-    Camera::instance().update(mPlayer);
+    //Camera::instance().update(mPlayer);
 
     if (mState == GameState::Paused) {
         mStringRenderer->printf(600.f, 300.f, "Pause");
@@ -125,6 +125,6 @@ const std::unordered_set<Actor*>& GamePlay::getActors() const {
     return mActors;
 }
 
-Renderer& GamePlay::getRenderer() const {
-    return *mRenderer;
+Renderer* GamePlay::getRenderer() const {
+    return mRenderer.get();
 }

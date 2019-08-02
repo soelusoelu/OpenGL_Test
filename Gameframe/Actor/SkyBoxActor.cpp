@@ -2,7 +2,7 @@
 #include "Actor.h"
 #include <gslib.h>
 
-SkyBoxActor::SkyBoxActor(GamePlay& game, unsigned int meshID) :
+SkyBoxActor::SkyBoxActor(GamePlay* game, unsigned int meshID) :
     Actor(game),
     mMeshID(meshID),
     mViewRoll(0.f),

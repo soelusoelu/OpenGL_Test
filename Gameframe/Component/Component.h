@@ -4,7 +4,7 @@ class Actor;
 
 class Component {
 public:
-    Component(Actor& owner, int updateOrder = 100);
+    Component(Actor* owner, int updateOrder = 100);
     virtual ~Component();
     virtual void start() = 0;
     virtual void update(float deltaTime) = 0;
@@ -12,10 +12,10 @@ public:
     virtual void onUpdateWorldTransform();
 
     int getUpdateOrder() const;
-    Actor& getOwner();
+    Actor* getOwner();
 
 private:
-    Actor& mOwner;
+    Actor* mOwner;
     int mUpdateOrder;
 };
 

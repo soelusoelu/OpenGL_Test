@@ -7,7 +7,7 @@ class Actor;
 
 class TransformComponent : public Component {
 public:
-    TransformComponent(Actor& owner, int updateOrder = 100);
+    TransformComponent(Actor* owner, int updateOrder = 100);
     ~TransformComponent();
     virtual void start() override;
     virtual void update(float deltaTime) override;
