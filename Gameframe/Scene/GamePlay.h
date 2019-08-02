@@ -24,7 +24,7 @@ public:
     ~GamePlay();
 
     virtual void update(float deltaTime) override;
-    void draw() const;
+    virtual void draw() const override;
 
     void addActor(Actor* actor);
     void removeActor(Actor* actor);
@@ -46,7 +46,5 @@ private:
     PlayerActor* mPlayer;
     OctreeActor* mGround;
     CubeActor* mCube;
-    //std::unique_ptr<SkyBoxActor> mSkyBox;
-    //std::unique_ptr<OctreeActor> mWall;
 };
 

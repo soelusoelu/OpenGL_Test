@@ -49,8 +49,7 @@ private:
         _CrtDumpMemoryLeaks();
     }
 
-    //絶対スマートポインタ
-    std::unique_ptr<GamePlay> mGame;
+    std::unique_ptr<SceneBase> mGame;
 };
 
 int main() {

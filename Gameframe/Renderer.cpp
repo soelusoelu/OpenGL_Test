@@ -9,22 +9,22 @@ Renderer::Renderer() :
 }
 
 Renderer::~Renderer() {
-    for (auto mesh : mMeshes) {
+    for (const auto& mesh : mMeshes) {
         gsDeleteMesh(mesh.second);
         mIDManager->push(mesh.second, IDManager::Type::Mesh);
     }
     mMeshes.clear();
-    for (auto skeleton : mSkeletons) {
+    for (const auto& skeleton : mSkeletons) {
         gsDeleteSkeleton(skeleton.second);
         mIDManager->push(skeleton.second, IDManager::Type::Skeleton);
     }
     mSkeletons.clear();
-    for (auto animation : mAnimations) {
+    for (const auto& animation : mAnimations) {
         gsDeleteAnimation(animation.second);
         mIDManager->push(animation.second, IDManager::Type::Animation);
     }
     mAnimations.clear();
-    for (auto texture : mTextures) {
+    for (const auto& texture : mTextures) {
         gsDeleteTexture(texture.second);
         mIDManager->push(texture.second, IDManager::Type::Texture);
     }

@@ -38,13 +38,13 @@ public:
     template<typename T>
     T* getComponent() {
         T* comp = nullptr;
-        for (auto c : mStartComponents) {
+        for (auto&& c : mStartComponents) {
             comp = dynamic_cast<T*>(c);
             if (comp != nullptr) {
                 return comp;
             }
         }
-        for (auto c : mComponents) {
+        for (auto&& c : mComponents) {
             comp = dynamic_cast<T*>(c);
             if (comp != nullptr) {
                 break;

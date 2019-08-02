@@ -1,4 +1,5 @@
 #include "GamePlay.h"
+#include "SceneBase.h"
 #include "../Actor/Actor.h"
 #include "../Actor/PlayerActor.h"
 #include "../Actor/OctreeActor.h"
@@ -16,6 +17,7 @@
 #include <string>
 
 GamePlay::GamePlay() :
+    SceneBase(),
     mUpdatingActors(false),
     mState(GameState::Play),
     mRenderer(std::make_unique<Renderer>()),
@@ -39,24 +41,24 @@ GamePlay::~GamePlay() {
 void GamePlay::update(float deltaTime) {
     if (mState == GameState::Play) {
         mUpdatingActors = true;
-        for (auto actor : mActors) {
+        for (auto&& actor : mActors) {
             actor->update(deltaTime);
         }
         mUpdatingActors = false;
 
-        for (auto pending : mPendingActors) {
+        for (auto&& pending : mPendingActors) {
             pending->computeWorldTransform();
             mActors.emplace(pending);
         }
         mPendingActors.clear();
 
         std::vector<Actor*> deadActors;
-        for (auto actor : mActors) {
+        for (const auto& actor : mActors) {
             if (actor->getState() == Actor::State::Dead) {
                 deadActors.emplace_back(actor);
             }
         }
-        for (auto actor : deadActors) {
+        for (auto&& actor : deadActors) {
             delete actor;
             actor = nullptr;
         }

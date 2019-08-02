@@ -24,7 +24,7 @@ Actor::~Actor() {
 }
 
 void Actor::start() {
-    for (auto comp : mStartComponents) {
+    for (auto&& comp : mStartComponents) {
         comp->start();
 
         int myOrder = comp->getUpdateOrder();
@@ -50,7 +50,7 @@ void Actor::update(float deltaTime) {
 }
 
 void Actor::updateComponents(float deltaTime) {
-    for (auto comp : mComponents) {
+    for (auto&& comp : mComponents) {
         comp->update(deltaTime);
     }
 }
@@ -79,7 +79,7 @@ void Actor::computeWorldTransform() { //C³•K—v‚©‚à
 
         //glPopMatrix();
 
-        for (auto comp : mComponents) {
+        for (auto&& comp : mComponents) {
             comp->onUpdateWorldTransform();
         }
     }

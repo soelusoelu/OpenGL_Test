@@ -29,6 +29,5 @@ private:
     GSvector3 mRotation;
     GSvector3 mScale;
     bool mRecomputeTransform;
-
 };
 
