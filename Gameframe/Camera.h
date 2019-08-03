@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Math.h"
 #include <gslib.h>
 
 class PlayerActor;
@@ -9,7 +10,7 @@ public:
     void update(PlayerActor* player);
     static void create();
     static void destroy();
-    static Camera& instance();
+    static Camera* instance();
 
 private:
     Camera() = default;
@@ -20,7 +21,7 @@ private:
     Camera& operator=(Camera&&) = delete;
 
     static Camera* mInstance;
-    static GSvector3 mCameraPosition;
-    static GSvector3 mPlayerPosition;
+    static Vector3 mCameraPosition;
+    static Vector3 mPlayerPosition;
 };
 

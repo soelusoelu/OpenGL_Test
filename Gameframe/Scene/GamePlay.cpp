@@ -22,9 +22,9 @@ GamePlay::GamePlay() :
     mState(GameState::Play),
     mRenderer(std::make_unique<Renderer>()),
     mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())) {
-    //mPlayer = new PlayerActor(this);
-    //mGround = new OctreeActor(this, 0, "./res/map.oct", mPlayer, OctreeActor::Type::Ground);
-    //mCube = new CubeActor(this);
+    mPlayer = new PlayerActor(this);
+    mGround = new OctreeActor(this, 0, "./res/map.oct", mPlayer, OctreeActor::Type::Ground);
+    mCube = new CubeActor(this);
     Camera::create();
 }
 
@@ -86,7 +86,7 @@ void GamePlay::draw() const {
 
         glPopMatrix();
     }
-    //Camera::instance().update(mPlayer);
+    Camera::instance()->update(mPlayer);
 
     if (mState == GameState::Paused) {
         mStringRenderer->printf(600.f, 300.f, "Pause");

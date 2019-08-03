@@ -2,7 +2,6 @@
 #include "Component.h"
 #include "../Actor/Actor.h"
 #include "TransformComponent.h"
-#include <gslib.h>
 
 PlayerMoveComponent::PlayerMoveComponent(Actor* owner, int updateOrder) :
     Component(owner, updateOrder),
@@ -20,7 +19,7 @@ void PlayerMoveComponent::update(float deltaTime) {
     if (gsGetKeyState(GKEY_RIGHT) || gsGetKeyState(GKEY_D)) {
         rotation = -1.f;
     }
-    getOwner()->getTransform()->rotate(rotation * deltaTime, GSvector3(0.f, 1.f, 0.f));
+    getOwner()->getTransform()->rotate(rotation * deltaTime, Vector3::up);
 
     mSpeed = 0.f;
     if (gsGetKeyState(GKEY_UP) || gsGetKeyState(GKEY_W)) {
@@ -29,10 +28,10 @@ void PlayerMoveComponent::update(float deltaTime) {
     if (gsGetKeyState(GKEY_DOWN) || gsGetKeyState(GKEY_S)) {
         mSpeed = -1.f;
     }
-    getOwner()->getTransform()->translete(GSvector3(
-        gsSin(getOwner()->getTransform()->getRotation().y) * mSpeed * deltaTime,
+    getOwner()->getTransform()->translete(Vector3(
+        Math::Sin(Math::ToRadians(getOwner()->getTransform()->getRotation().y)) * mSpeed * deltaTime,
         0.f,
-        gsCos(getOwner()->getTransform()->getRotation().y) * mSpeed * deltaTime
+        Math::Cos(Math::ToRadians(getOwner()->getTransform()->getRotation().y)) * mSpeed * deltaTime
     ));
 }
 

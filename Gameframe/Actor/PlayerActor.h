@@ -1,7 +1,7 @@
 #pragma once
 
+#include "../Math.h"
 #include "Actor.h"
-#include <gslib.h>
 
 class GamePlay;
 class PlayerMoveComponent;
@@ -16,7 +16,7 @@ public:
 
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
-    void vector3FromHorizontalDir(GSvector3* out) const;
+    void vector3FromHorizontalDir(Vector3* out) const;
 
     float getRadius() const;
 

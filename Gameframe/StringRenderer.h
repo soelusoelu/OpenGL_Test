@@ -13,11 +13,8 @@ public:
 
 private:
     unsigned int mID;
-    //static const int mWordCount = 16;
-    //static const int mWidth = 16;
-    //static const int mHeight = 16;
-    const int mWordCount;
-    const int mWidth;
-    const int mHeight;
+    static const int mWordCount;
+    static const int mWidth;
+    static const int mHeight;
 };
 

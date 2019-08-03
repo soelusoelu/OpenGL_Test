@@ -5,10 +5,10 @@
 
 void Camera::update(PlayerActor* player) {
     if (player != nullptr) {
-        GSvector3 eyeVec;
+        Vector3 eyeVec;
         player->vector3FromHorizontalDir(&eyeVec);
 
-        mCameraPosition = GSvector3(
+        mCameraPosition = Vector3(
             player->getTransform()->getPosition().x - eyeVec.x * 30.f,
             player->getTransform()->getPosition().y + 8.f,
             player->getTransform()->getPosition().z - eyeVec.z * 30.f
@@ -44,10 +44,10 @@ void Camera::destroy() {
     mInstance = nullptr;
 }
 
-Camera& Camera::instance() {
-    return *mInstance;
+Camera* Camera::instance() {
+    return mInstance;
 }
 
 Camera* Camera::mInstance = nullptr;
-GSvector3 Camera::mCameraPosition = GSvector3(0.f, 0.f, 0.f);
-GSvector3 Camera::mPlayerPosition = GSvector3(0.f, 0.f, 0.f);
+Vector3 Camera::mCameraPosition = Vector3::zero;
+Vector3 Camera::mPlayerPosition = Vector3::zero;

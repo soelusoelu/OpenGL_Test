@@ -1,7 +1,7 @@
 #pragma once
 
+#include "../Math.h"
 #include "Component.h"
-#include <gslib.h>
 
 class Actor;
 
@@ -12,22 +12,22 @@ public:
     virtual void start() override;
     virtual void update(float deltaTime) override;
 
-    const GSvector3& getPosition() const;
-    void setPosition(const GSvector3& pos);
-    void translete(const GSvector3& translation);
-    const GSvector3& getRotation() const;
-    void setRotation(const GSvector3& angle);
+    const Vector3& getPosition() const;
+    void setPosition(const Vector3& pos);
+    void translete(const Vector3& translation);
+    const Vector3& getRotation() const;
+    void setRotation(const Vector3& angle);
     void setRotation(float angleX, float angleY, float angleZ);
-    void rotate(float angle, const GSvector3& axis);
-    const GSvector3& getScale() const;
-    void setScale(const GSvector3& scale);
+    void rotate(float angle, const Vector3& axis);
+    const Vector3& getScale() const;
+    void setScale(const Vector3& scale);
     bool getRecomputeTransform() const;
     void setRecomputeTransform(bool set);
 
 private:
-    GSvector3 mPosition;
-    GSvector3 mRotation;
-    GSvector3 mScale;
+    Vector3 mPosition;
+    Vector3 mRotation;
+    Vector3 mScale;
     bool mRecomputeTransform;
 };
 

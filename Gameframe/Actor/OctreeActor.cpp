@@ -35,27 +35,27 @@ void OctreeActor::drawActor() const {
 
 void OctreeActor::intersectGround() {
     //地面との衝突判定
-    GSvector3 ray(0.f, -1.f, 0.f);
-    GSvector3 position = mPlayer->getTransform()->getPosition();
-    if (gsOctreeCollisionRay(
-        gsGetOctree(mOctreeID), //オクツリー
-        &mPlayer->getTransform()->getPosition(), //レイの位置
-        &ray, //レイの方向
-        &position, //レイとの交点
-        nullptr) //衝突した面の平面パラメータ
-        ) {
-        mPlayer->getTransform()->setPosition(position);
-    }
+    //Vector3 ray(0.f, -1.f, 0.f);
+    //Vector3 position = mPlayer->getTransform()->getPosition();
+    //if (gsOctreeCollisionRay(
+    //    gsGetOctree(mOctreeID), //オクツリー
+    //    &mPlayer->getTransform()->getPosition(), //レイの位置
+    //    &ray, //レイの方向
+    //    &position, //レイとの交点
+    //    nullptr) //衝突した面の平面パラメータ
+    //    ) {
+    //    mPlayer->getTransform()->setPosition(position);
+    //}
 }
 
 void OctreeActor::intersectWall() {
     //壁との衝突判定
-    GSvector3 position = mPlayer->getTransform()->getPosition();
-    gsOctreeCollisionSphere(
-        gsGetOctree(mOctreeID), //オクツリー
-        &mPlayer->getTransform()->getPosition(), //球体の位置
-        mPlayer->getRadius(), //球体の半径
-        &position //補正後の球体の位置
-    );
-    mPlayer->getTransform()->setPosition(position);
+    //Vector3 position = mPlayer->getTransform()->getPosition();
+    //gsOctreeCollisionSphere(
+    //    gsGetOctree(mOctreeID), //オクツリー
+    //    &mPlayer->getTransform()->getPosition(), //球体の位置
+    //    mPlayer->getRadius(), //球体の半径
+    //    &position //補正後の球体の位置
+    //);
+    //mPlayer->getTransform()->setPosition(position);
 }

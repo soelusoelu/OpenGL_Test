@@ -136,6 +136,7 @@
     <ClCompile Include="Component\MeshComponent.cpp" />
     <ClCompile Include="Actor\OctreeActor.cpp" />
     <ClCompile Include="Component\PlayerMoveComponent.cpp" />
+    <ClCompile Include="Math.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Component\MeshComponent.h" />
     <ClInclude Include="Actor\OctreeActor.h" />
     <ClInclude Include="Component\PlayerMoveComponent.h" />
+    <ClInclude Include="Math.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\GamePlay.h" />

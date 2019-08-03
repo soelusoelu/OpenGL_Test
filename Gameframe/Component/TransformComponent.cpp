@@ -1,12 +1,11 @@
 #include "TransformComponent.h"
 #include "Component.h"
-#include <gslib.h>
 
 TransformComponent::TransformComponent(Actor* owner, int updateOrder) :
     Component(owner, updateOrder),
-    mPosition(GSvector3(0.f, 0.f, 0.f)),
-    mRotation(GSvector3(0.f, 0.f, 0.f)),
-    mScale(GSvector3(1.f, 1.f, 1.f)),
+    mPosition(Vector3(0.f, 0.f, 0.f)),
+    mRotation(Vector3(0.f, 0.f, 0.f)),
+    mScale(Vector3(1.f, 1.f, 1.f)),
     mRecomputeTransform(true) {
 }
 
@@ -19,25 +18,25 @@ void TransformComponent::start() {
 void TransformComponent::update(float deltaTime) {
 }
 
-const GSvector3& TransformComponent::getPosition() const {
+const Vector3& TransformComponent::getPosition() const {
     return mPosition;
 }
 
-void TransformComponent::setPosition(const GSvector3& pos) {
+void TransformComponent::setPosition(const Vector3& pos) {
     mPosition = pos;
     mRecomputeTransform = true;
 }
 
-void TransformComponent::translete(const GSvector3& translation) {
+void TransformComponent::translete(const Vector3& translation) {
     mPosition += translation;
     mRecomputeTransform = true;
 }
 
-const GSvector3& TransformComponent::getRotation() const {
+const Vector3& TransformComponent::getRotation() const {
     return mRotation;
 }
 
-void TransformComponent::setRotation(const GSvector3& angle) {
+void TransformComponent::setRotation(const Vector3& angle) {
     mRotation = angle;
     mRecomputeTransform = true;
 }
@@ -49,7 +48,7 @@ void TransformComponent::setRotation(float angleX, float angleY, float angleZ) {
     mRecomputeTransform = true;
 }
 
-void TransformComponent::rotate(float angle, const GSvector3& axis) {
+void TransformComponent::rotate(float angle, const Vector3& axis) {
     mRotation += axis * angle;
     if (mRotation.x > 180.f) {
         mRotation.x -= 360.f;
@@ -69,11 +68,11 @@ void TransformComponent::rotate(float angle, const GSvector3& axis) {
     mRecomputeTransform = true;
 }
 
-const GSvector3& TransformComponent::getScale() const {
+const Vector3& TransformComponent::getScale() const {
     return mScale;
 }
 
-void TransformComponent::setScale(const GSvector3& scale) {
+void TransformComponent::setScale(const Vector3& scale) {
     mScale = scale;
     mRecomputeTransform = true;
 }

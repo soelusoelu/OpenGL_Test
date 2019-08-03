@@ -42,9 +42,9 @@ private:
     std::unique_ptr<Renderer> mRenderer;
     std::unique_ptr<StringRenderer> mStringRenderer;
 
-    ////全部生ポインタじゃないとエラー出る
-    //PlayerActor* mPlayer;
-    //OctreeActor* mGround;
-    //CubeActor* mCube;
+    //全部生ポインタじゃないとエラー出る
+    PlayerActor* mPlayer;
+    OctreeActor* mGround;
+    CubeActor* mCube;
 };
 

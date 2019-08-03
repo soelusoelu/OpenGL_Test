@@ -3,10 +3,7 @@
 #include "Renderer.h"
 #include <gslib.h>
 
-StringRenderer::StringRenderer(Renderer* renderer) :
-    mWordCount(16),
-    mWidth(16),
-    mHeight(16) {
+StringRenderer::StringRenderer(Renderer* renderer) {
     mID = renderer->getTexture("./res/font.bmp");
 }
 
@@ -59,3 +56,7 @@ void StringRenderer::printf(float x, float y, const char str[], ...) {
     //‰Â•Ïˆø”ƒŠƒXƒg‚ÌI—¹
     va_end(args);
 }
+
+const int StringRenderer::mWordCount(16);
+const int StringRenderer::mWidth(16);
+const int StringRenderer::mHeight(16);
