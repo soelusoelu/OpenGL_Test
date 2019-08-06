@@ -1,6 +1,6 @@
 #pragma once
 
-#include <gslib.h>
+#include "../Math.h"
 #include <unordered_set>
 #include <vector>
 #include <memory>
@@ -62,7 +62,7 @@ public:
         T* t = new T(mGame);
     }
     template<typename T>
-    void instantiate(const GSvector3& position, const GSvector3& rotation) {
+    void instantiate(const Vector3& position, const Quaternion& rotation) {
         T* t = new T(mGame);
         t->mTransform->setPosition(position);
         t->mTransform->setRotation(rotation);
@@ -71,6 +71,7 @@ public:
     void destroy(Actor* actor);
 
     //ゲッター、セッター
+    const Matrix4& GetWorldTransform() const;
     TransformComponent* getTransform() const;
     State getState() const;
     void setState(State state);
@@ -82,6 +83,7 @@ private:
     std::unordered_set<Component*> mStartComponents;
     std::vector<Component*> mComponents;
     State mState;
+    Matrix4 mWorldTransform;
     TransformComponent* mTransform;
 };
 

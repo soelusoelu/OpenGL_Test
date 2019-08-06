@@ -76,11 +76,8 @@ void GamePlay::update(float deltaTime) {
 void GamePlay::draw() const {
     for (const auto& actor : mActors) {
         glPushMatrix();
-        glTranslatef(actor->getTransform()->getPosition().x, actor->getTransform()->getPosition().y, actor->getTransform()->getPosition().z);
-        glRotatef(actor->getTransform()->getRotation().x, 1.f, 0.f, 0.f);
-        glRotatef(actor->getTransform()->getRotation().y, 0.f, 1.f, 0.f);
-        glRotatef(actor->getTransform()->getRotation().z, 0.f, 0.f, 1.f);
-        glScalef(actor->getTransform()->getScale().x, actor->getTransform()->getScale().y, actor->getTransform()->getScale().z);
+
+        glMultMatrixf(*actor->GetWorldTransform().mat);
 
         actor->drawActor();
 

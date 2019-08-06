@@ -1,13 +1,14 @@
 #include "CubeActor.h"
 #include "Actor.h"
 #include "../Component/TransformComponent.h"
+#include <gslib.h>
 
 CubeActor::CubeActor(GamePlay* game) :
     Actor(game) {
 }
 
 void CubeActor::updateActor(float deltaTime) {
-    getTransform()->rotate(1.f, Vector3::up);
+    getTransform()->rotate(Vector3::up, -10.f);
 }
 
 void CubeActor::drawActor() const {

@@ -16,7 +16,7 @@ public:
 
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
-    void vector3FromHorizontalDir(Vector3* out) const;
+    Vector3& vector3FromHorizontalDir() const;
 
     float getRadius() const;
 

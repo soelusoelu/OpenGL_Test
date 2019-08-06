@@ -1,4 +1,4 @@
-#include "OctreeActor.h"
+ï»¿#include "OctreeActor.h"
 #include "Actor.h"
 #include "PlayerActor.h"
 #include "../Component/TransformComponent.h"
@@ -34,28 +34,28 @@ void OctreeActor::drawActor() const {
 }
 
 void OctreeActor::intersectGround() {
-    //’n–Ê‚Æ‚ÌÕ“Ë”»’è
+    //åœ°é¢ã¨ã®è¡çªåˆ¤å®š
     //Vector3 ray(0.f, -1.f, 0.f);
     //Vector3 position = mPlayer->getTransform()->getPosition();
     //if (gsOctreeCollisionRay(
-    //    gsGetOctree(mOctreeID), //ƒIƒNƒcƒŠ[
-    //    &mPlayer->getTransform()->getPosition(), //ƒŒƒC‚ÌˆÊ’u
-    //    &ray, //ƒŒƒC‚Ì•ûŒü
-    //    &position, //ƒŒƒC‚Æ‚ÌŒð“_
-    //    nullptr) //Õ“Ë‚µ‚½–Ê‚Ì•½–Êƒpƒ‰ƒ[ƒ^
+    //    gsGetOctree(mOctreeID), //ã‚ªã‚¯ãƒ„ãƒªãƒ¼
+    //    &mPlayer->getTransform()->getPosition(), //ãƒ¬ã‚¤ã®ä½ç½®
+    //    &ray, //ãƒ¬ã‚¤ã®æ–¹å‘
+    //    &position, //ãƒ¬ã‚¤ã¨ã®äº¤ç‚¹
+    //    nullptr) //è¡çªã—ãŸé¢ã®å¹³é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
     //    ) {
     //    mPlayer->getTransform()->setPosition(position);
     //}
 }
 
 void OctreeActor::intersectWall() {
-    //•Ç‚Æ‚ÌÕ“Ë”»’è
+    //å£ã¨ã®è¡çªåˆ¤å®š
     //Vector3 position = mPlayer->getTransform()->getPosition();
     //gsOctreeCollisionSphere(
-    //    gsGetOctree(mOctreeID), //ƒIƒNƒcƒŠ[
-    //    &mPlayer->getTransform()->getPosition(), //‹…‘Ì‚ÌˆÊ’u
-    //    mPlayer->getRadius(), //‹…‘Ì‚Ì”¼Œa
-    //    &position //•â³Œã‚Ì‹…‘Ì‚ÌˆÊ’u
+    //    gsGetOctree(mOctreeID), //ã‚ªã‚¯ãƒ„ãƒªãƒ¼
+    //    &mPlayer->getTransform()->getPosition(), //çƒä½“ã®ä½ç½®
+    //    mPlayer->getRadius(), //çƒä½“ã®åŠå¾„
+    //    &position //è£œæ­£å¾Œã®çƒä½“ã®ä½ç½®
     //);
     //mPlayer->getTransform()->setPosition(position);
 }

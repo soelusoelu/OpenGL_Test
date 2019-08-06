@@ -14,11 +14,12 @@
 
 namespace Math
 {
-	const float Pi = 3.1415926535f;
+	static const float Pi = 3.1415926535f;
 	const float TwoPi = Pi * 2.0f;
 	const float PiOver2 = Pi / 2.0f;
 	const float Infinity = std::numeric_limits<float>::infinity();
 	const float NegInfinity = -std::numeric_limits<float>::infinity();
+    static const float deg2Rad = 0.0174532925f;
 
 	inline float ToRadians(float degrees)
 	{
@@ -79,6 +80,10 @@ namespace Math
 	{
 		return tanf(angle);
 	}
+
+    inline float Asin(float value) {
+        return asinf(value);
+    }
 
 	inline float Acos(float value)
 	{
@@ -286,6 +291,17 @@ public:
 		z = inZ;
 	}
 
+    Vector3& operator=(const Vector3& vec) {
+        x = vec.x;
+        y = vec.y;
+        z = vec.z;
+        return *this;
+    }
+
+    Vector3 operator-(const Vector3& vec) {
+        return Vector3(-vec.x, -vec.y, -vec.z);
+    }
+
 	// Vector addition (a + b)
 	friend Vector3 operator+(const Vector3& a, const Vector3& b)
 	{
@@ -355,6 +371,13 @@ public:
 		return (Math::Sqrt(LengthSq()));
 	}
 
+    float distance(const Vector3& a, const Vector3& b) {
+        float dx = a.x - b.x;
+        float dy = a.x - b.y;
+        float dz = a.z - b.z;
+        return Math::Sqrt(dx * dx + dy * dy + dz + dz);
+    }
+
 	// Normalize this vector
 	void Normalize()
 	{
@@ -381,11 +404,11 @@ public:
 	// Cross product between two vectors (a cross b)
 	static Vector3 Cross(const Vector3& a, const Vector3& b)
 	{
-		Vector3 temp;
-		temp.x = a.y * b.z - a.z * b.y;
-		temp.y = a.z * b.x - a.x * b.z;
-		temp.z = a.x * b.y - a.y * b.x;
-		return temp;
+        return Vector3(
+            a.y * b.z - a.z * b.y,
+            a.z * b.x - a.x * b.z,
+            a.x * b.y - a.y * b.x
+        );
 	}
 
 	// Lerp from A to B by f
@@ -876,7 +899,7 @@ public:
 
 	Quaternion()
 	{
-		*this = Quaternion::Identity;
+		*this = Quaternion::identity;
 	}
 
 	// This directly sets the quaternion components --
@@ -1010,7 +1033,8 @@ public:
 		// ps * qv + qs * pv + pv x qv
 		Vector3 qv(q.x, q.y, q.z);
 		Vector3 pv(p.x, p.y, p.z);
-		Vector3 newVec = p.w * qv + q.w * pv + Vector3::Cross(pv, qv);
+		//Vector3 newVec = p.w * qv + q.w * pv + Vector3::Cross(pv, qv);
+        Vector3 newVec = p.w * qv + q.w * pv + Vector3::Cross(qv, pv); //Ç±Ç¡ÇøÇ≈ÇÕÅH
 		retVal.x = newVec.x;
 		retVal.y = newVec.y;
 		retVal.z = newVec.z;
@@ -1022,7 +1046,7 @@ public:
 		return retVal;
 	}
 
-	static const Quaternion Identity;
+	static const Quaternion identity;
 };
 
 namespace Color

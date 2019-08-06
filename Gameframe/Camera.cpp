@@ -4,23 +4,29 @@
 #include <gslib.h>
 
 void Camera::update(PlayerActor* player) {
-    if (player != nullptr) {
-        Vector3 eyeVec;
-        player->vector3FromHorizontalDir(&eyeVec);
+    //if (player != nullptr) {
+    //    Vector3 eyeVec = player->vector3FromHorizontalDir();
 
-        mCameraPosition = Vector3(
-            player->getTransform()->getPosition().x - eyeVec.x * 30.f,
-            player->getTransform()->getPosition().y + 8.f,
-            player->getTransform()->getPosition().z - eyeVec.z * 30.f
-        );
-        mPlayerPosition = player->getTransform()->getPosition();
-    }
+    //    mCameraPosition = Vector3(
+    //        player->getTransform()->getPosition().x - eyeVec.x * 30.f,
+    //        player->getTransform()->getPosition().y + 8.f,
+    //        player->getTransform()->getPosition().z - eyeVec.z * 30.f
+    //    );
+    //    mPlayerPosition = player->getTransform()->getPosition();
+    //}
+    //glMatrixMode(GL_MODELVIEW);
+    //glLoadIdentity();
+    //gluLookAt(
+    //    mCameraPosition.x, mCameraPosition.y, mCameraPosition.z, //カメラ位置
+    //    mPlayerPosition.x, mPlayerPosition.y + 5.f, mPlayerPosition.z, //注視点
+    //    0.f, 1.f, 0.f //カメラ姿勢
+    //);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(
-        mCameraPosition.x, mCameraPosition.y, mCameraPosition.z, //カメラ位置
-        mPlayerPosition.x, mPlayerPosition.y + 5.f, mPlayerPosition.z, //注視点
-        0.f, 1.f, 0.f //カメラ姿勢
+        0.0f, 10.0f, -50.0f,
+        0.0f, 5.0f, 0.0f,
+        0.0f, 1.0f, 0.0f
     );
 }
 

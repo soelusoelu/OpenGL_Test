@@ -29,10 +29,12 @@ void PlayerActor::drawActor() const {
     mMesh->draw();
 }
 
-void PlayerActor::vector3FromHorizontalDir(Vector3* out) const {
-    out->x = Math::Cos(Math::ToRadians(0.f)) * Math::Sin(Math::ToRadians(getTransform()->getRotation().y));
-    out->y = -Math::Sin(Math::ToRadians(0.f));
-    out->z = Math::Cos(Math::ToRadians(0.f)) * Math::Cos(Math::ToRadians(getTransform()->getRotation().y));
+Vector3& PlayerActor::vector3FromHorizontalDir() const {
+    Vector3 out;
+    //out.x = Math::Cos(0.f) * Math::Sin(getTransform()->getUp().y * Math::deg2Rad);
+    //out.y = -Math::Sin(0.f);
+    //out.z = Math::Cos(0.f) * Math::Cos(getTransform()->getUp().y * Math::deg2Rad);
+    return out;
 }
 
 float PlayerActor::getRadius() const {

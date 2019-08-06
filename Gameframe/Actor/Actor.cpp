@@ -2,7 +2,6 @@
 #include "../Scene/GamePlay.h"
 #include "../Component/Component.h"
 #include "../Component/TransformComponent.h"
-#include <gslib.h>
 #include <vector>
 #include <memory>
 #include <string>
@@ -66,18 +65,13 @@ void Actor::removeComponent(Component* component) {
     }
 }
 
-void Actor::computeWorldTransform() { //C³•K—v‚©‚à
+void Actor::computeWorldTransform() {
     if (mTransform->getRecomputeTransform()) {
         mTransform->setRecomputeTransform(false);
 
-        //glPushMatrix();
-        //glTranslatef(mTransform->getPosition().x, mTransform->getPosition().y, mTransform->getPosition().z);
-        //glRotatef(mTransform->getRotation(), 0.f, 1.f, 0.f);
-        //glScalef(mTransform->getScale().x, mTransform->getScale().y, mTransform->getScale().z);
-
-        //drawActor();
-
-        //glPopMatrix();
+        mWorldTransform = Matrix4::CreateScale(mTransform->getScale());
+        mWorldTransform *= Matrix4::CreateFromQuaternion(mTransform->getRotation());
+        mWorldTransform *= Matrix4::CreateTranslation(mTransform->getPosition());
 
         for (auto&& comp : mComponents) {
             comp->onUpdateWorldTransform();
@@ -87,6 +81,10 @@ void Actor::computeWorldTransform() { //C³•K—v‚©‚à
 
 void Actor::destroy(Actor* actor) {
     actor->mState = Actor::State::Dead;
+}
+
+const Matrix4& Actor::GetWorldTransform() const {
+    return mWorldTransform;
 }
 
 TransformComponent* Actor::getTransform() const {

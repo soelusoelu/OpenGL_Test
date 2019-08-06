@@ -12,21 +12,33 @@ public:
     virtual void start() override;
     virtual void update(float deltaTime) override;
 
+    //à íuÅAà⁄ìÆ
     const Vector3& getPosition() const;
     void setPosition(const Vector3& pos);
     void translete(const Vector3& translation);
-    const Vector3& getRotation() const;
-    void setRotation(const Vector3& angle);
-    void setRotation(float angleX, float angleY, float angleZ);
-    void rotate(float angle, const Vector3& axis);
+
+    //äpìxÅAâÒì]
+    const Quaternion& getRotation() const;
+    void setRotation(const Quaternion& rot);
+    void setRotation(const Vector3& axis, float angle);
+    void rotate(const Vector3& euler); //ãììÆâˆÇµÇ¢
+    void rotate(const Vector3& axis, float angle);
+    void lookAt(const Vector3& target);
+
+    //ägèk
     const Vector3& getScale() const;
     void setScale(const Vector3& scale);
+
+    //å¸Ç´
+    const Vector3 forward() const;
+    const Vector3 right() const;
+
     bool getRecomputeTransform() const;
     void setRecomputeTransform(bool set);
 
 private:
     Vector3 mPosition;
-    Vector3 mRotation;
+    Quaternion mRotation;
     Vector3 mScale;
     bool mRecomputeTransform;
 };
