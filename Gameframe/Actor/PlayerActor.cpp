@@ -6,7 +6,6 @@
 #include "../Component/MeshComponent.h"
 #include "../Component/SkeletonComponent.h"
 #include "../Component/AnimationComponent.h"
-#include "../Actor/CubeActor.h"
 #include <gslib.h>
 #include <iostream>
 
@@ -27,14 +26,6 @@ void PlayerActor::updateActor(float deltaTime) {
 
 void PlayerActor::drawActor() const {
     mMesh->draw();
-}
-
-Vector3& PlayerActor::vector3FromHorizontalDir() const {
-    Vector3 out;
-    //out.x = Math::Cos(0.f) * Math::Sin(getTransform()->getUp().y * Math::deg2Rad);
-    //out.y = -Math::Sin(0.f);
-    //out.z = Math::Cos(0.f) * Math::Cos(getTransform()->getUp().y * Math::deg2Rad);
-    return out;
 }
 
 float PlayerActor::getRadius() const {

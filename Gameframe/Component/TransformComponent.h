@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../Math.h"
 #include "Component.h"
@@ -12,24 +12,24 @@ public:
     virtual void start() override;
     virtual void update(float deltaTime) override;
 
-    //ˆÊ’uAˆÚ“®
+    //ä½ç½®ã€ç§»å‹•
     const Vector3& getPosition() const;
     void setPosition(const Vector3& pos);
     void translete(const Vector3& translation);
 
-    //Šp“xA‰ñ“]
+    //è§’åº¦ã€å›è»¢
     const Quaternion& getRotation() const;
     void setRotation(const Quaternion& rot);
     void setRotation(const Vector3& axis, float angle);
-    void rotate(const Vector3& euler); //‹““®‰ö‚µ‚¢
+    void rotate(const Vector3& euler); //æŒ™å‹•æ€ªã—ã„
     void rotate(const Vector3& axis, float angle);
     void lookAt(const Vector3& target);
 
-    //Šgk
+    //æ‹¡ç¸®
     const Vector3& getScale() const;
     void setScale(const Vector3& scale);
 
-    //Œü‚«
+    //å‘ã
     const Vector3 forward() const;
     const Vector3 right() const;
 

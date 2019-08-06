@@ -1,32 +1,25 @@
-#include "Camera.h"
+ï»¿#include "Camera.h"
 #include "Actor/PlayerActor.h"
 #include "Component/TransformComponent.h"
 #include <gslib.h>
 
 void Camera::update(PlayerActor* player) {
-    //if (player != nullptr) {
-    //    Vector3 eyeVec = player->vector3FromHorizontalDir();
+    if (player) {
+        Vector3 eyeVec = player->getTransform()->forward();
 
-    //    mCameraPosition = Vector3(
-    //        player->getTransform()->getPosition().x - eyeVec.x * 30.f,
-    //        player->getTransform()->getPosition().y + 8.f,
-    //        player->getTransform()->getPosition().z - eyeVec.z * 30.f
-    //    );
-    //    mPlayerPosition = player->getTransform()->getPosition();
-    //}
-    //glMatrixMode(GL_MODELVIEW);
-    //glLoadIdentity();
-    //gluLookAt(
-    //    mCameraPosition.x, mCameraPosition.y, mCameraPosition.z, //ƒJƒƒ‰ˆÊ’u
-    //    mPlayerPosition.x, mPlayerPosition.y + 5.f, mPlayerPosition.z, //’‹“_
-    //    0.f, 1.f, 0.f //ƒJƒƒ‰p¨
-    //);
+        mCameraPosition = Vector3(
+            player->getTransform()->getPosition().x - eyeVec.x * 30.f,
+            player->getTransform()->getPosition().y + 8.f,
+            player->getTransform()->getPosition().z - eyeVec.z * 30.f
+        );
+        mPlayerPosition = player->getTransform()->getPosition();
+    }
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(
-        0.0f, 10.0f, -50.0f,
-        0.0f, 5.0f, 0.0f,
-        0.0f, 1.0f, 0.0f
+        mCameraPosition.x, mCameraPosition.y, mCameraPosition.z, //ã‚«ãƒ¡ãƒ©ä½ç½®
+        mPlayerPosition.x, mPlayerPosition.y + 5.f, mPlayerPosition.z, //æ³¨è¦–ç‚¹
+        0.f, 1.f, 0.f //ã‚«ãƒ¡ãƒ©å§¿å‹¢
     );
 }
 
@@ -37,10 +30,10 @@ void Camera::create() {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         gluPerspective(
-            45.f, //‹–ìŠp
-            1280.f / 720.f, //ƒAƒXƒyƒNƒg”ä
-            0.1f, //‹ßƒNƒŠƒbƒv
-            1000.f //‰“ƒNƒŠƒbƒv
+            45.f, //è¦–é‡è§’
+            1280.f / 720.f, //ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”
+            0.1f, //è¿‘ã‚¯ãƒªãƒƒãƒ—
+            1000.f //é ã‚¯ãƒªãƒƒãƒ—
         );
     }
 }

@@ -32,7 +32,7 @@ void PlayerMoveComponent::update(float deltaTime) {
     }
     Vector3 t = getOwner()->getTransform()->forward() * mSpeed * deltaTime + getOwner()->getTransform()->right() * mSpeed * deltaTime;
     getOwner()->getTransform()->translete(
-        getOwner()->getTransform()->forward() * mSpeed * deltaTime /*+ getOwner()->getTransform()->right() * mSpeed * deltaTime*/
+        getOwner()->getTransform()->forward() * mSpeed * deltaTime
     );
 }
 
