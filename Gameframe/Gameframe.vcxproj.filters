@@ -27,6 +27,7 @@
     <ClCompile Include="Actor\OctreeActor.cpp" />
     <ClCompile Include="Actor\SkyBoxActor.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -54,5 +55,6 @@
     <ClInclude Include="Actor\OctreeActor.h" />
     <ClInclude Include="Actor\SkyBoxActor.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Collision.h" />
   </ItemGroup>
 </Project>

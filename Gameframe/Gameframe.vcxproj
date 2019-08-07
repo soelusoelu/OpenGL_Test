@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Actor.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Component\AnimationComponent.cpp" />
     <ClCompile Include="BGM.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Component\AnimationComponent.h" />
     <ClInclude Include="BGM.h" />
     <ClInclude Include="Camera.h" />
