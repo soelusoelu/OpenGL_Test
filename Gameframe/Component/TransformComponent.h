@@ -23,7 +23,7 @@ public:
     void setRotation(const Vector3& axis, float angle);
     void rotate(const Vector3& euler); //挙動怪しい
     void rotate(const Vector3& axis, float angle);
-    void lookAt(const Vector3& target);
+    void lookAt(const Vector3& target); //未実装
 
     //拡縮
     const Vector3& getScale() const;

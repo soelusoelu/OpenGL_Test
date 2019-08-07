@@ -69,9 +69,9 @@ void Actor::computeWorldTransform() {
     if (mTransform->getRecomputeTransform()) {
         mTransform->setRecomputeTransform(false);
 
-        mWorldTransform = Matrix4::CreateScale(mTransform->getScale());
-        mWorldTransform *= Matrix4::CreateFromQuaternion(mTransform->getRotation());
-        mWorldTransform *= Matrix4::CreateTranslation(mTransform->getPosition());
+        mWorldTransform = Matrix4::createScale(mTransform->getScale());
+        mWorldTransform *= Matrix4::createFromQuaternion(mTransform->getRotation());
+        mWorldTransform *= Matrix4::createTranslation(mTransform->getPosition());
 
         for (auto&& comp : mComponents) {
             comp->onUpdateWorldTransform();

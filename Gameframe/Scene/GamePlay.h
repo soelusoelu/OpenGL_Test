@@ -44,7 +44,6 @@ private:
 
     //全部生ポインタじゃないとエラー出る
     PlayerActor* mPlayer;
-    OctreeActor* mGround;
     CubeActor* mCube;
 };
 

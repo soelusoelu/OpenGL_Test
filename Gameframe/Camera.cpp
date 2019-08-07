@@ -8,9 +8,9 @@ void Camera::update(PlayerActor* player) {
         Vector3 eyeVec = player->getTransform()->forward();
 
         mCameraPosition = Vector3(
-            player->getTransform()->getPosition().x - eyeVec.x * 30.f,
+            player->getTransform()->getPosition().x - eyeVec.x * 50.f,
             player->getTransform()->getPosition().y + 8.f,
-            player->getTransform()->getPosition().z - eyeVec.z * 30.f
+            player->getTransform()->getPosition().z - eyeVec.z * 50.f
         );
         mPlayerPosition = player->getTransform()->getPosition();
     }

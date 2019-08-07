@@ -43,12 +43,12 @@ void TransformComponent::setRotation(const Quaternion& rot) {
 
 void TransformComponent::setRotation(const Vector3& axis, float angle) {
     angle *= 0.5f * Math::deg2Rad;
-    float sinAngle = Math::Sin(angle);
+    float sinAngle = Math::sin(angle);
 
     mRotation.x = axis.x * sinAngle;
     mRotation.y = axis.y * sinAngle;
     mRotation.z = axis.z * sinAngle;
-    mRotation.w = Math::Cos(angle);
+    mRotation.w = Math::cos(angle);
 
     mRecomputeTransform = true;
 }
@@ -56,33 +56,33 @@ void TransformComponent::setRotation(const Vector3& axis, float angle) {
 void TransformComponent::rotate(const Vector3& euler) {
     Vector3 angles = euler * 0.5f * Math::deg2Rad;
     Quaternion inc;
-    inc.x = Math::Sin(angles.x);
-    inc.y = Math::Sin(angles.y);
-    inc.z = Math::Sin(angles.z);
-    inc.w = Math::Cos(angles.x) * Math::Cos(angles.y) * Math::Cos(angles.z);
+    inc.x = Math::sin(angles.x);
+    inc.y = Math::sin(angles.y);
+    inc.z = Math::sin(angles.z);
+    inc.w = Math::cos(angles.x) * Math::cos(angles.y) * Math::cos(angles.z);
 
-    mRotation = Quaternion::Concatenate(mRotation, inc);
+    mRotation = Quaternion::concatenate(mRotation, inc);
 
     mRecomputeTransform = true;
 }
 
 void TransformComponent::rotate(const Vector3& axis, float angle) {
     angle *= 0.5f * Math::deg2Rad;
-    float sinAngle = Math::Sin(angle);
+    float sinAngle = Math::sin(angle);
 
     Quaternion inc;
     inc.x = axis.x * sinAngle;
     inc.y = axis.y * sinAngle;
     inc.z = axis.z * sinAngle;
-    inc.w = Math::Cos(angle);
+    inc.w = Math::cos(angle);
 
-    mRotation = Quaternion::Concatenate(mRotation, inc);
+    mRotation = Quaternion::concatenate(mRotation, inc);
 
     mRecomputeTransform = true;
 }
 
 void TransformComponent::lookAt(const Vector3& target) {
-    Matrix4::CreateLookAt(mPosition, target, Vector3::up);
+    Matrix4::createLookAt(mPosition, target, Vector3::up);
     mRecomputeTransform = true;
 }
 
@@ -96,11 +96,11 @@ void TransformComponent::setScale(const Vector3& scale) {
 }
 
 const Vector3 TransformComponent::forward() const {
-    return Vector3::Transform(Vector3::forward, mRotation);
+    return Vector3::transform(Vector3::forward, mRotation);
 }
 
 const Vector3 TransformComponent::right() const {
-    return Vector3::Transform(Vector3::right, mRotation);
+    return Vector3::transform(Vector3::right, mRotation);
 }
 
 bool TransformComponent::getRecomputeTransform() const {

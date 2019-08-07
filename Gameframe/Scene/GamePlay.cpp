@@ -23,7 +23,6 @@ GamePlay::GamePlay() :
     mRenderer(std::make_unique<Renderer>()),
     mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())) {
     mPlayer = new PlayerActor(this);
-    mGround = new OctreeActor(this, 0, "./res/map.oct", mPlayer, OctreeActor::Type::Ground);
     mCube = new CubeActor(this);
     Camera::create();
 }
