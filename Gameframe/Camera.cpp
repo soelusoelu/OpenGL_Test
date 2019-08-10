@@ -18,7 +18,7 @@ void Camera::update(PlayerActor* player) {
     glLoadIdentity();
     gluLookAt(
         mCameraPosition.x, mCameraPosition.y, mCameraPosition.z, //カメラ位置
-        mPlayerPosition.x, mPlayerPosition.y + 5.f, mPlayerPosition.z, //注視点
+        mPlayerPosition.x, mPlayerPosition.y + 10.f, mPlayerPosition.z, //注視点
         0.f, 1.f, 0.f //カメラ姿勢
     );
 }

@@ -4,7 +4,10 @@
 #include <gslib.h>
 
 CubeActor::CubeActor(GamePlay* game) :
-    Actor(game) {
+    Actor(game),
+    mtimer(0.f) {
+    //glDisable(GL_CULL_FACE);
+    //glDisable(GL_LIGHTING);
 }
 
 void CubeActor::updateActor(float deltaTime) {
@@ -15,10 +18,10 @@ void CubeActor::drawActor() const {
     //óßï˚ëÃÇÃï`é 
     glBegin(GL_QUADS);
     //è„ñ 
+    glVertex3f(1.0f, 1.0f, 1.0f);
     glVertex3f(1.0f, 1.0f, -1.0f);
     glVertex3f(-1.0f, 1.0f, -1.0f);
     glVertex3f(-1.0f, 1.0f, 1.0f);
-    glVertex3f(1.0f, 1.0f, 1.0f);
     //â∫ñ 
     glVertex3f(1.0f, -1.0f, -1.0f);
     glVertex3f(-1.0f, -1.0f, -1.0f);
@@ -26,14 +29,14 @@ void CubeActor::drawActor() const {
     glVertex3f(1.0f, -1.0f, 1.0f);
     //ëOñ 
     glVertex3f(1.0f, 1.0f, 1.0f);
-    glVertex3f(-1.0f, 1.0f, 1.0f);
-    glVertex3f(-1.0f, -1.0f, 1.0f);
     glVertex3f(1.0f, -1.0f, 1.0f);
+    glVertex3f(-1.0f, -1.0f, 1.0f);
+    glVertex3f(-1.0f, 1.0f, 1.0f);
     //îwñ 
     glVertex3f(1.0f, 1.0f, -1.0f);
-    glVertex3f(-1.0f, 1.0f, -1.0f);
-    glVertex3f(-1.0f, -1.0f, -1.0f);
     glVertex3f(1.0f, -1.0f, -1.0f);
+    glVertex3f(-1.0f, -1.0f, -1.0f);
+    glVertex3f(-1.0f, 1.0f, -1.0f);
     //ç∂ë§ñ 
     glVertex3f(-1.0f, 1.0f, 1.0f);
     glVertex3f(-1.0f, 1.0f, -1.0f);

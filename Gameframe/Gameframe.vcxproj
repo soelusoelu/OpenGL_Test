@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Actor.cpp" />
+    <ClCompile Include="Component\BoxComponent.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Component\AnimationComponent.cpp" />
     <ClCompile Include="BGM.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="Actor\OctreeActor.cpp" />
     <ClCompile Include="Component\PlayerMoveComponent.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -156,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Component\BoxComponent.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Component\AnimationComponent.h" />
     <ClInclude Include="BGM.h" />
@@ -167,6 +170,7 @@
     <ClInclude Include="Actor\OctreeActor.h" />
     <ClInclude Include="Component\PlayerMoveComponent.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\GamePlay.h" />

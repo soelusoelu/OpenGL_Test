@@ -54,14 +54,18 @@ void TransformComponent::setRotation(const Vector3& axis, float angle) {
 }
 
 void TransformComponent::rotate(const Vector3& euler) {
-    Vector3 angles = euler * 0.5f * Math::deg2Rad;
-    Quaternion inc;
-    inc.x = Math::sin(angles.x);
-    inc.y = Math::sin(angles.y);
-    inc.z = Math::sin(angles.z);
-    inc.w = Math::cos(angles.x) * Math::cos(angles.y) * Math::cos(angles.z);
+    rotate(Vector3::left, euler.x);
+    rotate(Vector3::up, euler.y);
+    rotate(Vector3::forward, euler.z);
 
-    mRotation = Quaternion::concatenate(mRotation, inc);
+    //Vector3 angles = euler * 0.5f * Math::deg2Rad;
+    //Quaternion inc;
+    //inc.x = Math::sin(angles.x);
+    //inc.y = Math::sin(angles.y);
+    //inc.z = Math::sin(angles.z);
+    //inc.w = Math::cos(angles.x) * Math::cos(angles.y) * Math::cos(angles.z);
+
+    //mRotation = Quaternion::concatenate(mRotation, inc);
 
     mRecomputeTransform = true;
 }

@@ -9,6 +9,7 @@
 #include "../Component/TransformComponent.h"
 #include "..//Renderer.h"
 #include "..//StringRenderer.h"
+#include "../Physics.h"
 #include <gslib.h>
 #include <vector>
 #include <unordered_set>
@@ -123,4 +124,8 @@ const std::unordered_set<Actor*>& GamePlay::getActors() const {
 
 Renderer* GamePlay::getRenderer() const {
     return mRenderer.get();
+}
+
+Physics* GamePlay::getPhysics() const {
+    return mPhysics.get();
 }

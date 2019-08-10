@@ -19,6 +19,6 @@ int Component::getUpdateOrder() const {
     return mUpdateOrder;
 }
 
-Actor* Component::getOwner() {
+Actor* Component::getOwner() const {
     return mOwner;
 }

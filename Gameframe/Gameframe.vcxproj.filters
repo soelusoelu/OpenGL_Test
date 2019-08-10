@@ -28,6 +28,8 @@
     <ClCompile Include="Actor\SkyBoxActor.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Component\BoxComponent.cpp" />
+    <ClCompile Include="Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -56,5 +58,7 @@
     <ClInclude Include="Actor\SkyBoxActor.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="Component\BoxComponent.h" />
+    <ClInclude Include="Physics.h" />
   </ItemGroup>
 </Project>

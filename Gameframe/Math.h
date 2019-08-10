@@ -16,9 +16,9 @@ namespace Math {
     static const float Pi = 3.1415926535f;
     const float TwoPi = Pi * 2.0f;
     const float PiOver2 = Pi / 2.0f;
-    const float Infinity = std::numeric_limits<float>::infinity();
-    const float NegInfinity = -std::numeric_limits<float>::infinity();
-    static const float deg2Rad = 0.0174532925f;
+    const float infinity = std::numeric_limits<float>::infinity();
+    const float negInfinity = -std::numeric_limits<float>::infinity();
+    const float deg2Rad = Pi / 180;
 
     inline float toRadians(float degrees) {
         return degrees * Pi / 180.0f;
@@ -291,6 +291,13 @@ public:
         x *= scalar;
         y *= scalar;
         z *= scalar;
+        return *this;
+    }
+
+    Vector3& operator*=(const Vector3& right) {
+        x *= right.x;
+        y *= right.y;
+        z *= right.z;
         return *this;
     }
 

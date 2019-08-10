@@ -1,33 +1,17 @@
-﻿// ----------------------------------------------------------------
-// From Game Programming in C++ by Sanjay Madhav
-// Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
-// Released under the BSD License
-// See LICENSE in root directory for full details.
-// ----------------------------------------------------------------
-// MinDistSq between two line segments:
-// Copyright 2001 softSurfer, 2012 Dan Sunday
-// This code may be freely used, distributed and modified for any purpose
-// providing that this copyright notice is included with it.
-// SoftSurfer makes no warranty for this code, and cannot be held
-// liable for any real or imagined damage resulting from its use.
-// Users of this code must verify correctness for their application.
-// ----------------------------------------------------------------
-
-#include "Collision.h"
+﻿#include "Collision.h"
 #include <algorithm>
 #include <array>
 
-LineSegment::LineSegment(const Vector3& start, const Vector3& end) :
+Ray::Ray(const Vector3& start, const Vector3& end) :
     mStart(start),
     mEnd(end) {
 }
 
-Vector3 LineSegment::pointOnSegment(float t) const {
+Vector3 Ray::pointOnSegment(float t) const {
     return mStart + (mEnd - mStart) * t;
 }
 
-float LineSegment::minDistanceSquare(const Vector3& point) const {
+float Ray::minDistanceSquare(const Vector3& point) const {
     //ベクトルの準備
     Vector3 ab = mEnd - mStart;
     Vector3 ba = -1.0f * ab;
@@ -52,7 +36,7 @@ float LineSegment::minDistanceSquare(const Vector3& point) const {
     }
 }
 
-float LineSegment::minDistanceSquare(const LineSegment& s1, const LineSegment& s2) {
+float Ray::minDistanceSquare(const Ray& s1, const Ray& s2) {
     Vector3   u = s1.mEnd - s1.mStart;
     Vector3   v = s2.mEnd - s2.mStart;
     Vector3   w = s1.mStart - s2.mStart;
@@ -284,7 +268,7 @@ bool intersect(const AABB& a, const AABB& b) {
 }
 
 bool intersect(const Capsule& a, const Capsule& b) {
-    float distSq = LineSegment::minDistanceSquare(a.mSegment, b.mSegment);
+    float distSq = Ray::minDistanceSquare(a.mSegment, b.mSegment);
     float sumRadii = a.mRadius + b.mRadius;
     return distSq <= (sumRadii * sumRadii);
 }
@@ -294,10 +278,10 @@ bool intersect(const Sphere& s, const AABB& box) {
     return distSq <= (s.mRadius * s.mRadius);
 }
 
-bool intersect(const LineSegment& l, const Sphere& s, float* outT) {
+bool intersect(const Ray& r, const Sphere& s, float* outT) {
     //方程式のX, Y, a, b, cを計算
-    Vector3 X = l.mStart - s.mCenter;
-    Vector3 Y = l.mEnd - l.mStart;
+    Vector3 X = r.mStart - s.mCenter;
+    Vector3 Y = r.mEnd - r.mStart;
     float a = Vector3::dot(Y, Y);
     float b = 2.0f * Vector3::dot(X, Y);
     float c = Vector3::dot(X, X) - s.mRadius * s.mRadius;
@@ -323,20 +307,20 @@ bool intersect(const LineSegment& l, const Sphere& s, float* outT) {
     }
 }
 
-bool intersect(const LineSegment& l, const Plane& p, float* outT) {
+bool intersect(const Ray& r, const Plane& p, float* outT) {
     //最初にtの解が存在するのかテスト
-    float denom = Vector3::dot(l.mEnd - l.mStart, p.mNormal);
+    float denom = Vector3::dot(r.mEnd - r.mStart, p.mNormal);
     if (Math::nearZero(denom)) {
         //交差の可能性があるのは、唯一 start/end が平面上の点であるとき
         //すなわち、(P dot N) == d の場合のみ
-        if (Math::nearZero(Vector3::dot(l.mStart, p.mNormal) - p.mD)) {
+        if (Math::nearZero(Vector3::dot(r.mStart, p.mNormal) - p.mD)) {
             *outT = 0.f;
             return true;
         } else {
             return false;
         }
     } else {
-        float numer = -Vector3::dot(l.mStart, p.mNormal) - p.mD;
+        float numer = -Vector3::dot(r.mStart, p.mNormal) - p.mD;
         *outT = numer / denom;
         //tが線分の境界内にあるか
         if (0.f <= *outT && *outT <= 1.0f) {
@@ -364,18 +348,18 @@ bool testSidePlane(float start, float end, float negd, const Vector3& norm, std:
     }
 }
 
-bool intersect(const LineSegment& l, const AABB& b, float* outT, Vector3* outNorm) {
+bool intersect(const Ray& r, const AABB& b, float* outT, Vector3* outNorm) {
     //可能性のあるtの値をすべて保存する配列
     std::vector<std::pair<float, Vector3>> tValues;
     //x平面をテスト
-    testSidePlane(l.mStart.x, l.mEnd.x, b.mMin.x, Vector3::right, &tValues);
-    testSidePlane(l.mStart.x, l.mEnd.x, b.mMax.x, Vector3::left, &tValues);
+    testSidePlane(r.mStart.x, r.mEnd.x, b.mMin.x, Vector3::right, &tValues);
+    testSidePlane(r.mStart.x, r.mEnd.x, b.mMax.x, Vector3::left, &tValues);
     //y平面をテスト
-    testSidePlane(l.mStart.y, l.mEnd.y, b.mMin.y, Vector3::up, &tValues);
-    testSidePlane(l.mStart.y, l.mEnd.y, b.mMax.y, Vector3::down, &tValues);
+    testSidePlane(r.mStart.y, r.mEnd.y, b.mMin.y, Vector3::up, &tValues);
+    testSidePlane(r.mStart.y, r.mEnd.y, b.mMax.y, Vector3::down, &tValues);
     //z平面をテスト
-    testSidePlane(l.mStart.z, l.mEnd.z, b.mMin.z, Vector3::forward, &tValues);
-    testSidePlane(l.mStart.z, l.mEnd.z, b.mMax.z, Vector3::back, &tValues);
+    testSidePlane(r.mStart.z, r.mEnd.z, b.mMin.z, Vector3::forward, &tValues);
+    testSidePlane(r.mStart.z, r.mEnd.z, b.mMax.z, Vector3::back, &tValues);
 
     //tの値を小さい順にソート
     std::sort(tValues.begin(), tValues.end(), [](
@@ -386,7 +370,7 @@ bool intersect(const LineSegment& l, const AABB& b, float* outT, Vector3* outNor
     //ボックスに交点が含まれるかテスト
     Vector3 point;
     for (const auto& t : tValues) {
-        point = l.pointOnSegment(t.first);
+        point = r.pointOnSegment(t.first);
         if (b.contains(point)) {
             *outT = t.first;
             *outNorm = t.second;

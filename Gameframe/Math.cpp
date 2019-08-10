@@ -23,8 +23,8 @@ const Vector3 Vector3::left(1.0f, 0.0f, 0.0f);
 const Vector3 Vector3::down(0.0f, -1.0f, 0.0f);
 const Vector3 Vector3::back(0.0f, 0.0f, -1.0f);
 const Vector3 Vector3::one(1.0f, 1.0f, 1.0f);
-const Vector3 Vector3::Infinity(Math::Infinity, Math::Infinity, Math::Infinity);
-const Vector3 Vector3::NegInfinity(Math::NegInfinity, Math::NegInfinity, Math::NegInfinity);
+const Vector3 Vector3::Infinity(Math::infinity, Math::infinity, Math::infinity);
+const Vector3 Vector3::NegInfinity(Math::negInfinity, Math::negInfinity, Math::negInfinity);
 
 static float m3Ident[3][3] =
 {

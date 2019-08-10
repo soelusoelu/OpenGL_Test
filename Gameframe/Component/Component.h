@@ -12,7 +12,7 @@ public:
     virtual void onUpdateWorldTransform();
 
     int getUpdateOrder() const;
-    Actor* getOwner();
+    Actor* getOwner() const;
 
 private:
     Actor* mOwner;

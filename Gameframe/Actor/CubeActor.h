@@ -9,5 +9,8 @@ public:
     CubeActor(GamePlay* game);
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
+
+private:
+    float mtimer;
 };
 

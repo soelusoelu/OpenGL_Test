@@ -1,23 +1,16 @@
-﻿// ----------------------------------------------------------------
-// From Game Programming in C++ by Sanjay Madhav
-// Copyright (C) 2017 Sanjay Madhav. All rights reserved.
-// 
-// Released under the BSD License
-// See LICENSE in root directory for full details.
-// ----------------------------------------------------------------
+﻿#pragma once
 
-#pragma once
 #include "Math.h"
 #include <vector>
 
-struct LineSegment {
-    LineSegment(const Vector3& start, const Vector3& end);
+struct Ray {
+    Ray(const Vector3& start, const Vector3& end);
     //線分上の点を返す 0 <= t <= 1
     Vector3 pointOnSegment(float t) const;
     //最短距離の2乗
     float minDistanceSquare(const Vector3& point) const;
     //2本の線分から最短距離の2乗を取得
-    static float minDistanceSquare(const LineSegment& s1, const LineSegment& s2);
+    static float minDistanceSquare(const Ray& s1, const Ray& s2);
 
     Vector3 mStart;
     Vector3 mEnd;
@@ -42,7 +35,7 @@ struct Sphere {
     float mRadius;
 };
 
-//axis-aligned bounding box つまり直方体
+//axis-aligned bounding box つまり回転しない直方体
 struct AABB {
     AABB(const Vector3& min, const Vector3& max);
     //Update min and max accounting for this point
@@ -56,7 +49,7 @@ struct AABB {
     Vector3 mMax;
 };
 
-//oriented bounding box つまり動く直方体
+//oriented bounding box つまり回転する直方体
 //AABBよりはるかに計算コストが高い
 struct OBB {
     Vector3 mCenter;
@@ -70,7 +63,7 @@ struct Capsule {
     Vector3 pointOnSegment(float t) const;
     bool contains(const Vector3& point) const;
 
-    LineSegment mSegment;
+    Ray mSegment;
     float mRadius;
 };
 
@@ -86,8 +79,8 @@ bool intersect(const AABB& a, const AABB& b);
 bool intersect(const Capsule& a, const Capsule& b);
 bool intersect(const Sphere& s, const AABB& box);
 
-bool intersect(const LineSegment& l, const Sphere& s, float* outT);
-bool intersect(const LineSegment& l, const Plane& p, float* outT);
-bool intersect(const LineSegment& l, const AABB& b, float* outT, Vector3* outNorm);
+bool intersect(const Ray& r, const Sphere& s, float* outT);
+bool intersect(const Ray& r, const Plane& p, float* outT);
+bool intersect(const Ray& r, const AABB& b, float* outT, Vector3* outNorm);
 
 bool SweptSphere(const Sphere& P0, const Sphere& P1, const Sphere& Q0, const Sphere& Q1, float* t);

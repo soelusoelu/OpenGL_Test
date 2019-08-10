@@ -11,6 +11,7 @@ class OctreeActor;
 class CubeActor;
 class Renderer;
 class StringRenderer;
+class Physics;
 
 class GamePlay : public SceneBase {
 public:
@@ -33,6 +34,7 @@ public:
     void setState(GameState state);
     const std::unordered_set<Actor*>& getActors() const;
     Renderer* getRenderer() const;
+    Physics* getPhysics() const;
 
 private:
     std::unordered_set<Actor*> mActors;
@@ -41,6 +43,7 @@ private:
     GameState mState;
     std::unique_ptr<Renderer> mRenderer;
     std::unique_ptr<StringRenderer> mStringRenderer;
+    std::unique_ptr<Physics> mPhysics;
 
     //全部生ポインタじゃないとエラー出る
     PlayerActor* mPlayer;
