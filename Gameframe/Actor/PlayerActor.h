@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Math.h"
+#include "../Utility/Math.h"
 #include "Actor.h"
 
 class GamePlay;
@@ -8,6 +8,7 @@ class PlayerMoveComponent;
 class MeshComponent;
 class SkeletonComponent;
 class AnimationComponent;
+class BoxComponent;
 
 class PlayerActor : public Actor {
 public:
@@ -25,5 +26,6 @@ private:
     MeshComponent* mMesh;
     SkeletonComponent* mSkelton;
     AnimationComponent* mAnimation;
+    BoxComponent* mBox;
 };
 

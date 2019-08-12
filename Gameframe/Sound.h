@@ -1,7 +1,5 @@
 #pragma once
 
-#include <gslib.h>
-
 class Sound {
 public:
     Sound(unsigned int id, const char* filename);

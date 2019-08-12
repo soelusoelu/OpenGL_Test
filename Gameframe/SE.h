@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Sound.h"
+#include <gslib.h>
 
 class SE : public Sound {
 public:

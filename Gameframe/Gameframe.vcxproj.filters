@@ -6,14 +6,10 @@
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="StringRenderer.cpp" />
-    <ClCompile Include="BGM.cpp" />
-    <ClCompile Include="Sound.cpp" />
-    <ClCompile Include="SE.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="IDManager.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Component\Component.cpp" />
     <ClCompile Include="Component\AnimationComponent.cpp" />
@@ -26,24 +22,26 @@
     <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Actor\OctreeActor.cpp" />
     <ClCompile Include="Actor\SkyBoxActor.cpp" />
-    <ClCompile Include="Math.cpp" />
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="Component\BoxComponent.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="Component\Collider\Collider.cpp" />
+    <ClCompile Include="Component\Collider\BoxComponent.cpp" />
+    <ClCompile Include="Utility\Input.cpp" />
+    <ClCompile Include="Utility\Math.cpp" />
+    <ClCompile Include="SE.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="BGM.cpp" />
+    <ClCompile Include="Utility\IDManager.cpp" />
+    <ClCompile Include="Utility\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="StringRenderer.h" />
-    <ClInclude Include="BGM.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="SE.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="Scene\GamePlay.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="IDManager.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Component\AnimationComponent.h" />
@@ -56,9 +54,15 @@
     <ClInclude Include="Actor\Actor.h" />
     <ClInclude Include="Actor\OctreeActor.h" />
     <ClInclude Include="Actor\SkyBoxActor.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="Component\BoxComponent.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="Component\Collider\Collider.h" />
+    <ClInclude Include="Component\Collider\BoxComponent.h" />
+    <ClInclude Include="Utility\Input.h" />
+    <ClInclude Include="Utility\Math.h" />
+    <ClInclude Include="SE.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="BGM.h" />
+    <ClInclude Include="Utility\IDManager.h" />
+    <ClInclude Include="Utility\Collision.h" />
   </ItemGroup>
 </Project>

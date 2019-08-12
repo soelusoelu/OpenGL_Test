@@ -1,22 +1,22 @@
-#include "Physics.h"
-#include "Component/BoxComponent.h"
+Ôªø#include "Physics.h"
+#include "Component/Collider/BoxComponent.h"
 
 Physics::Physics(GamePlay* game) :
     mGame(game) {
 }
 
-bool Physics::RayCast(const Ray& ray, CollisionInfo* outColl) {
+bool Physics::rayCast(const Ray& ray, CollisionInfo* outColl) {
     bool collided = false;
-    //closestTÇÕÅAñ≥å¿ëÂÇ≈èâä˙âª
+    //closestT„ÅØ„ÄÅÁÑ°ÈôêÂ§ß„ÅßÂàùÊúüÂåñ
     // intersection will always update closestT
     float closestT = Math::infinity;
     Vector3 norm;
-    //Ç∑Ç◊ÇƒÇÃÉ{ÉbÉNÉXÉRÉìÉ|Å[ÉlÉìÉgÇÉeÉXÉg
+    //„Åô„Åπ„Å¶„ÅÆ„Éú„ÉÉ„ÇØ„Çπ„Ç≥„É≥„Éù„Éº„Éç„É≥„Éà„Çí„ÉÜ„Çπ„Éà
     for (const auto& box : mBoxes) {
         float t;
-        //ÉåÉCÇ™É{ÉbÉNÉXÇ∆åç∑Ç∑ÇÈÇ©
-        if (intersect(ray, box->getCollision(), &t, &norm)) {
-            //ëOÇÃåç∑ÇÊÇËãﬂÇ¢Ç©
+        //„É¨„Ç§„Åå„Éú„ÉÉ„ÇØ„Çπ„Å®‰∫§Â∑Æ„Åô„Çã„Åã
+        if (box->getEnable() && intersect(ray, box->getCollision(), &t, &norm)) {
+            //Ââç„ÅÆ‰∫§Â∑Æ„Çà„ÇäËøë„ÅÑ„Åã
             if (t < closestT) {
                 closestT = t;
                 outColl->mPoint = ray.pointOnSegment(t);
@@ -30,10 +30,10 @@ bool Physics::RayCast(const Ray& ray, CollisionInfo* outColl) {
     return collided;
 }
 
-void Physics::AddBox(BoxComponent* box) {
+void Physics::addBox(BoxComponent* box) {
     mBoxes.emplace(box);
 }
 
-void Physics::RemoveBox(BoxComponent* box) {
+void Physics::removeBox(BoxComponent* box) {
     mBoxes.erase(box);
 }

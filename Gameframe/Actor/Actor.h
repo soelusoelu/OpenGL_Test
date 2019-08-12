@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Math.h"
+#include "../Utility/Math.h"
 #include <unordered_set>
 #include <vector>
 #include <memory>
@@ -40,13 +40,13 @@ public:
         T* comp = nullptr;
         for (auto&& c : mStartComponents) {
             comp = dynamic_cast<T*>(c);
-            if (comp != nullptr) {
+            if (comp) {
                 return comp;
             }
         }
         for (auto&& c : mComponents) {
             comp = dynamic_cast<T*>(c);
-            if (comp != nullptr) {
+            if (comp) {
                 break;
             }
         }

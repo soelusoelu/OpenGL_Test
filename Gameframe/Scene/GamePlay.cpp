@@ -21,8 +21,9 @@ GamePlay::GamePlay() :
     SceneBase(),
     mUpdatingActors(false),
     mState(GameState::Play),
-    mRenderer(std::make_unique<Renderer>()),
-    mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())) {
+    mRenderer(std::make_unique<Renderer>(this)),
+    mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())),
+    mPhysics(std::make_unique<Physics>(this)) {
     mPlayer = new PlayerActor(this);
     mCube = new CubeActor(this);
     Camera::create();

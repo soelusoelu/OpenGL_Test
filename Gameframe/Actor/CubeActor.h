@@ -3,6 +3,7 @@
 #include "Actor.h"
 
 class GamePlay;
+class BoxComponent;
 
 class CubeActor : public Actor {
 public:
@@ -12,5 +13,6 @@ public:
 
 private:
     float mtimer;
+    BoxComponent* mBox;
 };
 

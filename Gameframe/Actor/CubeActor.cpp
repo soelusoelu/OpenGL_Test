@@ -1,13 +1,16 @@
 #include "CubeActor.h"
-#include "Actor.h"
 #include "../Component/TransformComponent.h"
+#include "../Component/Collider/BoxComponent.h"
+#include "../Utility/Math.h"
 #include <gslib.h>
 
 CubeActor::CubeActor(GamePlay* game) :
     Actor(game),
-    mtimer(0.f) {
+    mtimer(0.f),
+    mBox(new BoxComponent(this)) {
     //glDisable(GL_CULL_FACE);
     //glDisable(GL_LIGHTING);
+    getTransform()->setPosition(Vector3(0.f, 0.f, 30.f));
 }
 
 void CubeActor::updateActor(float deltaTime) {

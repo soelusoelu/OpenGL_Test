@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 
-#include "Math.h"
-#include "Collision.h"
+#include "Utility/Math.h"
+#include "Utility/Collision.h"
 #include <unordered_set>
 
 class GamePlay;
@@ -13,21 +13,21 @@ public:
     Physics(GamePlay* game);
 
     struct CollisionInfo {
-        //Õ“Ë‚µ‚½“_
+        //è¡çªã—ãŸç‚¹
         Vector3 mPoint;
-        //Õ“Ë‚µ‚½“_‚Ì–@ü
+        //è¡çªã—ãŸç‚¹ã®æ³•ç·š
         Vector3 mNormal;
-        //Œğ·‚µ‚½ƒRƒ“ƒ|[ƒlƒ“ƒg
+        //äº¤å·®ã—ãŸã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
         BoxComponent* mBox;
-        //ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğŠ—L‚·‚éƒAƒNƒ^[
+        //ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’æ‰€æœ‰ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
         Actor* mActor;
     };
 
-    bool RayCast(const Ray& ray, CollisionInfo* outColl);
+    bool rayCast(const Ray& ray, CollisionInfo* outColl);
 
-    //ƒ{ƒbƒNƒXƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’Ç‰ÁEíœ
-    void AddBox(BoxComponent* box);
-    void RemoveBox(BoxComponent* box);
+    //ãƒœãƒƒã‚¯ã‚¹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®è¿½åŠ ãƒ»å‰Šé™¤
+    void addBox(BoxComponent* box);
+    void removeBox(BoxComponent* box);
 
 private:
     GamePlay* mGame;

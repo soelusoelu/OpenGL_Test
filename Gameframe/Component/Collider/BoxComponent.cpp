@@ -1,24 +1,19 @@
 #include "BoxComponent.h"
-#include "../Actor/Actor.h"
-#include "TransformComponent.h"
-#include "../Scene/GamePlay.h"
-#include "../Physics.h"
+#include "../Component.h"
+#include "../../Actor/Actor.h"
+#include "../TransformComponent.h"
+#include "../../Scene/GamePlay.h"
+#include "../../Physics.h"
 
 BoxComponent::BoxComponent(Actor* owner) :
-    Component(owner),
+    Collider(owner),
     mCollision(Vector3::zero, Vector3::one),
     mShouldRotate(true) {
-    getOwner()->getGame()->getPhysics()->AddBox(this);
+    getOwner()->getGame()->getPhysics()->addBox(this);
 }
 
 BoxComponent::~BoxComponent() {
-    getOwner()->getGame()->getPhysics()->RemoveBox(this);
-}
-
-void BoxComponent::start() {
-}
-
-void BoxComponent::update(float deltaTime) {
+    getOwner()->getGame()->getPhysics()->removeBox(this);
 }
 
 void BoxComponent::onUpdateWorldTransform() {
@@ -44,4 +39,8 @@ const AABB& BoxComponent::getCollision() const {
 
 void BoxComponent::setShouldRotate(bool set) {
     mShouldRotate = set;
+}
+
+Collider::ColliderType BoxComponent::getColliderType() const {
+    return ColliderType::AABBT;
 }

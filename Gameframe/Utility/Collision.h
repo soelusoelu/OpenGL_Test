@@ -20,7 +20,7 @@ struct Plane {
     Plane(const Vector3& normal, float d);
     //3点から平面を構築
     Plane(const Vector3& a, const Vector3& b, const Vector3& c);
-    //点と平面の符号付き距離の取得(+: 点は法線より上, -:点は法線より下)
+    //点と平面の符号付き距離の取得(+:点は法線より上, -:点は法線より下)
     float signedDistance(const Vector3& point) const;
 
     Vector3 mNormal;

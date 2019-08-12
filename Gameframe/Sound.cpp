@@ -1,5 +1,4 @@
 #include "Sound.h"
-#include <iostream>
 
 Sound::Sound(unsigned int id, const char* filename) :
     mID(id),
@@ -8,7 +7,6 @@ Sound::Sound(unsigned int id, const char* filename) :
 }
 
 Sound::~Sound() {
-    std::cout << "Sound destructor" << std::endl;
 }
 
 const bool Sound::isPlay() const {

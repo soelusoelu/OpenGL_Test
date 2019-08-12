@@ -1,5 +1,4 @@
 #include "IDManager.h"
-#include <list>
 
 IDManager::IDManager() {
     mMeshIDs.emplace_back(0);

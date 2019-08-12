@@ -1,6 +1,7 @@
 #include "Light.h"
 #include "Scene/SceneBase.h"
 #include "Scene/GamePlay.h"
+#include "Utility/Input.h"
 #include <GSgame.h>
 #include <memory>
 
@@ -37,6 +38,7 @@ private:
     }
 
     void update(float deltaTime) {
+        Input::update();
         mGame->update(deltaTime);
     }
 

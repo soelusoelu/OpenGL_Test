@@ -9,10 +9,5 @@ public:
     PlayerMoveComponent(Actor* owner, int updateOrder = 10);
     virtual void start() override;
     virtual void update(float deltaTime) override;
-
-    float getSpeed() const;
-
-private:
-    float mSpeed;
 };
 

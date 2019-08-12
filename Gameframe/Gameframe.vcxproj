@@ -127,18 +127,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Actor.cpp" />
-    <ClCompile Include="Component\BoxComponent.cpp" />
-    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Component\Collider\Collider.cpp" />
+    <ClCompile Include="Component\Collider\BoxComponent.cpp" />
+    <ClCompile Include="Utility\Collision.cpp" />
     <ClCompile Include="Component\AnimationComponent.cpp" />
     <ClCompile Include="BGM.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
     <ClCompile Include="Actor\CubeActor.cpp" />
-    <ClCompile Include="IDManager.cpp" />
+    <ClCompile Include="Utility\IDManager.cpp" />
     <ClCompile Include="Component\MeshComponent.cpp" />
     <ClCompile Include="Actor\OctreeActor.cpp" />
     <ClCompile Include="Component\PlayerMoveComponent.cpp" />
-    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Utility\Input.cpp" />
+    <ClCompile Include="Utility\Math.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
@@ -158,18 +160,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
-    <ClInclude Include="Component\BoxComponent.h" />
-    <ClInclude Include="Collision.h" />
+    <ClInclude Include="Component\Collider\Collider.h" />
+    <ClInclude Include="Component\Collider\BoxComponent.h" />
+    <ClInclude Include="Utility\Collision.h" />
     <ClInclude Include="Component\AnimationComponent.h" />
     <ClInclude Include="BGM.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Actor\CubeActor.h" />
-    <ClInclude Include="IDManager.h" />
+    <ClInclude Include="Utility\IDManager.h" />
     <ClInclude Include="Component\MeshComponent.h" />
     <ClInclude Include="Actor\OctreeActor.h" />
     <ClInclude Include="Component\PlayerMoveComponent.h" />
-    <ClInclude Include="Math.h" />
+    <ClInclude Include="Utility\Input.h" />
+    <ClInclude Include="Utility\Math.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene\SceneBase.h" />
