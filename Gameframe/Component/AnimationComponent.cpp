@@ -2,7 +2,8 @@
 #include "Component.h"
 #include "../Actor/Actor.h"
 #include "../Scene/GamePlay.h"
-#include "../Renderer.h"
+#include "../System/GameSystem.h"
+#include "../System/Renderer.h"
 #include "MeshComponent.h"
 #include <gslib.h>
 
@@ -10,7 +11,7 @@ AnimationComponent::AnimationComponent(Actor* owner, const std::string& filename
     Component(owner),
     mAnimationNo(0),
     mAnimationTimer(0.f) {
-    mID = getOwner()->getGame()->getRenderer()->getAnimation(filename);
+    mID = getOwner()->getGamePlay()->getSystem()->getRenderer()->getAnimation(filename);
 }
 
 AnimationComponent::~AnimationComponent() {

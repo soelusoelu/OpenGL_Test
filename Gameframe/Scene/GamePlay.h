@@ -4,14 +4,10 @@
 #include <unordered_set>
 #include <memory>
 
+class GameSystem;
 class Actor;
 class PlayerActor;
-class SkyBoxActor;
-class OctreeActor;
 class CubeActor;
-class Renderer;
-class StringRenderer;
-class Physics;
 
 class GamePlay : public SceneBase {
 public:
@@ -21,7 +17,7 @@ public:
         Quit
     };
 
-    GamePlay();
+    GamePlay(GameSystem* gameSystem);
     ~GamePlay();
 
     virtual void update(float deltaTime) override;
@@ -33,17 +29,12 @@ public:
     GameState getState() const;
     void setState(GameState state);
     const std::unordered_set<Actor*>& getActors() const;
-    Renderer* getRenderer() const;
-    Physics* getPhysics() const;
 
 private:
     std::unordered_set<Actor*> mActors;
     std::unordered_set<Actor*> mPendingActors;
     bool mUpdatingActors;
     GameState mState;
-    std::unique_ptr<Renderer> mRenderer;
-    std::unique_ptr<StringRenderer> mStringRenderer;
-    std::unique_ptr<Physics> mPhysics;
 
     //全部生ポインタじゃないとエラー出る
     PlayerActor* mPlayer;

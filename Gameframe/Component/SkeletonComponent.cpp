@@ -2,12 +2,13 @@
 #include "Component.h"
 #include "../Actor/Actor.h"
 #include "../Scene/GamePlay.h"
-#include "../Renderer.h"
+#include "../System/GameSystem.h"
+#include "../System/Renderer.h"
 #include <gslib.h>
 
 SkeletonComponent::SkeletonComponent(Actor* owner, const std::string& filename) :
     Component(owner) {
-    mID = getOwner()->getGame()->getRenderer()->getSkeleton(filename);
+    mID = getOwner()->getGamePlay()->getSystem()->getRenderer()->getSkeleton(filename);
     gsBindSkeleton(mID);
 }
 

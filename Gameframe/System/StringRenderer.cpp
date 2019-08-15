@@ -1,5 +1,5 @@
 #include "StringRenderer.h"
-#include "Sprite3D.h"
+#include "../Sprite3D.h"
 #include "Renderer.h"
 #include <gslib.h>
 

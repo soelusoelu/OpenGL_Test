@@ -3,17 +3,18 @@
 #include "../../Actor/Actor.h"
 #include "../TransformComponent.h"
 #include "../../Scene/GamePlay.h"
-#include "../../Physics.h"
+#include "../../System/GameSystem.h"
+#include "../../System/Physics.h"
 
 BoxComponent::BoxComponent(Actor* owner) :
     Collider(owner),
     mCollision(Vector3::zero, Vector3::one),
     mShouldRotate(true) {
-    getOwner()->getGame()->getPhysics()->addBox(this);
+    getOwner()->getGamePlay()->getSystem()->getPhysics()->addBox(this);
 }
 
 BoxComponent::~BoxComponent() {
-    getOwner()->getGame()->getPhysics()->removeBox(this);
+    getOwner()->getGamePlay()->getSystem()->getPhysics()->removeBox(this);
 }
 
 void BoxComponent::onUpdateWorldTransform() {

@@ -2,7 +2,7 @@
 #include "../Component/TransformComponent.h"
 #include "../Component/Collider/BoxComponent.h"
 #include "../Utility/Math.h"
-#include <gslib.h>
+#include <GLFW/glfw3.h>
 
 CubeActor::CubeActor(GamePlay* game) :
     Actor(game),

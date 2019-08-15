@@ -17,7 +17,7 @@ public:
         Dead //死ぬ
     };
 
-    Actor(GamePlay* game);
+    Actor(GamePlay* gamePlay);
     virtual ~Actor();
 
     //各コンポーネントのstartを一度だけ実行
@@ -59,11 +59,11 @@ public:
     //アクター生成
     template<typename T>
     void instantiate() {
-        T* t = new T(mGame);
+        T* t = new T(mGamePlay);
     }
     template<typename T>
     void instantiate(const Vector3& position, const Quaternion& rotation) {
-        T* t = new T(mGame);
+        T* t = new T(mGamePlay);
         t->mTransform->setPosition(position);
         t->mTransform->setRotation(rotation);
     }
@@ -75,11 +75,11 @@ public:
     TransformComponent* getTransform() const;
     State getState() const;
     void setState(State state);
-    GamePlay* getGame() const;
+    GamePlay* getGamePlay() const;
     const std::vector<Component*>& getAllComponents() const;
 
 private:
-    GamePlay* mGame;
+    GamePlay* mGamePlay;
     std::unordered_set<Component*> mStartComponents;
     std::vector<Component*> mComponents;
     State mState;

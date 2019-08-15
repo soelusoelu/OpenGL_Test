@@ -1,18 +1,18 @@
-#include "Light.h"
 #include "Scene/SceneBase.h"
 #include "Scene/GamePlay.h"
+#include "System/GameSystem.h"
 #include "Utility/Input.h"
 #include <GSgame.h>
 #include <memory>
 
 //メモリリーク検出用
-#ifdef _DEBUG
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-#define DEBUG_NEW new(_NORMAL_BLOCK,__FILE__,__LINE__)
-#define new DEBUG_NEW
-#endif // _DEBUG
+//#ifdef _DEBUG
+//#define _CRTDBG_MAP_ALLOC
+//#include <stdlib.h>
+//#include <crtdbg.h>
+//#define DEBUG_NEW new(_NORMAL_BLOCK,__FILE__,__LINE__)
+//#define new DEBUG_NEW
+//#endif // _DEBUG
 
 // スキニングメッシュシェーダーテスト
 class MyGame : public gslib::Game {
@@ -34,24 +34,28 @@ private:
         glFogf(GL_FOG_END, 400.f);
         glFogfv(GL_FOG_COLOR, bgColor);
 
-        mGame = std::make_unique<GamePlay>();
+        mSystem = new GameSystem();
+        mScene = new GamePlay(mSystem);
     }
 
     void update(float deltaTime) {
         Input::update();
-        mGame->update(deltaTime);
+        mScene->update(deltaTime);
     }
 
     void draw() {
-        mGame->draw();
+        mScene->draw();
     }
 
     void end() {
+        delete mScene;
+        delete mSystem;
         //メモリリーク検出関数
-        _CrtDumpMemoryLeaks();
+        //_CrtDumpMemoryLeaks();
     }
 
-    std::unique_ptr<SceneBase> mGame;
+    GameSystem* mSystem;
+    SceneBase* mScene;
 };
 
 int main() {

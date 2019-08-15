@@ -9,7 +9,7 @@ class GamePlay;
 
 class Renderer {
 public:
-    Renderer(GamePlay* game);
+    Renderer();
     ~Renderer();
     unsigned int getMesh(const std::string& filename);
     unsigned int getSkeleton(const std::string& filename);
@@ -22,6 +22,5 @@ private:
     std::unordered_map<std::string, unsigned int> mAnimations;
     std::unordered_map<std::string, unsigned int> mTextures;
     std::unique_ptr<IDManager> mIDManager;
-    GamePlay* mGame;
 };
 

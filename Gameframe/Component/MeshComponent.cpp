@@ -2,14 +2,15 @@
 #include "Component.h"
 #include "../Actor/Actor.h"
 #include "../Scene/GamePlay.h"
-#include "../Renderer.h"
-#include <gslib.h>
+#include "../System/GameSystem.h"
+#include "../System/Renderer.h"
+#include <GSgraphics.h>
 #include <string>
 
-MeshComponent::MeshComponent(Actor* owner, const std::string& filename, int updateOrder) :
-    Component(owner, updateOrder),
+MeshComponent::MeshComponent(Actor* owner, const std::string& filename) :
+    Component(owner),
     mEnabled(true) {
-    mID = getOwner()->getGame()->getRenderer()->getMesh(filename);
+    mID = getOwner()->getGamePlay()->getSystem()->getRenderer()->getMesh(filename);
 }
 
 MeshComponent::~MeshComponent() {

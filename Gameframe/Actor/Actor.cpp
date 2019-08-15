@@ -7,15 +7,15 @@
 #include <string>
 #include <algorithm>
 
-Actor::Actor(GamePlay* game) :
-    mGame(game),
+Actor::Actor(GamePlay* gamePlay) :
+    mGamePlay(gamePlay),
     mState(State::Active),
     mTransform(new TransformComponent(this)) {
-    mGame->addActor(this);
+    mGamePlay->addActor(this);
 }
 
 Actor::~Actor() {
-    mGame->removeActor(this);
+    mGamePlay->removeActor(this);
 
     while (!mComponents.empty()) {
         delete mComponents.back();
@@ -99,8 +99,8 @@ void Actor::setState(State state) {
     mState = state;
 }
 
-GamePlay* Actor::getGame() const {
-    return mGame;
+GamePlay* Actor::getGamePlay() const {
+    return mGamePlay;
 }
 
 const std::vector<Component*>& Actor::getAllComponents() const {

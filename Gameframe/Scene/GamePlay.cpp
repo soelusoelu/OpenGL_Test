@@ -1,29 +1,18 @@
 #include "GamePlay.h"
-#include "SceneBase.h"
 #include "../Actor/Actor.h"
 #include "../Actor/PlayerActor.h"
-#include "../Actor/OctreeActor.h"
-#include "../Actor/SkyBoxActor.h"
 #include "../Actor/CubeActor.h"
 #include "../Camera.h"
-#include "../Component/TransformComponent.h"
-#include "..//Renderer.h"
-#include "..//StringRenderer.h"
-#include "../Physics.h"
-#include <gslib.h>
+#include "../System/GameSystem.h"
+#include "../System/StringRenderer.h"
 #include <vector>
-#include <unordered_set>
 #include <memory>
-#include <iostream>
 #include <string>
 
-GamePlay::GamePlay() :
-    SceneBase(),
+GamePlay::GamePlay(GameSystem* gameSystem) :
+    SceneBase(gameSystem),
     mUpdatingActors(false),
-    mState(GameState::Play),
-    mRenderer(std::make_unique<Renderer>(this)),
-    mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())),
-    mPhysics(std::make_unique<Physics>(this)) {
+    mState(GameState::Play) {
     mPlayer = new PlayerActor(this);
     mCube = new CubeActor(this);
     Camera::create();
@@ -87,7 +76,7 @@ void GamePlay::draw() const {
     Camera::instance()->update(mPlayer);
 
     if (mState == GameState::Paused) {
-        mStringRenderer->printf(600.f, 300.f, "Pause");
+        getSystem()->getStringRenderer()->printf(600.f, 300.f, "Pause");
     }
 }
 
@@ -121,12 +110,4 @@ void GamePlay::setState(GameState state) {
 
 const std::unordered_set<Actor*>& GamePlay::getActors() const {
     return mActors;
-}
-
-Renderer* GamePlay::getRenderer() const {
-    return mRenderer.get();
-}
-
-Physics* GamePlay::getPhysics() const {
-    return mPhysics.get();
 }

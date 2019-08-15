@@ -1,13 +1,12 @@
 #include "Renderer.h"
-#include "Scene/GamePlay.h"
-#include "Utility/IDManager.h"
+#include "../Scene/GamePlay.h"
+#include "../Utility/IDManager.h"
 #include <gslib.h>
 #include <unordered_map>
 #include <memory>
 
-Renderer::Renderer(GamePlay* game) :
-    mIDManager(std::make_unique<IDManager>()),
-    mGame(game) {
+Renderer::Renderer() :
+    mIDManager(std::make_unique<IDManager>()) {
 }
 
 Renderer::~Renderer() {

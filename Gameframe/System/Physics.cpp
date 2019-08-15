@@ -1,9 +1,6 @@
 ﻿#include "Physics.h"
-#include "Component/Collider/BoxComponent.h"
-
-Physics::Physics(GamePlay* game) :
-    mGame(game) {
-}
+#include "../Component/Collider/BoxComponent.h"
+#include <unordered_set>
 
 bool Physics::rayCast(const Ray& ray, CollisionInfo* outColl) {
     bool collided = false;

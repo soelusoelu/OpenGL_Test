@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "Utility/Math.h"
-#include "Utility/Collision.h"
+#include "../Utility/Math.h"
+#include "../Utility/Collision.h"
 #include <unordered_set>
 
 class GamePlay;
@@ -10,8 +10,6 @@ class Actor;
 
 class Physics {
 public:
-    Physics(GamePlay* game);
-
     struct CollisionInfo {
         //衝突した点
         Vector3 mPoint;
@@ -30,6 +28,5 @@ public:
     void removeBox(BoxComponent* box);
 
 private:
-    GamePlay* mGame;
     std::unordered_set<BoxComponent*> mBoxes;
 };
