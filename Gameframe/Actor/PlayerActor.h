@@ -12,16 +12,12 @@ class BoxComponent;
 
 class PlayerActor : public Actor {
 public:
-    PlayerActor(GamePlay* game);
+    PlayerActor(GamePlay* game, const char* tag = "Player");
     ~PlayerActor();
-
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
 
-    float getRadius() const;
-
 private:
-    float mRadius;
     PlayerMoveComponent* mPlayerMove;
     MeshComponent* mMesh;
     SkeletonComponent* mSkelton;

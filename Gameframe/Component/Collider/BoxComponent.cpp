@@ -1,4 +1,4 @@
-#include "BoxComponent.h"
+ï»¿#include "BoxComponent.h"
 #include "../Component.h"
 #include "../../Actor/Actor.h"
 #include "../TransformComponent.h"
@@ -6,9 +6,10 @@
 #include "../../System/GameSystem.h"
 #include "../../System/Physics.h"
 
-BoxComponent::BoxComponent(Actor* owner) :
-    Collider(owner),
-    mCollision(Vector3::zero, Vector3::one),
+BoxComponent::BoxComponent(Actor* owner, bool isTrigger) :
+    Collider(owner, isTrigger),
+    mDefaultCollision(Vector3::negOne, Vector3::one),
+    mCollision(mDefaultCollision),
     mShouldRotate(true) {
     getOwner()->getGamePlay()->getSystem()->getPhysics()->addBox(this);
 }
@@ -18,20 +19,21 @@ BoxComponent::~BoxComponent() {
 }
 
 void BoxComponent::onUpdateWorldTransform() {
-    //ƒXƒP[ƒŠƒ“ƒO
+    mCollision = mDefaultCollision;
+    //ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°
     mCollision.mMin *= getOwner()->getTransform()->getScale();
     mCollision.mMax *= getOwner()->getTransform()->getScale();
-    //‰ñ“]
+    //å›žè»¢
     if (mShouldRotate) {
         mCollision.rotate(getOwner()->getTransform()->getRotation());
     }
-    //ˆÚ“®
+    //ç§»å‹•
     mCollision.mMin += getOwner()->getTransform()->getPosition();
     mCollision.mMax += getOwner()->getTransform()->getPosition();
 }
 
 void BoxComponent::setCollision(const AABB& model) {
-    mCollision = model;
+    mDefaultCollision = model;
 }
 
 const AABB& BoxComponent::getCollision() const {

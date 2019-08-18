@@ -1,12 +1,12 @@
 #include "GameSystem.h"
 #include "Renderer.h"
-#include "StringRenderer.h"
 #include "Physics.h"
+#include "Random.h"
 
 GameSystem::GameSystem() :
     mRenderer(std::make_unique<Renderer>()),
-    mStringRenderer(std::make_unique<StringRenderer>(mRenderer.get())),
-    mPhysics(std::make_unique<Physics>()) {
+    mPhysics(std::make_unique<Physics>()),
+    mRandom(std::make_unique<Random>()) {
 }
 
 Renderer* GameSystem::getRenderer() const {
@@ -17,6 +17,6 @@ Physics* GameSystem::getPhysics() const {
     return mPhysics.get();
 }
 
-StringRenderer* GameSystem::getStringRenderer() const {
-    return mStringRenderer.get();
+Random* GameSystem::getRandom() const {
+    return mRandom.get();
 }

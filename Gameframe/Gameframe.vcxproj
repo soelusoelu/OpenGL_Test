@@ -85,7 +85,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,6 +129,7 @@
     <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Component\Collider\Collider.cpp" />
     <ClCompile Include="Component\Collider\BoxComponent.cpp" />
+    <ClCompile Include="System\Random.cpp" />
     <ClCompile Include="System\GameSystem.cpp" />
     <ClCompile Include="Utility\Collision.cpp" />
     <ClCompile Include="Component\AnimationComponent.cpp" />
@@ -136,7 +137,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
     <ClCompile Include="Actor\CubeActor.cpp" />
-    <ClCompile Include="Utility\IDManager.cpp" />
+    <ClCompile Include="System\IDManager.cpp" />
     <ClCompile Include="Component\MeshComponent.cpp" />
     <ClCompile Include="Actor\OctreeActor.cpp" />
     <ClCompile Include="Component\PlayerMoveComponent.cpp" />
@@ -155,7 +156,6 @@
     <ClCompile Include="System\Sound.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="Sprite3D.cpp" />
-    <ClCompile Include="System\StringRenderer.cpp" />
     <ClCompile Include="Component\TransformComponent.cpp" />
     <ClCompile Include="View.cpp" />
   </ItemGroup>
@@ -163,6 +163,7 @@
     <ClInclude Include="Actor\Actor.h" />
     <ClInclude Include="Component\Collider\Collider.h" />
     <ClInclude Include="Component\Collider\BoxComponent.h" />
+    <ClInclude Include="System\Random.h" />
     <ClInclude Include="System\GameSystem.h" />
     <ClInclude Include="Utility\Collision.h" />
     <ClInclude Include="Component\AnimationComponent.h" />
@@ -170,7 +171,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Actor\CubeActor.h" />
-    <ClInclude Include="Utility\IDManager.h" />
+    <ClInclude Include="System\IDManager.h" />
     <ClInclude Include="Component\MeshComponent.h" />
     <ClInclude Include="Actor\OctreeActor.h" />
     <ClInclude Include="Component\PlayerMoveComponent.h" />
@@ -188,7 +189,6 @@
     <ClInclude Include="System\Sound.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="Sprite3D.h" />
-    <ClInclude Include="System\StringRenderer.h" />
     <ClInclude Include="Component\TransformComponent.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>

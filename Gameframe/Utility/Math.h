@@ -388,6 +388,7 @@ public:
     static const Vector3 down;
     static const Vector3 back;
     static const Vector3 one;
+    static const Vector3 negOne;
     static const Vector3 Infinity;
     static const Vector3 NegInfinity;
 };

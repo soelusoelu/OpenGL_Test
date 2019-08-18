@@ -1,20 +1,20 @@
-#include "Scene/SceneBase.h"
+ï»¿#include "Scene/SceneBase.h"
 #include "Scene/GamePlay.h"
 #include "System/GameSystem.h"
 #include "Utility/Input.h"
+#include "System/Renderer.h"
+#include "System/Physics.h"
+#include "System/Random.h"
 #include <GSgame.h>
 #include <memory>
 
-//ƒƒ‚ƒŠƒŠ[ƒNŒŸo—p
-//#ifdef _DEBUG
-//#define _CRTDBG_MAP_ALLOC
-//#include <stdlib.h>
-//#include <crtdbg.h>
-//#define DEBUG_NEW new(_NORMAL_BLOCK,__FILE__,__LINE__)
-//#define new DEBUG_NEW
-//#endif // _DEBUG
+//ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯æ¤œå‡ºç”¨
+#ifdef _DEBUG
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif // _DEBUG
 
-// ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…ƒVƒF[ƒ_[ƒeƒXƒg
+// ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ†ã‚¹ãƒˆ
 class MyGame : public gslib::Game {
 public:
     enum Scene {
@@ -25,8 +25,8 @@ public:
 
 private:
     void start() {
-        float bgColor[] = { 0.6f, 0.6f, 1.f, 1.f }; //”wŒiF
-        glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]); //‰æ–ÊƒNƒŠƒA‚ÌƒJƒ‰[‚Ìİ’è
+        float bgColor[] = { 0.6f, 0.6f, 1.f, 1.f }; //èƒŒæ™¯è‰²
+        glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]); //ç”»é¢ã‚¯ãƒªã‚¢æ™‚ã®ã‚«ãƒ©ãƒ¼ã®è¨­å®š
 
         glEnable(GL_FOG);
         glFogi(GL_FOG_MODE, GL_LINEAR);
@@ -50,8 +50,9 @@ private:
     void end() {
         delete mScene;
         delete mSystem;
-        //ƒƒ‚ƒŠƒŠ[ƒNŒŸoŠÖ”
-        //_CrtDumpMemoryLeaks();
+
+        //ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯æ¤œå‡ºé–¢æ•°
+        _CrtDumpMemoryLeaks();
     }
 
     GameSystem* mSystem;

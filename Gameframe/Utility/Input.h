@@ -77,7 +77,7 @@ public:
     static int vertical();
 
 private:
-    static KeyCode currentKey; //現在のキーの状態
-    static KeyCode previousKey; //1フレーム前のキーの状態
+    static KeyCode mCurrentKey; //現在のキーの状態
+    static KeyCode mPreviousKey; //1フレーム前のキーの状態
 };
 

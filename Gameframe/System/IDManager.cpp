@@ -31,12 +31,16 @@ unsigned int IDManager::pop(IDManager::Type type) {
 
     if (type == IDManager::Type::Mesh) {
         id = mMeshIDs.back();
+        mMeshIDs.emplace_back(id + 1);
     } else if (type == IDManager::Type::Skeleton) {
         id = mSkeletonIDs.back();
+        mSkeletonIDs.emplace_back(id + 1);
     } else if (type == IDManager::Type::Animation) {
         id = mAnimationIDs.back();
+        mAnimationIDs.emplace_back(id + 1);
     } else if (type == IDManager::Type::Texture) {
         id = mTextureIDs.back();
+        mTextureIDs.emplace_back(id + 1);
     }
 
     return id;

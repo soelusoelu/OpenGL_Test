@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../Utility/Math.h"
 #include <unordered_set>
@@ -12,51 +12,52 @@ class TransformComponent;
 class Actor {
 public:
     enum State {
-        Active, //ƒAƒbƒvƒf[ƒg›A•`‰æ›
-        Paused, //ƒAƒbƒvƒf[ƒg~A•`‰æ›
-        Dead //€‚Ê
+        Active, //ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆâ—‹ã€æç”»â—‹
+        Paused, //ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆÃ—ã€æç”»â—‹
+        Dead //æ­»ã¬
     };
 
-    Actor(GamePlay* gamePlay);
+    Actor(GamePlay* gamePlay, const char* tag = "");
     virtual ~Actor();
 
-    //ŠeƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìstart‚ğˆê“x‚¾‚¯Às
+    //å„ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®startã‚’ä¸€åº¦ã ã‘å®Ÿè¡Œ
     void start();
-    //‚·‚×‚Ä‚ÌXV
+    //ã™ã¹ã¦ã®æ›´æ–°
     void update(float deltaTime);
-    //Š—L‚·‚é‚·‚×‚Ä‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ğXV
+    //æ‰€æœ‰ã™ã‚‹ã™ã¹ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’æ›´æ–°
     void updateComponents(float deltaTime);
-    //ƒAƒNƒ^[ŒÅ—L‚ÌXV
+    //ã‚¢ã‚¯ã‚¿ãƒ¼å›ºæœ‰ã®æ›´æ–°
     virtual void updateActor(float deltaTime) = 0;
-    //•`‰æ
+    //æç”»
     virtual void drawActor() const = 0;
 
-    //ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì’Ç‰ÁEíœ
+    //ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®è¿½åŠ ãƒ»å‰Šé™¤
     void addComponent(Component* component);
     void removeComponent(Component* component);
-    //ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ìæ“¾
+    //ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å–å¾—
     template<typename T>
-    T* getComponent() {
+    T* getComponent() const {
         T* comp = nullptr;
-        for (auto&& c : mStartComponents) {
+        for (const auto& c : mStartComponents) {
             comp = dynamic_cast<T*>(c);
             if (comp) {
                 return comp;
             }
         }
-        for (auto&& c : mComponents) {
+        for (const auto& c : mComponents) {
             comp = dynamic_cast<T*>(c);
             if (comp) {
                 break;
             }
         }
+        //æœ€å¾Œã¾ã§è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°nullptrã‚’è¿”ã™
         return comp;
     }
 
-    //ˆÊ’uAŠp“xAƒXƒP[ƒ‹‚É•ÏX‚ª‚ ‚Á‚½Û‚ÉXV
+    //ä½ç½®ã€è§’åº¦ã€ã‚¹ã‚±ãƒ¼ãƒ«ã«å¤‰æ›´ãŒã‚ã£ãŸéš›ã«æ›´æ–°
     void computeWorldTransform();
 
-    //ƒAƒNƒ^[¶¬
+    //ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
     template<typename T>
     void instantiate() {
         T* t = new T(mGamePlay);
@@ -67,16 +68,17 @@ public:
         t->mTransform->setPosition(position);
         t->mTransform->setRotation(rotation);
     }
-    //ƒAƒNƒ^[íœ
+    //ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
     void destroy(Actor* actor);
 
-    //ƒQƒbƒ^[AƒZƒbƒ^[
+    //ã‚²ãƒƒã‚¿ãƒ¼ã€ã‚»ãƒƒã‚¿ãƒ¼
     const Matrix4& GetWorldTransform() const;
     TransformComponent* getTransform() const;
     State getState() const;
     void setState(State state);
     GamePlay* getGamePlay() const;
     const std::vector<Component*>& getAllComponents() const;
+    const char* getTag() const;
 
 private:
     GamePlay* mGamePlay;
@@ -85,5 +87,6 @@ private:
     State mState;
     Matrix4 mWorldTransform;
     TransformComponent* mTransform;
+    const char* mTag;
 };
 

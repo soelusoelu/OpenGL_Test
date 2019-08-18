@@ -1,6 +1,6 @@
 ﻿#include "Physics.h"
 #include "../Component/Collider/BoxComponent.h"
-#include <unordered_set>
+#include <algorithm>
 
 bool Physics::rayCast(const Ray& ray, CollisionInfo* outColl) {
     bool collided = false;
@@ -27,10 +27,49 @@ bool Physics::rayCast(const Ray& ray, CollisionInfo* outColl) {
     return collided;
 }
 
+void Physics::sweepAndPrune(std::function<void(Actor*, Actor*)> f) {
+    //min.xが小さい順にソート
+    std::sort(mBoxes.begin(), mBoxes.end(),
+        [](BoxComponent* a, BoxComponent* b) {
+            return a->getCollision().mMin.x < b->getCollision().mMin.x;
+        });
+
+    for (size_t i = 0; i < mBoxes.size(); i++) {
+        //mBoxes[i]のmax.xを取得
+        BoxComponent* a = mBoxes[i];
+        if (!a->getEnable()) {
+            break;
+        }
+        float max = a->getCollision().mMax.x;
+        for (size_t j = i + 1; j < mBoxes.size(); j++) {
+            BoxComponent* b = mBoxes[j];
+            if (!b->getEnable()) {
+                break;
+            }
+            //もしmBoxes[j]のmin.xが、mBoxes[i]のmax.x境界を超えていたら、
+            //mBoxes[i]と交差する可能性があるボックスは存在しない
+            if (b->getCollision().mMin.x > max) {
+                break;
+            } else if (intersect(a->getCollision(), b->getCollision())) {
+                f(a->getOwner(), b->getOwner());
+            }
+        }
+    }
+}
+
 void Physics::addBox(BoxComponent* box) {
-    mBoxes.emplace(box);
+    mBoxes.emplace_back(box);
 }
 
 void Physics::removeBox(BoxComponent* box) {
-    mBoxes.erase(box);
+    auto itr = std::find(mBoxes.begin(), mBoxes.end(), box);
+    if (itr != mBoxes.end()) {
+        // Swap to end of vector and pop off (avoid erase copies)
+        std::iter_swap(itr, mBoxes.end() - 1);
+        mBoxes.pop_back();
+    }
+}
+
+const std::vector<BoxComponent*>& Physics::getBoxes() const {
+    return mBoxes;
 }

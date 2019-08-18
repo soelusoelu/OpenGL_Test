@@ -2,20 +2,20 @@
 #include <GSinput.h>
 
 void Input::update() {
-    previousKey = currentKey;
-    currentKey = static_cast<KeyCode>(gsGetKey());
+    mPreviousKey = mCurrentKey;
+    mCurrentKey = static_cast<KeyCode>(gsGetKey());
 }
 
 bool Input::getKeyDown(KeyCode key) {
-    return (currentKey == key && previousKey != key);
+    return (mCurrentKey == key && mPreviousKey != key);
 }
 
 bool Input::getKey(KeyCode key) {
-    return currentKey == key;
+    return mCurrentKey == key;
 }
 
 bool Input::getKeyUp(KeyCode key) {
-    return (currentKey != key && previousKey == key);
+    return (mCurrentKey != key && mPreviousKey == key);
 }
 
 int Input::horizontal() {
@@ -38,5 +38,5 @@ int Input::vertical() {
     }
 }
 
-Input::KeyCode Input::currentKey = Input::KeyCode::None;
-Input::KeyCode Input::previousKey = Input::KeyCode::None;
+Input::KeyCode Input::mCurrentKey = Input::KeyCode::None;
+Input::KeyCode Input::mPreviousKey = Input::KeyCode::None;

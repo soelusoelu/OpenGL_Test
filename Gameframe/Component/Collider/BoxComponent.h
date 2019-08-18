@@ -1,13 +1,14 @@
-#pragma once
+﻿#pragma once
 
 #include "Collider.h"
 #include "../../Utility/Collision.h"
+#include "../../Utility/Math.h"
 
 class Actor;
 
 class BoxComponent : public Collider {
 public:
-    BoxComponent(Actor* owner);
+    BoxComponent(Actor* owner, bool isTrigger = false);
     ~BoxComponent();
     virtual void onUpdateWorldTransform() override;
     virtual ColliderType getColliderType() const override;
@@ -16,6 +17,7 @@ public:
     void setShouldRotate(bool set);
 
 private:
+    AABB mDefaultCollision;
     AABB mCollision;
     bool mShouldRotate;
 };

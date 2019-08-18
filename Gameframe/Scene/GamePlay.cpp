@@ -4,10 +4,8 @@
 #include "../Actor/CubeActor.h"
 #include "../Camera.h"
 #include "../System/GameSystem.h"
-#include "../System/StringRenderer.h"
+#include "../System/Renderer.h"
 #include <vector>
-#include <memory>
-#include <string>
 
 GamePlay::GamePlay(GameSystem* gameSystem) :
     SceneBase(gameSystem),
@@ -76,7 +74,7 @@ void GamePlay::draw() const {
     Camera::instance()->update(mPlayer);
 
     if (mState == GameState::Paused) {
-        getSystem()->getStringRenderer()->printf(600.f, 300.f, "Pause");
+        getSystem()->getRenderer()->printf(600.f, 300.f, "Pause");
     }
 }
 

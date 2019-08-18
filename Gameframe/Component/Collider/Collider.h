@@ -3,22 +3,27 @@
 #include "../Component.h"
 
 class Actor;
+class BoxComponent;
 
 class Collider : public Component {
 public:
-    Collider(Actor* owner);
+    Collider(Actor* owner, bool isTrigger, int updateOrder = 100);
+    virtual ~Collider();
 
     enum ColliderType {
         AABBT
     };
 
-    virtual ~Collider();
     virtual void start() override;
     virtual void update(float deltaTime) override;
     virtual ColliderType getColliderType() const = 0;
 
+    bool getIsTrigger() const;
+    void setIsTrigger(bool set);
     bool getEnable() const;
     void setEnable(bool set);
+private:
+    bool mIsTrigger;
 
 protected:
     bool mEnabled;

@@ -6,12 +6,9 @@
 #include "../Component/SkeletonComponent.h"
 #include "../Component/AnimationComponent.h"
 #include "../Component/Collider/BoxComponent.h"
-#include <gslib.h>
-#include <iostream>
 
-PlayerActor::PlayerActor(GamePlay* game) :
-    Actor(game),
-    mRadius(2.f),
+PlayerActor::PlayerActor(GamePlay* game, const char* tag) :
+    Actor(game, tag),
     mPlayerMove(new PlayerMoveComponent(this)),
     mMesh(new MeshComponent(this, "./res/character.msh")),
     mSkelton(new SkeletonComponent(this, "./res/character.skl")),
@@ -27,8 +24,4 @@ void PlayerActor::updateActor(float deltaTime) {
 
 void PlayerActor::drawActor() const {
     mMesh->draw();
-}
-
-float PlayerActor::getRadius() const {
-    return mRadius;
 }

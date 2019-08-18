@@ -2,7 +2,8 @@
 
 #include "../Utility/Math.h"
 #include "../Utility/Collision.h"
-#include <unordered_set>
+#include <vector>
+#include <functional>
 
 class GamePlay;
 class BoxComponent;
@@ -22,11 +23,16 @@ public:
     };
 
     bool rayCast(const Ray& ray, CollisionInfo* outColl);
+    //総当たり判定
+    void sweepAndPrune(std::function<void(Actor*, Actor*)> f);
 
     //ボックスコンポーネントの追加・削除
     void addBox(BoxComponent* box);
     void removeBox(BoxComponent* box);
 
+    //全当たり判定の取得
+    const std::vector<BoxComponent*>& getBoxes() const;
+
 private:
-    std::unordered_set<BoxComponent*> mBoxes;
+    std::vector<BoxComponent*> mBoxes;
 };

@@ -1,4 +1,4 @@
-#include "Actor.h"
+﻿#include "Actor.h"
 #include "../Scene/GamePlay.h"
 #include "../Component/Component.h"
 #include "../Component/TransformComponent.h"
@@ -7,18 +7,23 @@
 #include <string>
 #include <algorithm>
 
-Actor::Actor(GamePlay* gamePlay) :
+Actor::Actor(GamePlay* gamePlay, const char* tag) :
     mGamePlay(gamePlay),
     mState(State::Active),
-    mTransform(new TransformComponent(this)) {
+    mTransform(new TransformComponent(this)),
+    mTag(tag) {
     mGamePlay->addActor(this);
 }
 
 Actor::~Actor() {
     mGamePlay->removeActor(this);
 
+    while (!mStartComponents.empty()) {
+        delete* mStartComponents.begin();
+    }
     while (!mComponents.empty()) {
-        delete mComponents.back();
+        //delete mComponents.back();
+        delete* mComponents.begin();
     }
 }
 
@@ -105,4 +110,8 @@ GamePlay* Actor::getGamePlay() const {
 
 const std::vector<Component*>& Actor::getAllComponents() const {
     return mComponents;
+}
+
+const char* Actor::getTag() const {
+    return mTag;
 }

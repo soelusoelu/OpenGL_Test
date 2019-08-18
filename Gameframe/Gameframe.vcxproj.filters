@@ -24,7 +24,6 @@
     <ClCompile Include="Component\Collider\BoxComponent.cpp" />
     <ClCompile Include="Utility\Input.cpp" />
     <ClCompile Include="Utility\Math.cpp" />
-    <ClCompile Include="Utility\IDManager.cpp" />
     <ClCompile Include="Utility\Collision.cpp" />
     <ClCompile Include="System\GameSystem.cpp" />
     <ClCompile Include="System\Physics.cpp" />
@@ -32,7 +31,8 @@
     <ClCompile Include="System\BGM.cpp" />
     <ClCompile Include="System\SE.cpp" />
     <ClCompile Include="System\Sound.cpp" />
-    <ClCompile Include="System\StringRenderer.cpp" />
+    <ClCompile Include="System\Random.cpp" />
+    <ClCompile Include="System\IDManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -57,7 +57,6 @@
     <ClInclude Include="Component\Collider\BoxComponent.h" />
     <ClInclude Include="Utility\Input.h" />
     <ClInclude Include="Utility\Math.h" />
-    <ClInclude Include="Utility\IDManager.h" />
     <ClInclude Include="Utility\Collision.h" />
     <ClInclude Include="System\GameSystem.h" />
     <ClInclude Include="System\Physics.h" />
@@ -65,6 +64,7 @@
     <ClInclude Include="System\BGM.h" />
     <ClInclude Include="System\SE.h" />
     <ClInclude Include="System\Sound.h" />
-    <ClInclude Include="System\StringRenderer.h" />
+    <ClInclude Include="System\Random.h" />
+    <ClInclude Include="System\IDManager.h" />
   </ItemGroup>
 </Project>
