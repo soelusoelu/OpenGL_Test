@@ -1,12 +1,12 @@
 ﻿#include "Actor.h"
-#include "../Component/Component.h"
+#include "ComponentManagementOfActor.h"
 #include "../Component/TransformComponent.h"
 #include "../Scene/IGameMediator.h"
 #include "IActorMediator.h"
 #include <string>
-#include <algorithm>
 
 Actor::Actor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const char* tag) :
+    mComponentManager(new ComponentManagementOfActor()),
     mState(State::Active),
     mTransform(new TransformComponent(this)),
     mTag(tag),
@@ -16,54 +16,16 @@ Actor::Actor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const
 }
 
 Actor::~Actor() {
-    while (!mStartComponents.empty()) {
-        delete* mStartComponents.begin();
-    }
-    while (!mComponents.empty()) {
-        delete mComponents.back();
-    }
-}
-
-void Actor::start() {
-    for (auto&& comp : mStartComponents) {
-        comp->start();
-
-        int myOrder = comp->getUpdateOrder();
-        auto itr = mComponents.begin();
-        for (; itr != mComponents.end(); ++itr) {
-            if (myOrder < (*itr)->getUpdateOrder()) {
-                break;
-            }
-        }
-        mComponents.insert(itr, comp);
-    }
-    mStartComponents.clear();
+    delete mComponentManager;
 }
 
 void Actor::update(float deltaTime) {
-    start();
+    mComponentManager->start();
     if (mState == State::Active) {
-        updateComponents(deltaTime);
+        mComponentManager->update(deltaTime);
         updateActor(deltaTime);
 
         computeWorldTransform();
-    }
-}
-
-void Actor::updateComponents(float deltaTime) {
-    for (auto&& comp : mComponents) {
-        comp->update(deltaTime);
-    }
-}
-
-void Actor::addComponent(Component* component) {
-    mStartComponents.emplace(component);
-}
-
-void Actor::removeComponent(Component* component) {
-    auto itr = std::find(mComponents.begin(), mComponents.end(), component);
-    if (itr != mComponents.end()) {
-        mComponents.erase(itr);
     }
 }
 
@@ -75,7 +37,7 @@ void Actor::computeWorldTransform() {
         mWorldTransform *= Matrix4::createFromQuaternion(mTransform->getRotation());
         mWorldTransform *= Matrix4::createTranslation(mTransform->getPosition());
 
-        for (auto&& comp : mComponents) {
+        for (auto&& comp : mComponentManager->getAllComponents()) {
             comp->onUpdateWorldTransform();
         }
     }
@@ -83,6 +45,10 @@ void Actor::computeWorldTransform() {
 
 void Actor::destroy(Actor* actor) {
     actor->mState = Actor::State::Dead;
+}
+
+ComponentManagementOfActor* Actor::getComponentManager() const {
+    return mComponentManager;
 }
 
 const Matrix4& Actor::GetWorldTransform() const {
@@ -99,10 +65,6 @@ Actor::State Actor::getState() const {
 
 void Actor::setState(State state) {
     mState = state;
-}
-
-const std::vector<Component*>& Actor::getAllComponents() const {
-    return mComponents;
 }
 
 const char* Actor::getTag() const {

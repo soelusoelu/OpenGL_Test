@@ -8,6 +8,7 @@
 #include "../Scene/IGameMediator.h"
 #include "../System/GameSystem.h"
 #include "../System/Physics.h"
+#include "../Actor/ComponentManagementOfActor.h"
 
 PlayerMoveComponent::PlayerMoveComponent(Actor* owner, int updateOrder) :
     Component(owner, updateOrder),
@@ -16,18 +17,18 @@ PlayerMoveComponent::PlayerMoveComponent(Actor* owner, int updateOrder) :
 }
 
 void PlayerMoveComponent::start() {
-    mBox = getOwner()->getComponent<BoxComponent>();
+    mBox = mOwner->getComponentManager()->getComponent<BoxComponent>();
 }
 
 void PlayerMoveComponent::update(float deltaTime) {
     float rotation = Input::horizontal() * deltaTime;
     if (!Math::nearZero(rotation)) {
-        getOwner()->getTransform()->rotate(Vector3::up, rotation);
+        mOwner->getTransform()->rotate(Vector3::up, rotation);
     }
 
     mSpeed = Input::vertical() * deltaTime;
     if (!Math::nearZero(mSpeed) && canMovement()) {
-        getOwner()->getTransform()->translete(getOwner()->getTransform()->forward() * mSpeed);
+        mOwner->getTransform()->translete(mOwner->getTransform()->forward() * mSpeed);
     }
 }
 
@@ -37,14 +38,14 @@ bool PlayerMoveComponent::canMovement() {
         return true;
     }
 
-    getOwner()->computeWorldTransform();
+    mOwner->computeWorldTransform();
 
     //コピーで大丈夫
     AABB playerBox = mBox->getCollision();
-    playerBox.mMin += getOwner()->getTransform()->forward() * mSpeed;
-    playerBox.mMax += getOwner()->getTransform()->forward() * mSpeed;
+    playerBox.mMin += mOwner->getTransform()->forward() * mSpeed;
+    playerBox.mMax += mOwner->getTransform()->forward() * mSpeed;
 
-    const auto& boxes = getOwner()->getIGameMediator()->getSystem()->getPhysics()->getBoxes();
+    const auto& boxes = mOwner->getIGameMediator()->getSystem()->getPhysics()->getBoxes();
     for (const auto& box : boxes) {
         if (box->getIsTrigger() || !box->getEnable() || box->getOwner()->getTag() == "Player") {
             continue;

@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="Actor\ActorManager.cpp" />
     <ClCompile Include="Actor\Actor.cpp" />
+    <ClCompile Include="Actor\ComponentManagementOfActor.cpp" />
     <ClCompile Include="Component\Collider\Collider.cpp" />
     <ClCompile Include="Component\Collider\BoxComponent.cpp" />
     <ClCompile Include="UI\UIManager.cpp" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClInclude Include="Actor\ActorManager.h" />
     <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Actor\ComponentManagementOfActor.h" />
     <ClInclude Include="Component\Collider\Collider.h" />
     <ClInclude Include="Component\Collider\BoxComponent.h" />
     <ClInclude Include="Actor\IActorMediator.h" />

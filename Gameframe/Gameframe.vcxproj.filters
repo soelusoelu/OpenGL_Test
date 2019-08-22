@@ -34,6 +34,7 @@
     <ClCompile Include="UI\Pause.cpp" />
     <ClCompile Include="UI\UIManager.cpp" />
     <ClCompile Include="Actor\ActorManager.cpp" />
+    <ClCompile Include="Actor\ComponentManagementOfActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -71,5 +72,6 @@
     <ClInclude Include="Actor\IActorMediator.h" />
     <ClInclude Include="UI\IUIMediator.h" />
     <ClInclude Include="Scene\IGameMediator.h" />
+    <ClInclude Include="Actor\ComponentManagementOfActor.h" />
   </ItemGroup>
 </Project>

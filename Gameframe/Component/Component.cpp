@@ -1,15 +1,15 @@
 #include "Component.h"
 #include "../Actor/Actor.h"
-#include <iostream>
+#include "../Actor/ComponentManagementOfActor.h"
 
 Component::Component(Actor* owner, int updateOrder) :
     mOwner(owner),
     mUpdateOrder(updateOrder) {
-    mOwner->addComponent(this);
+    mOwner->getComponentManager()->addComponent(this);
 }
 
 Component::~Component() {
-    mOwner->removeComponent(this);
+    mOwner->getComponentManager()->removeComponent(this);
 }
 
 int Component::getUpdateOrder() const {
