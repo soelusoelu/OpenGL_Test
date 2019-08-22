@@ -4,7 +4,6 @@
 #include <unordered_set>
 #include <memory>
 
-class GameSystem;
 class Actor;
 class PlayerActor;
 class CubeActor;
@@ -17,7 +16,7 @@ public:
         Quit
     };
 
-    GamePlay(GameSystem* gameSystem);
+    GamePlay();
     ~GamePlay();
 
     virtual void update(float deltaTime) override;

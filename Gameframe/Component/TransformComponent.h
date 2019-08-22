@@ -9,7 +9,6 @@ class TransformComponent : public Component {
 public:
     TransformComponent(Actor* owner, int updateOrder = 100);
     ~TransformComponent();
-    virtual void start() override;
     virtual void update(float deltaTime) override;
 
     //位置、移動

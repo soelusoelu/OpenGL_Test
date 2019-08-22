@@ -22,7 +22,6 @@ Actor::~Actor() {
         delete* mStartComponents.begin();
     }
     while (!mComponents.empty()) {
-        //delete mComponents.back();
         delete* mComponents.begin();
     }
 }

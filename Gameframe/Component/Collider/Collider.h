@@ -14,7 +14,6 @@ public:
         AABBT
     };
 
-    virtual void start() override;
     virtual void update(float deltaTime) override;
     virtual ColliderType getColliderType() const = 0;
 
@@ -22,9 +21,8 @@ public:
     void setIsTrigger(bool set);
     bool getEnable() const;
     void setEnable(bool set);
-private:
-    bool mIsTrigger;
 
 protected:
+    bool mIsTrigger;
     bool mEnabled;
 };

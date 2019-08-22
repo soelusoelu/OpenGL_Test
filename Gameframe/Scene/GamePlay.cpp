@@ -5,10 +5,14 @@
 #include "../Camera.h"
 #include "../System/GameSystem.h"
 #include "../System/Renderer.h"
+#include "../UI/Pause.h"
+#include "../Utility/Input.h"
+#include "../UI/UIManager.h"
 #include <vector>
+#include <memory>
 
-GamePlay::GamePlay(GameSystem* gameSystem) :
-    SceneBase(gameSystem),
+GamePlay::GamePlay() :
+    SceneBase(),
     mUpdatingActors(false),
     mState(GameState::Play) {
     mPlayer = new PlayerActor(this);
@@ -28,6 +32,7 @@ GamePlay::~GamePlay() {
 
 void GamePlay::update(float deltaTime) {
     if (mState == GameState::Play) {
+        //アクター関連
         mUpdatingActors = true;
         for (auto&& actor : mActors) {
             actor->update(deltaTime);
@@ -35,7 +40,6 @@ void GamePlay::update(float deltaTime) {
         mUpdatingActors = false;
 
         for (auto&& pending : mPendingActors) {
-            pending->computeWorldTransform();
             mActors.emplace(pending);
         }
         mPendingActors.clear();
@@ -51,14 +55,13 @@ void GamePlay::update(float deltaTime) {
             actor = nullptr;
         }
 
-        if (gsGetKeyTrigger(GKEY_SPACE)) {
-            mState = GameState::Paused;
-        }
-    } else if (mState == GameState::Paused) {
-        if (gsGetKeyTrigger(GKEY_SPACE)) {
-            mState = GameState::Play;
+        if (Input::getKeyDown(Input::KeyCode::Space)) {
+            new Pause(this, mSystem.get(), mUIManager.get());
         }
     }
+
+    //UI関連
+    mUIManager->update(deltaTime);
 }
 
 void GamePlay::draw() const {
@@ -71,11 +74,8 @@ void GamePlay::draw() const {
 
         glPopMatrix();
     }
+    mUIManager->draw();
     Camera::instance()->update(mPlayer);
-
-    if (mState == GameState::Paused) {
-        getSystem()->getRenderer()->printf(600.f, 300.f, "Pause");
-    }
 }
 
 void GamePlay::addActor(Actor* actor) {
@@ -84,6 +84,7 @@ void GamePlay::addActor(Actor* actor) {
     } else {
         mActors.emplace(actor);
     }
+    actor->computeWorldTransform();
 }
 
 void GamePlay::removeActor(Actor* actor) {

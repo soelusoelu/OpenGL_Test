@@ -4,19 +4,15 @@
 #include "../Scene/GamePlay.h"
 #include "../System/GameSystem.h"
 #include "../System/Renderer.h"
-#include <GSgraphics.h>
 #include <string>
 
 MeshComponent::MeshComponent(Actor* owner, const std::string& filename) :
     Component(owner),
     mEnabled(true) {
-    mID = getOwner()->getGamePlay()->getSystem()->getRenderer()->getMesh(filename);
+    mID = mOwner->getGamePlay()->getSystem()->getRenderer()->getMesh(filename);
 }
 
 MeshComponent::~MeshComponent() {
-}
-
-void MeshComponent::start() {
 }
 
 void MeshComponent::update(float deltaTime) {
@@ -24,7 +20,7 @@ void MeshComponent::update(float deltaTime) {
 
 void MeshComponent::draw() const {
     if (mEnabled) {
-        gsDrawMesh(mID);
+        mOwner->getGamePlay()->getSystem()->getRenderer()->drawMesh(mID);
     }
 }
 

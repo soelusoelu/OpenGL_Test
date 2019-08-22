@@ -13,12 +13,12 @@ public:
 
     IDManager();
     ~IDManager();
-    void push(unsigned int id, Type type);
+    void push(unsigned id, Type type);
     unsigned int pop(Type type);
 
 private:
-    std::list<unsigned int> mMeshIDs;
-    std::list<unsigned int> mSkeletonIDs;
-    std::list<unsigned int> mAnimationIDs;
-    std::list<unsigned int> mTextureIDs;
+    std::list<unsigned> mMeshIDs;
+    std::list<unsigned> mSkeletonIDs;
+    std::list<unsigned> mAnimationIDs;
+    std::list<unsigned> mTextureIDs;
 };

@@ -129,8 +129,11 @@
     <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Component\Collider\Collider.cpp" />
     <ClCompile Include="Component\Collider\BoxComponent.cpp" />
+    <ClCompile Include="UI\UIManager.cpp" />
+    <ClCompile Include="UI\Pause.cpp" />
     <ClCompile Include="System\Random.cpp" />
     <ClCompile Include="System\GameSystem.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="Utility\Collision.cpp" />
     <ClCompile Include="Component\AnimationComponent.cpp" />
     <ClCompile Include="System\BGM.cpp" />
@@ -157,14 +160,17 @@
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="Sprite3D.cpp" />
     <ClCompile Include="Component\TransformComponent.cpp" />
-    <ClCompile Include="View.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
     <ClInclude Include="Component\Collider\Collider.h" />
     <ClInclude Include="Component\Collider\BoxComponent.h" />
+    <ClInclude Include="UI\InterfaceUI.h" />
+    <ClInclude Include="UI\UIManager.h" />
+    <ClInclude Include="UI\Pause.h" />
     <ClInclude Include="System\Random.h" />
     <ClInclude Include="System\GameSystem.h" />
+    <ClInclude Include="UI\UI.h" />
     <ClInclude Include="Utility\Collision.h" />
     <ClInclude Include="Component\AnimationComponent.h" />
     <ClInclude Include="System\BGM.h" />
@@ -190,7 +196,6 @@
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="Sprite3D.h" />
     <ClInclude Include="Component\TransformComponent.h" />
-    <ClInclude Include="View.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

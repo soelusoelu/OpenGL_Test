@@ -1,4 +1,4 @@
-#include "TransformComponent.h"
+﻿#include "TransformComponent.h"
 #include "Component.h"
 
 TransformComponent::TransformComponent(Actor* owner, int updateOrder) :
@@ -10,9 +10,6 @@ TransformComponent::TransformComponent(Actor* owner, int updateOrder) :
 }
 
 TransformComponent::~TransformComponent() {
-}
-
-void TransformComponent::start() {
 }
 
 void TransformComponent::update(float deltaTime) {

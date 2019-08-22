@@ -1,6 +1,5 @@
 #include "Sprite2D.h"
 #include <gslib.h>
-#include <iostream>
 
 Sprite2D::Sprite2D(unsigned int textureID, const char* filename) :
     mTextureID(textureID),
@@ -16,7 +15,6 @@ Sprite2D::Sprite2D(unsigned int textureID, const char* filename) :
 
 Sprite2D::~Sprite2D() {
     gsDeleteTexture(mTextureID);
-    std::cout << "Sprite2D destructor" << std::endl;
 }
 
 void Sprite2D::setPosition(const GSvector2& position) {

@@ -1,10 +1,6 @@
 ﻿#include "Scene/SceneBase.h"
 #include "Scene/GamePlay.h"
-#include "System/GameSystem.h"
 #include "Utility/Input.h"
-#include "System/Renderer.h"
-#include "System/Physics.h"
-#include "System/Random.h"
 #include <GSgame.h>
 #include <memory>
 
@@ -34,8 +30,7 @@ private:
         glFogf(GL_FOG_END, 400.f);
         glFogfv(GL_FOG_COLOR, bgColor);
 
-        mSystem = new GameSystem();
-        mScene = new GamePlay(mSystem);
+        mScene = new GamePlay();
     }
 
     void update(float deltaTime) {
@@ -49,13 +44,11 @@ private:
 
     void end() {
         delete mScene;
-        delete mSystem;
 
         //メモリリーク検出関数
         _CrtDumpMemoryLeaks();
     }
 
-    GameSystem* mSystem;
     SceneBase* mScene;
 };
 

@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sprite3D.cpp" />
-    <ClCompile Include="View.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="Scene\GamePlay.cpp" />
@@ -33,10 +32,12 @@
     <ClCompile Include="System\Sound.cpp" />
     <ClCompile Include="System\Random.cpp" />
     <ClCompile Include="System\IDManager.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="UI\Pause.cpp" />
+    <ClCompile Include="UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
-    <ClInclude Include="View.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="Scene\GamePlay.h" />
@@ -66,5 +67,9 @@
     <ClInclude Include="System\Sound.h" />
     <ClInclude Include="System\Random.h" />
     <ClInclude Include="System\IDManager.h" />
+    <ClInclude Include="UI\UI.h" />
+    <ClInclude Include="UI\Pause.h" />
+    <ClInclude Include="UI\UIManager.h" />
+    <ClInclude Include="UI\InterfaceUI.h" />
   </ItemGroup>
 </Project>

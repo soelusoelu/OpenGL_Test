@@ -9,7 +9,6 @@ class MeshComponent : public Component {
 public:
     MeshComponent(Actor* owner, const std::string& filename);
     ~MeshComponent();
-    virtual void start() override;
     virtual void update(float deltaTime) override;
     void draw() const;
 
@@ -17,8 +16,7 @@ public:
     bool getEnable() const;
 
 private:
-    unsigned int mID;
+    unsigned mID;
     bool mEnabled;
-
 };
 

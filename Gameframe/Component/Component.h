@@ -6,7 +6,8 @@ class Component {
 public:
     Component(Actor* owner, int updateOrder = 100);
     virtual ~Component();
-    virtual void start() = 0;
+    //getComponentはここでして
+    virtual void start();
     virtual void update(float deltaTime) = 0;
     //オーナーのTransformが更新されたら
     virtual void onUpdateWorldTransform();
@@ -14,7 +15,7 @@ public:
     int getUpdateOrder() const;
     Actor* getOwner() const;
 
-private:
+protected:
     Actor* mOwner;
     int mUpdateOrder;
 };

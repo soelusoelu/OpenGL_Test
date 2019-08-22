@@ -1,4 +1,4 @@
-#include "AnimationComponent.h"
+﻿#include "AnimationComponent.h"
 #include "Component.h"
 #include "../Actor/Actor.h"
 #include "../Scene/GamePlay.h"
@@ -15,9 +15,6 @@ AnimationComponent::AnimationComponent(Actor* owner, const std::string& filename
 }
 
 AnimationComponent::~AnimationComponent() {
-}
-
-void AnimationComponent::start() {
 }
 
 void AnimationComponent::update(float deltaTime) {

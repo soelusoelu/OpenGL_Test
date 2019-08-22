@@ -14,7 +14,7 @@ CubeActor::CubeActor(GamePlay* game) :
 }
 
 void CubeActor::updateActor(float deltaTime) {
-    getTransform()->rotate(Vector3::up, -10.f);
+    //getTransform()->rotate(Vector3::up, -10.f);
 }
 
 void CubeActor::drawActor() const {

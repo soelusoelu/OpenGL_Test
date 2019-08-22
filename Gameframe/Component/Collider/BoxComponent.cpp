@@ -11,25 +11,25 @@ BoxComponent::BoxComponent(Actor* owner, bool isTrigger) :
     mDefaultCollision(Vector3::negOne, Vector3::one),
     mCollision(mDefaultCollision),
     mShouldRotate(true) {
-    getOwner()->getGamePlay()->getSystem()->getPhysics()->addBox(this);
+    mOwner->getGamePlay()->getSystem()->getPhysics()->addBox(this);
 }
 
 BoxComponent::~BoxComponent() {
-    getOwner()->getGamePlay()->getSystem()->getPhysics()->removeBox(this);
+    mOwner->getGamePlay()->getSystem()->getPhysics()->removeBox(this);
 }
 
 void BoxComponent::onUpdateWorldTransform() {
     mCollision = mDefaultCollision;
     //スケーリング
-    mCollision.mMin *= getOwner()->getTransform()->getScale();
-    mCollision.mMax *= getOwner()->getTransform()->getScale();
+    mCollision.mMin *= mOwner->getTransform()->getScale();
+    mCollision.mMax *= mOwner->getTransform()->getScale();
     //回転
     if (mShouldRotate) {
-        mCollision.rotate(getOwner()->getTransform()->getRotation());
+        mCollision.rotate(mOwner->getTransform()->getRotation());
     }
     //移動
-    mCollision.mMin += getOwner()->getTransform()->getPosition();
-    mCollision.mMax += getOwner()->getTransform()->getPosition();
+    mCollision.mMin += mOwner->getTransform()->getPosition();
+    mCollision.mMax += mOwner->getTransform()->getPosition();
 }
 
 void BoxComponent::setCollision(const AABB& model) {

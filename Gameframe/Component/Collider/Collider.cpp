@@ -16,9 +16,6 @@ Collider::Collider(Actor* owner, bool isTrigger, int updateOrder) :
 Collider::~Collider() {
 }
 
-void Collider::start() {
-}
-
 void Collider::update(float deltaTime) {
 }
 

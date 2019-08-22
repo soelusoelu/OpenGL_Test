@@ -14,7 +14,7 @@ IDManager::~IDManager() {
     mTextureIDs.clear();
 }
 
-void IDManager::push(unsigned int id, IDManager::Type type) {
+void IDManager::push(unsigned id, IDManager::Type type) {
     if (type == IDManager::Type::Mesh) {
         mMeshIDs.emplace_back(id);
     } else if (type == IDManager::Type::Skeleton) {
@@ -27,7 +27,7 @@ void IDManager::push(unsigned int id, IDManager::Type type) {
 }
 
 unsigned int IDManager::pop(IDManager::Type type) {
-    unsigned int id = 0;
+    unsigned id = 0;
 
     if (type == IDManager::Type::Mesh) {
         id = mMeshIDs.back();

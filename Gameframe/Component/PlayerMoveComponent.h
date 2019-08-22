@@ -12,7 +12,7 @@ public:
     virtual void update(float deltaTime) override;
 
 private:
-    bool isMovement();
+    bool canMovement();
 
     float mSpeed;
     BoxComponent* mBox;

@@ -1,12 +1,10 @@
 #include "SceneBase.h"
 
-SceneBase::SceneBase(GameSystem* gameSystem) :
-    mGameSystem(gameSystem) {
-}
-
-SceneBase::~SceneBase() {
+SceneBase::SceneBase() :
+    mSystem(std::make_unique<GameSystem>()),
+    mUIManager(std::make_unique<UIManager>()) {
 }
 
 GameSystem* SceneBase::getSystem() const {
-    return mGameSystem;
+    return mSystem.get();
 }

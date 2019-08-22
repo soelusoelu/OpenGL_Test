@@ -12,6 +12,9 @@ Component::~Component() {
     mOwner->removeComponent(this);
 }
 
+void Component::start() {
+}
+
 void Component::onUpdateWorldTransform() {
 }
 

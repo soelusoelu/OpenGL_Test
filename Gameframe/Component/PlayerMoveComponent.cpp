@@ -17,7 +17,6 @@ PlayerMoveComponent::PlayerMoveComponent(Actor* owner, int updateOrder) :
 
 void PlayerMoveComponent::start() {
     mBox = getOwner()->getComponent<BoxComponent>();
-    mBox->setEnable(false);
 }
 
 void PlayerMoveComponent::update(float deltaTime) {
@@ -27,13 +26,13 @@ void PlayerMoveComponent::update(float deltaTime) {
     }
 
     mSpeed = Input::vertical() * deltaTime;
-    if (!Math::nearZero(mSpeed) && isMovement()) {
+    if (!Math::nearZero(mSpeed) && canMovement()) {
         getOwner()->getTransform()->translete(getOwner()->getTransform()->forward() * mSpeed);
     }
 }
 
-bool PlayerMoveComponent::isMovement() {
-    //当たり判定が無効になってれば問答無用でtrue
+bool PlayerMoveComponent::canMovement() {
+    //自身の当たり判定が無効になってれば問答無用でtrue
     if (!mBox->getEnable()) {
         return true;
     }
