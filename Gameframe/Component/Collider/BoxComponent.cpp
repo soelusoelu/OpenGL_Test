@@ -2,7 +2,7 @@
 #include "../Component.h"
 #include "../../Actor/Actor.h"
 #include "../TransformComponent.h"
-#include "../../Scene/GamePlay.h"
+#include "../../Scene/IGameMediator.h"
 #include "../../System/GameSystem.h"
 #include "../../System/Physics.h"
 
@@ -11,11 +11,11 @@ BoxComponent::BoxComponent(Actor* owner, bool isTrigger) :
     mDefaultCollision(Vector3::negOne, Vector3::one),
     mCollision(mDefaultCollision),
     mShouldRotate(true) {
-    mOwner->getGamePlay()->getSystem()->getPhysics()->addBox(this);
+    mOwner->getIGameMediator()->getSystem()->getPhysics()->addBox(this);
 }
 
 BoxComponent::~BoxComponent() {
-    mOwner->getGamePlay()->getSystem()->getPhysics()->removeBox(this);
+    mOwner->getIGameMediator()->getSystem()->getPhysics()->removeBox(this);
 }
 
 void BoxComponent::onUpdateWorldTransform() {

@@ -8,7 +8,7 @@
 
 SkeletonComponent::SkeletonComponent(Actor* owner, const std::string& filename) :
     Component(owner) {
-    mID = getOwner()->getGamePlay()->getSystem()->getRenderer()->getSkeleton(filename);
+    mID = getOwner()->getIGameMediator()->getSystem()->getRenderer()->getSkeleton(filename);
     gsBindSkeleton(mID);
 }
 

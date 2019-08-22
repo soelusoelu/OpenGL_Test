@@ -85,7 +85,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\ActorManager.cpp" />
     <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Component\Collider\Collider.cpp" />
     <ClCompile Include="Component\Collider\BoxComponent.cpp" />
@@ -142,7 +143,6 @@
     <ClCompile Include="Actor\CubeActor.cpp" />
     <ClCompile Include="System\IDManager.cpp" />
     <ClCompile Include="Component\MeshComponent.cpp" />
-    <ClCompile Include="Actor\OctreeActor.cpp" />
     <ClCompile Include="Component\PlayerMoveComponent.cpp" />
     <ClCompile Include="Utility\Input.cpp" />
     <ClCompile Include="Utility\Math.cpp" />
@@ -155,17 +155,19 @@
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="System\SE.cpp" />
     <ClCompile Include="Component\SkeletonComponent.cpp" />
-    <ClCompile Include="Actor\SkyBoxActor.cpp" />
     <ClCompile Include="System\Sound.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="Sprite3D.cpp" />
     <ClCompile Include="Component\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\ActorManager.h" />
     <ClInclude Include="Actor\Actor.h" />
     <ClInclude Include="Component\Collider\Collider.h" />
     <ClInclude Include="Component\Collider\BoxComponent.h" />
-    <ClInclude Include="UI\InterfaceUI.h" />
+    <ClInclude Include="Actor\IActorMediator.h" />
+    <ClInclude Include="Scene\IGameMediator.h" />
+    <ClInclude Include="UI\IUIMediator.h" />
     <ClInclude Include="UI\UIManager.h" />
     <ClInclude Include="UI\Pause.h" />
     <ClInclude Include="System\Random.h" />
@@ -179,7 +181,6 @@
     <ClInclude Include="Actor\CubeActor.h" />
     <ClInclude Include="System\IDManager.h" />
     <ClInclude Include="Component\MeshComponent.h" />
-    <ClInclude Include="Actor\OctreeActor.h" />
     <ClInclude Include="Component\PlayerMoveComponent.h" />
     <ClInclude Include="Utility\Input.h" />
     <ClInclude Include="Utility\Math.h" />
@@ -191,7 +192,6 @@
     <ClInclude Include="Actor\PlayerActor.h" />
     <ClInclude Include="System\SE.h" />
     <ClInclude Include="Component\SkeletonComponent.h" />
-    <ClInclude Include="Actor\SkyBoxActor.h" />
     <ClInclude Include="System\Sound.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="Sprite3D.h" />

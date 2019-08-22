@@ -6,8 +6,10 @@
 #include <memory>
 
 class Component;
-class GamePlay;
 class TransformComponent;
+class IGameMediator;
+class ActorManager;
+class IActorMediator;
 
 class Actor {
 public:
@@ -16,8 +18,7 @@ public:
         Paused, //アップデート×、描画○
         Dead //死ぬ
     };
-
-    Actor(GamePlay* gamePlay, const char* tag = "");
+    Actor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const char* tag = "");
     virtual ~Actor();
 
     //各コンポーネントのstartを一度だけ実行
@@ -58,35 +59,37 @@ public:
     void computeWorldTransform();
 
     //アクター生成
-    template<typename T>
-    void instantiate() {
-        T* t = new T(mGamePlay);
-    }
-    template<typename T>
-    void instantiate(const Vector3& position, const Quaternion& rotation) {
-        T* t = new T(mGamePlay);
-        t->mTransform->setPosition(position);
-        t->mTransform->setRotation(rotation);
-    }
+    //template<typename T>
+    //void instantiate(const char* tag = "") {
+    //    T* t = new T(mMediator, tag);
+    //}
+    //template<typename T>
+    //void instantiate(const char* tag, const Vector3& position, const Quaternion& rotation) {
+    //    T* t = new T(mMediator, tag);
+    //    t->mTransform->setPosition(position);
+    //    t->mTransform->setRotation(rotation);
+    //}
     //アクター削除
-    void destroy(Actor* actor);
+    static void destroy(Actor* actor);
 
     //ゲッター、セッター
     const Matrix4& GetWorldTransform() const;
     TransformComponent* getTransform() const;
     State getState() const;
     void setState(State state);
-    GamePlay* getGamePlay() const;
     const std::vector<Component*>& getAllComponents() const;
     const char* getTag() const;
+    IGameMediator* getIGameMediator() const;
+    IActorMediator* getIActorMediator() const;
 
 private:
-    GamePlay* mGamePlay;
     std::unordered_set<Component*> mStartComponents;
     std::vector<Component*> mComponents;
     State mState;
     Matrix4 mWorldTransform;
     TransformComponent* mTransform;
     const char* mTag;
+    IGameMediator* mIGameMediator;
+    IActorMediator* mIActorMediator;
 };
 

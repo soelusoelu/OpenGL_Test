@@ -4,11 +4,11 @@
 
 class GamePlay;
 class GameSystem;
-class InterfaceUI;
+class IUIMediator;
 
 class Pause : public UI {
 public:
-    Pause(GamePlay* game, GameSystem* system, InterfaceUI* interfaceUI);
+    Pause(GamePlay* game, GameSystem* system, IUIMediator* interfaceUI);
     ~Pause();
     virtual void update(float deltaTime) override;
     virtual void draw() const override;

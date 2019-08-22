@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 class GameSystem;
-class InterfaceUI;
+class IUIMediator;
 
 class UI {
 public:
@@ -9,7 +9,7 @@ public:
         Active,
         Closing
     };
-    UI(GameSystem* system, InterfaceUI* interfaceUI);
+    UI(GameSystem* system, IUIMediator* interfaceUI);
     virtual ~UI() {};
     virtual void update(float deltaTime) = 0;
     virtual void draw() const = 0;

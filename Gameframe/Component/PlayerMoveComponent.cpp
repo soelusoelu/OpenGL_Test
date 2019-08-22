@@ -5,7 +5,7 @@
 #include "../Utility/Input.h"
 #include "../Utility/Collision.h"
 #include "Collider/BoxComponent.h"
-#include "../Scene/GamePlay.h"
+#include "../Scene/IGameMediator.h"
 #include "../System/GameSystem.h"
 #include "../System/Physics.h"
 
@@ -44,7 +44,7 @@ bool PlayerMoveComponent::canMovement() {
     playerBox.mMin += getOwner()->getTransform()->forward() * mSpeed;
     playerBox.mMax += getOwner()->getTransform()->forward() * mSpeed;
 
-    const auto& boxes = getOwner()->getGamePlay()->getSystem()->getPhysics()->getBoxes();
+    const auto& boxes = getOwner()->getIGameMediator()->getSystem()->getPhysics()->getBoxes();
     for (const auto& box : boxes) {
         if (box->getIsTrigger() || !box->getEnable() || box->getOwner()->getTag() == "Player") {
             continue;

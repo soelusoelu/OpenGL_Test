@@ -1,28 +1,26 @@
 ﻿#include "Actor.h"
-#include "../Scene/GamePlay.h"
 #include "../Component/Component.h"
 #include "../Component/TransformComponent.h"
-#include <vector>
-#include <memory>
+#include "../Scene/IGameMediator.h"
+#include "IActorMediator.h"
 #include <string>
 #include <algorithm>
 
-Actor::Actor(GamePlay* gamePlay, const char* tag) :
-    mGamePlay(gamePlay),
+Actor::Actor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const char* tag) :
     mState(State::Active),
     mTransform(new TransformComponent(this)),
-    mTag(tag) {
-    mGamePlay->addActor(this);
+    mTag(tag),
+    mIGameMediator(iGameMediator),
+    mIActorMediator(iActorMediator) {
+    iActorMediator->addActor(this);
 }
 
 Actor::~Actor() {
-    mGamePlay->removeActor(this);
-
     while (!mStartComponents.empty()) {
         delete* mStartComponents.begin();
     }
     while (!mComponents.empty()) {
-        delete* mComponents.begin();
+        delete mComponents.back();
     }
 }
 
@@ -103,14 +101,18 @@ void Actor::setState(State state) {
     mState = state;
 }
 
-GamePlay* Actor::getGamePlay() const {
-    return mGamePlay;
-}
-
 const std::vector<Component*>& Actor::getAllComponents() const {
     return mComponents;
 }
 
 const char* Actor::getTag() const {
     return mTag;
+}
+
+IGameMediator* Actor::getIGameMediator() const {
+    return mIGameMediator;
+}
+
+IActorMediator* Actor::getIActorMediator() const {
+    return mIActorMediator;
 }

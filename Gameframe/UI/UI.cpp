@@ -1,9 +1,9 @@
 ﻿#include "UI.h"
 #include "../System/GameSystem.h"
 #include "UIManager.h"
-#include "InterfaceUI.h"
+#include "IUIMediator.h"
 
-UI::UI(GameSystem* system, InterfaceUI* interfaceUI) :
+UI::UI(GameSystem* system, IUIMediator* interfaceUI) :
     mSystem(system),
     mState(State::Active) {
     interfaceUI->pushUI(this);

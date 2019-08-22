@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IGameMediator.h"
 #include "../System/GameSystem.h"
 #include "../System/Renderer.h"
 #include "../System/Physics.h"
@@ -10,13 +11,13 @@
 class GameSystem;
 class UIManager;
 
-class SceneBase {
+class SceneBase : public IGameMediator {
 public:
     SceneBase();
     virtual ~SceneBase() {};
     virtual void update(float deltaTime) = 0;
     virtual void draw() const = 0;
-    GameSystem* getSystem() const;
+    virtual GameSystem* getSystem() const override;
 
 protected:
     std::unique_ptr<GameSystem> mSystem;

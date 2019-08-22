@@ -2,12 +2,12 @@
 
 #include "Actor.h"
 
-class GamePlay;
+class IActorMediator;
 class BoxComponent;
 
 class CubeActor : public Actor {
 public:
-    CubeActor(GamePlay* game);
+    CubeActor(IGameMediator* iGameMediator, IActorMediator* iActorMediator);
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
 

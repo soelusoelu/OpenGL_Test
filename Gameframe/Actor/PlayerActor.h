@@ -3,7 +3,8 @@
 #include "../Utility/Math.h"
 #include "Actor.h"
 
-class GamePlay;
+class IGameMediator;
+class IActorMediator;
 class PlayerMoveComponent;
 class MeshComponent;
 class SkeletonComponent;
@@ -12,8 +13,7 @@ class BoxComponent;
 
 class PlayerActor : public Actor {
 public:
-    PlayerActor(GamePlay* game, const char* tag = "Player");
-    ~PlayerActor();
+    PlayerActor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const char* tag = "Player");
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
 

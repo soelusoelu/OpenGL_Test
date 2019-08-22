@@ -1,4 +1,4 @@
-#include "UIManager.h"
+﻿#include "UIManager.h"
 #include "UI.h"
 
 UIManager::~UIManager() {
@@ -34,7 +34,7 @@ const std::unordered_set<UI*>& UIManager::getUIStack() const {
 void UIManager::removeClosingUI() {
     auto itr = mUIStack.begin();
     while (itr != mUIStack.end()) {
-        if ((*itr)->getState() == UI::Closing) {
+        if ((*itr)->getState() == UI::State::Closing) {
             delete* itr;
             itr = mUIStack.erase(itr);
         } else {

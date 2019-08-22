@@ -2,9 +2,9 @@
 
 class UI;
 
-class InterfaceUI {
+class IUIMediator {
 public:
-    virtual ~InterfaceUI() {};
+    virtual ~IUIMediator() {};
     virtual void pushUI(UI* ui) = 0;
 };
 

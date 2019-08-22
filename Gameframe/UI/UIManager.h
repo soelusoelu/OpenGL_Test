@@ -1,11 +1,11 @@
-#pragma once
+﻿#pragma once
 
-#include "InterfaceUI.h"
+#include "IUIMediator.h"
 #include <unordered_set>
 
 class UI;
 
-class UIManager : public InterfaceUI {
+class UIManager : public IUIMediator {
 public:
     ~UIManager();
     virtual void pushUI(UI* ui) override;
@@ -14,6 +14,7 @@ public:
     const std::unordered_set<UI*>& getUIStack() const;
 
 private:
+    //Closing状態のUIを削除
     void removeClosingUI();
 
     std::unordered_set<UI*> mUIStack;

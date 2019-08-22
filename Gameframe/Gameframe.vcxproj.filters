@@ -17,8 +17,6 @@
     <ClCompile Include="Actor\PlayerActor.cpp" />
     <ClCompile Include="Actor\CubeActor.cpp" />
     <ClCompile Include="Actor\Actor.cpp" />
-    <ClCompile Include="Actor\OctreeActor.cpp" />
-    <ClCompile Include="Actor\SkyBoxActor.cpp" />
     <ClCompile Include="Component\Collider\Collider.cpp" />
     <ClCompile Include="Component\Collider\BoxComponent.cpp" />
     <ClCompile Include="Utility\Input.cpp" />
@@ -35,6 +33,7 @@
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="UI\Pause.cpp" />
     <ClCompile Include="UI\UIManager.cpp" />
+    <ClCompile Include="Actor\ActorManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -52,8 +51,6 @@
     <ClInclude Include="Actor\PlayerActor.h" />
     <ClInclude Include="Actor\CubeActor.h" />
     <ClInclude Include="Actor\Actor.h" />
-    <ClInclude Include="Actor\OctreeActor.h" />
-    <ClInclude Include="Actor\SkyBoxActor.h" />
     <ClInclude Include="Component\Collider\Collider.h" />
     <ClInclude Include="Component\Collider\BoxComponent.h" />
     <ClInclude Include="Utility\Input.h" />
@@ -70,6 +67,9 @@
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\Pause.h" />
     <ClInclude Include="UI\UIManager.h" />
-    <ClInclude Include="UI\InterfaceUI.h" />
+    <ClInclude Include="Actor\ActorManager.h" />
+    <ClInclude Include="Actor\IActorMediator.h" />
+    <ClInclude Include="UI\IUIMediator.h" />
+    <ClInclude Include="Scene\IGameMediator.h" />
   </ItemGroup>
 </Project>
