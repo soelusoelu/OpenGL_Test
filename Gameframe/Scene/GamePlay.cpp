@@ -3,43 +3,41 @@
 #include "../Actor/CubeActor.h"
 #include "../Camera.h"
 #include "../System/GameSystem.h"
-#include "../System/Renderer.h"
 #include "../UI/Pause.h"
 #include "../Utility/Input.h"
 #include "../UI/UIManager.h"
 #include "../Actor/ActorManager.h"
-#include <memory>
+#include "../Singleton.h"
 
 GamePlay::GamePlay() :
     SceneBase(),
-    mActorManager(std::make_unique<ActorManager>()),
     mState(GameState::Play) {
-    mPlayer = new PlayerActor(this, mActorManager.get());
-    mCube = new CubeActor(this, mActorManager.get());
-    Camera::create();
+    mPlayer = new PlayerActor(this);
+    mCube = new CubeActor(this);
 }
 
 GamePlay::~GamePlay() {
-    Camera::destroy();
+    Singleton<ActorManager>::instance().clear();
+    Singleton<UIManager>::instance().clear();
 }
 
 void GamePlay::update(float deltaTime) {
     if (mState == GameState::Play) {
-        mActorManager->update(deltaTime);
+        Singleton<ActorManager>::instance().update(deltaTime);
 
         if (Input::getKeyDown(Input::KeyCode::Space)) {
-            new Pause(this, mSystem.get(), mUIManager.get());
+            new Pause(mSystem.get(), this);
         }
     }
 
     //UI‚ÍÅŒã
-    mUIManager->update(deltaTime);
+    Singleton<UIManager>::instance().update(deltaTime);
 }
 
 void GamePlay::draw() const {
-    mActorManager->draw();
-    mUIManager->draw();
-    Camera::instance()->update(mActorManager->getPlayer());
+    Singleton<ActorManager>::instance().draw();
+    Singleton<UIManager>::instance().draw();
+    Singleton<Camera>::instance().update(Singleton<ActorManager>::instance().getPlayer());
 }
 
 GamePlay::GameState GamePlay::getState() const {

@@ -1,26 +1,30 @@
 ﻿#pragma once
 
-#include "IActorMediator.h"
+#include "../Singleton.h"
 #include <unordered_set>
 
 class Actor;
 class PlayerActor;
 class IGameMediator;
 
-class ActorManager : public IActorMediator {
+class ActorManager {
+    friend class Singleton<ActorManager>;
 public:
-    ActorManager();
-    ~ActorManager();
     void update(float deltaTime);
     void draw() const;
 
     //アクター追加
-    virtual void addActor(Actor* actor) override;
+    void addActor(Actor* actor);
+
+    //所有アクターをすべて削除
+    void clear();
 
     PlayerActor* getPlayer() const;
     const std::unordered_set<Actor*>& getActors() const;
 
 private:
+    ActorManager();
+    ~ActorManager() {};
     //Dead状態のアクターを削除
     void removeDeadActor();
 

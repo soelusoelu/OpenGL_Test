@@ -15,7 +15,7 @@ public:
         Paused, //アップデート×、描画○
         Dead //死ぬ
     };
-    Actor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const char* tag = "");
+    Actor(IGameMediator* iGameMediator, const char* tag = "");
     virtual ~Actor();
 
     //すべての更新
@@ -50,7 +50,6 @@ public:
     void setState(State state);
     const char* getTag() const;
     IGameMediator* getIGameMediator() const;
-    IActorMediator* getIActorMediator() const;
 
 private:
     ComponentManagementOfActor* mComponentManager;
@@ -59,6 +58,5 @@ private:
     TransformComponent* mTransform;
     const char* mTag;
     IGameMediator* mIGameMediator;
-    IActorMediator* mIActorMediator;
 };
 

@@ -1,6 +1,7 @@
 ﻿#include "Scene/SceneBase.h"
 #include "Scene/GamePlay.h"
 #include "Utility/Input.h"
+#include "Singleton.h"
 #include <GSgame.h>
 #include <memory>
 
@@ -30,6 +31,15 @@ private:
         glFogf(GL_FOG_END, 400.f);
         glFogfv(GL_FOG_COLOR, bgColor);
 
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluPerspective(
+            45.f, //視野角
+            1280.f / 720.f, //アスペクト比
+            0.1f, //近クリップ
+            1000.f //遠クリップ
+        );
+
         mScene = new GamePlay();
     }
 
@@ -44,6 +54,7 @@ private:
 
     void end() {
         delete mScene;
+        SingletonFinalizer::finalize();
 
         //メモリリーク検出関数
         _CrtDumpMemoryLeaks();

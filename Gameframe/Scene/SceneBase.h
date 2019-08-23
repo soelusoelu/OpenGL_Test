@@ -9,7 +9,6 @@
 #include <memory>
 
 class GameSystem;
-class UIManager;
 
 class SceneBase : public IGameMediator {
 public:
@@ -21,5 +20,4 @@ public:
 
 protected:
     std::unique_ptr<GameSystem> mSystem;
-    std::unique_ptr<UIManager> mUIManager;
 };

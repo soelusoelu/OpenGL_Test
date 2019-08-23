@@ -5,9 +5,8 @@
 #include "../Scene/IGameMediator.h"
 #include <GLFW/glfw3.h>
 
-CubeActor::CubeActor(IGameMediator* iGameMediator, IActorMediator* iActorMediator) :
-    Actor(iGameMediator, iActorMediator),
-    mtimer(0.f),
+CubeActor::CubeActor(IGameMediator* iGameMediator) :
+    Actor(iGameMediator),
     mBox(new BoxComponent(this)) {
     //glDisable(GL_CULL_FACE);
     //glDisable(GL_LIGHTING);

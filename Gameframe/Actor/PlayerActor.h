@@ -4,7 +4,6 @@
 #include "Actor.h"
 
 class IGameMediator;
-class IActorMediator;
 class PlayerMoveComponent;
 class MeshComponent;
 class SkeletonComponent;
@@ -13,7 +12,7 @@ class BoxComponent;
 
 class PlayerActor : public Actor {
 public:
-    PlayerActor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const char* tag = "Player");
+    PlayerActor(IGameMediator* iGameMediator, const char* tag = "Player");
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
 

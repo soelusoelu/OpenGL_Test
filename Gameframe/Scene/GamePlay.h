@@ -4,7 +4,6 @@
 #include <unordered_set>
 #include <memory>
 
-class ActorManager;
 class PlayerActor;
 class CubeActor;
 
@@ -26,7 +25,6 @@ public:
     void setState(GameState state);
 
 private:
-    std::unique_ptr<ActorManager> mActorManager;
     GameState mState;
 
     PlayerActor* mPlayer;

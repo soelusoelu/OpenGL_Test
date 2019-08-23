@@ -4,8 +4,8 @@
 #include "../Utility/Input.h"
 #include "../System/Renderer.h"
 
-Pause::Pause(GamePlay* game, GameSystem* system, IUIMediator* interfaceUI) :
-    UI(system, interfaceUI),
+Pause::Pause(GameSystem* system, GamePlay* game) :
+    UI(system),
     mGame(game) {
     mGame->setState(GamePlay::GameState::Paused);
 }

@@ -2,17 +2,16 @@
 #include "ComponentManagementOfActor.h"
 #include "../Component/TransformComponent.h"
 #include "../Scene/IGameMediator.h"
-#include "IActorMediator.h"
+#include "ActorManager.h"
 #include <string>
 
-Actor::Actor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const char* tag) :
+Actor::Actor(IGameMediator* iGameMediator, const char* tag) :
     mComponentManager(new ComponentManagementOfActor()),
     mState(State::Active),
     mTransform(new TransformComponent(this)),
     mTag(tag),
-    mIGameMediator(iGameMediator),
-    mIActorMediator(iActorMediator) {
-    iActorMediator->addActor(this);
+    mIGameMediator(iGameMediator) {
+    Singleton<ActorManager>::instance().addActor(this);
 }
 
 Actor::~Actor() {
@@ -73,8 +72,4 @@ const char* Actor::getTag() const {
 
 IGameMediator* Actor::getIGameMediator() const {
     return mIGameMediator;
-}
-
-IActorMediator* Actor::getIActorMediator() const {
-    return mIActorMediator;
 }

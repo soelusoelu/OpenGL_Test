@@ -1,8 +1,7 @@
 #include "SceneBase.h"
 
 SceneBase::SceneBase() :
-    mSystem(std::make_unique<GameSystem>()),
-    mUIManager(std::make_unique<UIManager>()) {
+    mSystem(std::make_unique<GameSystem>()) {
 }
 
 GameSystem* SceneBase::getSystem() const {

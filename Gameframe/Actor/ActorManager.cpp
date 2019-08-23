@@ -7,19 +7,6 @@ ActorManager::ActorManager() :
     mUpdatingActors(false) {
 }
 
-ActorManager::~ActorManager() {
-    auto itr = mPendingActors.begin();
-    while (itr != mPendingActors.end()) {
-        delete* itr;
-        itr = mPendingActors.erase(itr);
-    }
-    itr = mActors.begin();
-    while (itr != mActors.end()) {
-        delete* itr;
-        itr = mActors.erase(itr);
-    }
-}
-
 void ActorManager::update(float deltaTime) {
     mUpdatingActors = true;
     for (auto&& actor : mActors) {
@@ -55,6 +42,19 @@ void ActorManager::addActor(Actor* actor) {
     }
     //最初に必ず座標計算
     actor->computeWorldTransform();
+}
+
+void ActorManager::clear() {
+    auto itr = mPendingActors.begin();
+    while (itr != mPendingActors.end()) {
+        delete* itr;
+        itr = mPendingActors.erase(itr);
+    }
+    itr = mActors.begin();
+    while (itr != mActors.end()) {
+        delete* itr;
+        itr = mActors.erase(itr);
+    }
 }
 
 const std::unordered_set<Actor*>& ActorManager::getActors() const {

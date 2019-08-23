@@ -6,8 +6,8 @@
 #include "../Component/AnimationComponent.h"
 #include "../Component/Collider/BoxComponent.h"
 
-PlayerActor::PlayerActor(IGameMediator* iGameMediator, IActorMediator* iActorMediator, const char* tag) :
-    Actor(iGameMediator, iActorMediator, tag),
+PlayerActor::PlayerActor(IGameMediator* iGameMediator, const char* tag) :
+    Actor(iGameMediator, tag),
     mPlayerMove(new PlayerMoveComponent(this)),
     mMesh(new MeshComponent(this, "./res/character.msh")),
     mSkelton(new SkeletonComponent(this, "./res/character.skl")),

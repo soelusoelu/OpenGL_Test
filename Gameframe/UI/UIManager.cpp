@@ -1,12 +1,6 @@
 ﻿#include "UIManager.h"
 #include "UI.h"
 
-UIManager::~UIManager() {
-    while (!mUIStack.empty()) {
-        delete* mUIStack.begin();
-    }
-}
-
 void UIManager::pushUI(UI* ui) {
     mUIStack.emplace(ui);
 }
@@ -24,6 +18,14 @@ void UIManager::update(float deltaTime) {
 void UIManager::draw() const {
     for (const auto& ui : mUIStack) {
         ui->draw();
+    }
+}
+
+void UIManager::clear() {
+    auto itr = mUIStack.begin();
+    while (itr != mUIStack.end()) {
+        delete* itr;
+        itr = mUIStack.erase(itr);
     }
 }
 
