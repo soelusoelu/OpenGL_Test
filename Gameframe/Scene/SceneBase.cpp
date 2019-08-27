@@ -1,9 +1,9 @@
 #include "SceneBase.h"
 
 SceneBase::SceneBase() :
-    mSystem(std::make_unique<GameSystem>()) {
+    mSystem(std::make_shared<GameSystem>()) {
 }
 
-GameSystem* SceneBase::getSystem() const {
-    return mSystem.get();
+std::shared_ptr<GameSystem> SceneBase::getSystem() const {
+    return mSystem;
 }

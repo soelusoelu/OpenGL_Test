@@ -1,4 +1,4 @@
-#include "GamePlay.h"
+﻿#include "GamePlay.h"
 #include "../Actor/PlayerActor.h"
 #include "../Actor/CubeActor.h"
 #include "../Camera.h"
@@ -12,8 +12,6 @@
 GamePlay::GamePlay() :
     SceneBase(),
     mState(GameState::Play) {
-    mPlayer = new PlayerActor(this);
-    mCube = new CubeActor(this);
 }
 
 GamePlay::~GamePlay() {
@@ -26,11 +24,11 @@ void GamePlay::update(float deltaTime) {
         Singleton<ActorManager>::instance().update(deltaTime);
 
         if (Input::getKeyDown(Input::KeyCode::Space)) {
-            new Pause(mSystem.get(), this);
+            new Pause(mSystem, this);
         }
     }
 
-    //UI�͍Ō�
+    //UIは最後に必ず
     Singleton<UIManager>::instance().update(deltaTime);
 }
 

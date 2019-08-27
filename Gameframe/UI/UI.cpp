@@ -4,7 +4,7 @@
 #include "UIManager.h"
 #include <gslib.h>
 
-UI::UI(GameSystem* system) :
+UI::UI(std::shared_ptr<GameSystem> system) :
     mSystem(system),
     mState(State::Active),
     mPosition(Vector2::zero),

@@ -1,10 +1,12 @@
 #pragma once
 
+#include <memory>
+
 class GameSystem;
 
 class IGameMediator {
 public:
     virtual ~IGameMediator() {};
-    virtual GameSystem* getSystem() const = 0;
+    virtual std::shared_ptr<GameSystem> getSystem() const = 0;
 };
 

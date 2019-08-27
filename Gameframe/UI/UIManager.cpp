@@ -1,8 +1,7 @@
 ﻿#include "UIManager.h"
-#include "UI.h"
 
 void UIManager::pushUI(UI* ui) {
-    mUIStack.emplace(ui);
+    mUIStack.emplace_back(ui);
 }
 
 void UIManager::update(float deltaTime) {
@@ -24,12 +23,11 @@ void UIManager::draw() const {
 void UIManager::clear() {
     auto itr = mUIStack.begin();
     while (itr != mUIStack.end()) {
-        delete* itr;
         itr = mUIStack.erase(itr);
     }
 }
 
-const std::unordered_set<UI*>& UIManager::getUIStack() const {
+const std::list<std::unique_ptr<UI>>& UIManager::getUIStack() const {
     return mUIStack;
 }
 
@@ -37,7 +35,6 @@ void UIManager::removeClosingUI() {
     auto itr = mUIStack.begin();
     while (itr != mUIStack.end()) {
         if ((*itr)->getState() == UI::State::Closing) {
-            delete* itr;
             itr = mUIStack.erase(itr);
         } else {
             ++itr;

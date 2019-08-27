@@ -4,7 +4,7 @@
 #include "../Utility/Input.h"
 #include "../System/Renderer.h"
 
-Pause::Pause(GameSystem* system, GamePlay* game) :
+Pause::Pause(std::shared_ptr<GameSystem> system, GamePlay* game) :
     UI(system),
     mGame(game) {
     mGame->setState(GamePlay::GameState::Paused);

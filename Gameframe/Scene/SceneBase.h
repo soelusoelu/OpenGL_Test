@@ -6,7 +6,6 @@
 #include "../System/Physics.h"
 #include "../System/Random.h"
 #include "../UI/UIManager.h"
-#include <memory>
 
 class GameSystem;
 
@@ -16,8 +15,8 @@ public:
     virtual ~SceneBase() {};
     virtual void update(float deltaTime) = 0;
     virtual void draw() const = 0;
-    virtual GameSystem* getSystem() const override;
+    virtual std::shared_ptr<GameSystem> getSystem() const override;
 
 protected:
-    std::unique_ptr<GameSystem> mSystem;
+    std::shared_ptr<GameSystem> mSystem;
 };

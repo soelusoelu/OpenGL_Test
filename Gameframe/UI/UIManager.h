@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 #include "../Singleton.h"
-#include <unordered_set>
-
-class UI;
+#include "UI.h"
+#include <list>
+#include <memory>
 
 class UIManager {
     friend Singleton<UIManager>;
@@ -12,7 +12,7 @@ public:
     void update(float deltaTime);
     void draw() const;
     void clear();
-    const std::unordered_set<UI*>& getUIStack() const;
+    const std::list<std::unique_ptr<UI>>& getUIStack() const;
 
 private:
     UIManager() {};
@@ -20,6 +20,6 @@ private:
     //Closing状態のUIを削除
     void removeClosingUI();
 
-    std::unordered_set<UI*> mUIStack;
+    std::list<std::unique_ptr<UI>> mUIStack;
 };
 

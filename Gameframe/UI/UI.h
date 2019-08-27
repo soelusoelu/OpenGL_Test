@@ -2,6 +2,7 @@
 
 #include "../Utility/Math.h"
 #include <string>
+#include <memory>
 
 class GameSystem;
 
@@ -11,7 +12,7 @@ public:
         Active,
         Closing
     };
-    UI(GameSystem* system);
+    UI(std::shared_ptr<GameSystem> system);
     virtual ~UI() {};
     virtual void update(float deltaTime) = 0;
     virtual void draw() const = 0;
@@ -21,7 +22,7 @@ public:
     State getState() const;
 
 protected:
-    GameSystem* mSystem;
+    std::shared_ptr<GameSystem> mSystem;
     State mState;
     Vector2 mPosition;
     float mRotation;
