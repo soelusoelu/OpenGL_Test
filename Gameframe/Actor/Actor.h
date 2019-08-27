@@ -6,8 +6,6 @@
 class ComponentManagementOfActor;
 class TransformComponent;
 class IGameMediator;
-class ActorManager;
-class IActorMediator;
 
 class Actor {
 public:

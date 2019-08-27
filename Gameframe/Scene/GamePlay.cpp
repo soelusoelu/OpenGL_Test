@@ -7,7 +7,7 @@
 #include "../Utility/Input.h"
 #include "../UI/UIManager.h"
 #include "../Actor/ActorManager.h"
-#include "../Singleton.h"
+#include "../Utility/Singleton.h"
 
 GamePlay::GamePlay() :
     SceneBase(),

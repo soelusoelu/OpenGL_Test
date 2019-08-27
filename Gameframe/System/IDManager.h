@@ -14,7 +14,7 @@ public:
     IDManager();
     ~IDManager();
     void push(unsigned id, Type type);
-    unsigned int pop(Type type);
+    unsigned pop(Type type);
 
 private:
     std::list<unsigned> mMeshIDs;

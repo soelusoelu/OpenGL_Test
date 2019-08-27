@@ -5,7 +5,6 @@
 #include <memory>
 
 class IDManager;
-class GamePlay;
 
 class Renderer {
 public:

@@ -85,7 +85,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,7 +131,7 @@
     <ClCompile Include="Actor\ComponentManagementOfActor.cpp" />
     <ClCompile Include="Component\Collider\Collider.cpp" />
     <ClCompile Include="Component\Collider\BoxComponent.cpp" />
-    <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Utility\Singleton.cpp" />
     <ClCompile Include="UI\UIManager.cpp" />
     <ClCompile Include="UI\Pause.cpp" />
     <ClCompile Include="System\Random.cpp" />
@@ -169,7 +169,7 @@
     <ClInclude Include="Component\Collider\Collider.h" />
     <ClInclude Include="Component\Collider\BoxComponent.h" />
     <ClInclude Include="Scene\IGameMediator.h" />
-    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Utility\Singleton.h" />
     <ClInclude Include="UI\UIManager.h" />
     <ClInclude Include="UI\Pause.h" />
     <ClInclude Include="System\Random.h" />

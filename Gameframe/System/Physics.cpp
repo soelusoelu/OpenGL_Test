@@ -64,7 +64,6 @@ void Physics::addBox(BoxComponent* box) {
 void Physics::removeBox(BoxComponent* box) {
     auto itr = std::find(mBoxes.begin(), mBoxes.end(), box);
     if (itr != mBoxes.end()) {
-        // Swap to end of vector and pop off (avoid erase copies)
         std::iter_swap(itr, mBoxes.end() - 1);
         mBoxes.pop_back();
     }

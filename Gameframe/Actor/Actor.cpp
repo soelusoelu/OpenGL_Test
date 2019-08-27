@@ -3,7 +3,6 @@
 #include "../Component/TransformComponent.h"
 #include "../Scene/IGameMediator.h"
 #include "ActorManager.h"
-#include <string>
 
 Actor::Actor(IGameMediator* iGameMediator, const char* tag) :
     mComponentManager(std::make_shared<ComponentManagementOfActor>()),

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "../Singleton.h"
+#include "../Utility/Singleton.h"
 #include <unordered_set>
 #include <memory>
 

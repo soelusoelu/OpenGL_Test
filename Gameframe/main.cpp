@@ -1,7 +1,7 @@
 ﻿#include "Scene/SceneBase.h"
 #include "Scene/GamePlay.h"
 #include "Utility/Input.h"
-#include "Singleton.h"
+#include "Utility/Singleton.h"
 #include <GSgame.h>
 #include <memory>
 

@@ -35,7 +35,7 @@
     <ClCompile Include="UI\UIManager.cpp" />
     <ClCompile Include="Actor\ActorManager.cpp" />
     <ClCompile Include="Actor\ComponentManagementOfActor.cpp" />
-    <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Utility\Singleton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -72,6 +72,6 @@
     <ClInclude Include="Actor\ActorManager.h" />
     <ClInclude Include="Scene\IGameMediator.h" />
     <ClInclude Include="Actor\ComponentManagementOfActor.h" />
-    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Utility\Singleton.h" />
   </ItemGroup>
 </Project>

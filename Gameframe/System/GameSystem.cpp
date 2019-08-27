@@ -4,19 +4,19 @@
 #include "Random.h"
 
 GameSystem::GameSystem() :
-    mRenderer(std::make_unique<Renderer>()),
-    mPhysics(std::make_unique<Physics>()),
-    mRandom(std::make_unique<Random>()) {
+    mRenderer(std::make_shared<Renderer>()),
+    mPhysics(std::make_shared<Physics>()),
+    mRandom(std::make_shared<Random>()) {
 }
 
-Renderer* GameSystem::getRenderer() const {
-    return mRenderer.get();
+std::shared_ptr<Renderer> GameSystem::getRenderer() const {
+    return mRenderer;
 }
 
-Physics* GameSystem::getPhysics() const {
-    return mPhysics.get();
+std::shared_ptr<Physics> GameSystem::getPhysics() const {
+    return mPhysics;
 }
 
-Random* GameSystem::getRandom() const {
-    return mRandom.get();
+std::shared_ptr<Random> GameSystem::getRandom() const {
+    return mRandom;
 }
