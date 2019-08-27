@@ -1,7 +1,7 @@
 #include "SkeletonComponent.h"
 #include "Component.h"
 #include "../Actor/Actor.h"
-#include "../Scene/GamePlay.h"
+#include "../Scene/IGameMediator.h"
 #include "../System/GameSystem.h"
 #include "../System/Renderer.h"
 #include <GSgraphics.h>

@@ -21,10 +21,7 @@ void UIManager::draw() const {
 }
 
 void UIManager::clear() {
-    auto itr = mUIStack.begin();
-    while (itr != mUIStack.end()) {
-        itr = mUIStack.erase(itr);
-    }
+    mUIStack.clear();
 }
 
 const std::list<std::unique_ptr<UI>>& UIManager::getUIStack() const {

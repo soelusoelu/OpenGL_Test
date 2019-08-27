@@ -12,9 +12,6 @@ MeshComponent::MeshComponent(Actor* owner, const std::string& filename) :
     mID = mOwner->getIGameMediator()->getSystem()->getRenderer()->getMesh(filename);
 }
 
-MeshComponent::~MeshComponent() {
-}
-
 void MeshComponent::update(float deltaTime) {
 }
 

@@ -2,14 +2,14 @@
 
 #include "Singleton.h"
 #include "Utility/Math.h"
-#include <gslib.h>
+#include <memory>
 
 class PlayerActor;
 
 class Camera {
     friend class Singleton<Camera>;
 public:
-    void update(PlayerActor* player);
+    void update(std::shared_ptr<PlayerActor> player);
 
 private:
     Camera() {};

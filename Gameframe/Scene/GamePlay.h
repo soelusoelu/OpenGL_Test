@@ -2,7 +2,8 @@
 
 #include "SceneBase.h"
 #include <unordered_set>
-#include <memory>
+
+class PlayerActor;
 
 class GamePlay : public SceneBase {
 public:
@@ -23,5 +24,6 @@ public:
 
 private:
     GameState mState;
+    PlayerActor* mPlayer;
 };
 

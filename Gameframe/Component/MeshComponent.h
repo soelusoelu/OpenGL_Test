@@ -8,7 +8,6 @@ class Actor;
 class MeshComponent : public Component {
 public:
     MeshComponent(Actor* owner, const std::string& filename);
-    ~MeshComponent();
     virtual void update(float deltaTime) override;
     void draw() const;
 

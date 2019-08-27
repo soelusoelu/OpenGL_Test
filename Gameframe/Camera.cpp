@@ -3,7 +3,7 @@
 #include "Component/TransformComponent.h"
 #include <gslib.h>
 
-void Camera::update(PlayerActor* player) {
+void Camera::update(std::shared_ptr<PlayerActor> player) {
     if (player) {
         Vector3 eyeVec = player->getTransform()->forward();
 

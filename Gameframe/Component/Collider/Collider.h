@@ -8,7 +8,7 @@ class BoxComponent;
 class Collider : public Component {
 public:
     Collider(Actor* owner, bool isTrigger, int updateOrder = 100);
-    virtual ~Collider();
+    virtual ~Collider() {};
 
     enum ColliderType {
         AABBT

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Component.h"
+#include <memory>
 
 class Actor;
 class BoxComponent;
@@ -15,5 +16,5 @@ private:
     bool canMovement();
 
     float mSpeed;
-    BoxComponent* mBox;
+    std::shared_ptr<BoxComponent> mBox;
 };

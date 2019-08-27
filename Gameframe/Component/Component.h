@@ -1,11 +1,13 @@
 #pragma once
 
+#include <memory>
+
 class Actor;
 
 class Component {
 public:
     Component(Actor* owner, int updateOrder = 100);
-    virtual ~Component();
+    virtual ~Component() {};
     //getComponent‚Í‚±‚±‚Å‚µ‚Ä
     virtual void start() {};
     virtual void update(float deltaTime) = 0;

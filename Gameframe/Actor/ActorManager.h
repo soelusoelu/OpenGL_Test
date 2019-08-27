@@ -2,10 +2,10 @@
 
 #include "../Singleton.h"
 #include <unordered_set>
+#include <memory>
 
 class Actor;
 class PlayerActor;
-class IGameMediator;
 
 class ActorManager {
     friend class Singleton<ActorManager>;
@@ -19,8 +19,8 @@ public:
     //所有アクターをすべて削除
     void clear();
 
-    PlayerActor* getPlayer() const;
-    const std::unordered_set<Actor*>& getActors() const;
+    std::shared_ptr<PlayerActor> getPlayer() const;
+    const std::unordered_set<std::shared_ptr<Actor>>& getActors() const;
 
 private:
     ActorManager();
@@ -28,8 +28,8 @@ private:
     //Dead状態のアクターを削除
     void removeDeadActor();
 
-    std::unordered_set<Actor*> mActors;
-    std::unordered_set<Actor*> mPendingActors;
+    std::unordered_set<std::shared_ptr<Actor>> mActors;
+    std::unordered_set<std::shared_ptr<Actor>> mPendingActors;
     bool mUpdatingActors;
 };
 

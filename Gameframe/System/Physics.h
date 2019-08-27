@@ -4,6 +4,7 @@
 #include "../Utility/Collision.h"
 #include <vector>
 #include <functional>
+#include <memory>
 
 class GamePlay;
 class BoxComponent;

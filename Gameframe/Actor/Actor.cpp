@@ -6,16 +6,12 @@
 #include <string>
 
 Actor::Actor(IGameMediator* iGameMediator, const char* tag) :
-    mComponentManager(new ComponentManagementOfActor()),
+    mComponentManager(std::make_shared<ComponentManagementOfActor>()),
     mState(State::Active),
     mTransform(new TransformComponent(this)),
     mTag(tag),
     mIGameMediator(iGameMediator) {
     Singleton<ActorManager>::instance().addActor(this);
-}
-
-Actor::~Actor() {
-    delete mComponentManager;
 }
 
 void Actor::update(float deltaTime) {
@@ -46,7 +42,11 @@ void Actor::destroy(Actor* actor) {
     actor->mState = Actor::State::Dead;
 }
 
-ComponentManagementOfActor* Actor::getComponentManager() const {
+void Actor::destroy(std::shared_ptr<Actor> actor) {
+    actor->mState = Actor::State::Dead;
+}
+
+std::shared_ptr<ComponentManagementOfActor> Actor::getComponentManager() const {
     return mComponentManager;
 }
 

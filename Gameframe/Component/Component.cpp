@@ -8,10 +8,6 @@ Component::Component(Actor* owner, int updateOrder) :
     mOwner->getComponentManager()->addComponent(this);
 }
 
-Component::~Component() {
-    mOwner->getComponentManager()->removeComponent(this);
-}
-
 int Component::getUpdateOrder() const {
     return mUpdateOrder;
 }

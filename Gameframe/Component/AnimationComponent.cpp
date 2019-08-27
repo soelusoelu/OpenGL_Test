@@ -4,7 +4,6 @@
 #include "../Scene/IGameMediator.h"
 #include "../System/GameSystem.h"
 #include "../System/Renderer.h"
-#include "MeshComponent.h"
 #include <GSgraphics.h>
 
 AnimationComponent::AnimationComponent(Actor* owner, const std::string& filename) :
@@ -12,9 +11,6 @@ AnimationComponent::AnimationComponent(Actor* owner, const std::string& filename
     mAnimationNo(0),
     mAnimationTimer(0.f) {
     mID = mOwner->getIGameMediator()->getSystem()->getRenderer()->getAnimation(filename);
-}
-
-AnimationComponent::~AnimationComponent() {
 }
 
 void AnimationComponent::update(float deltaTime) {

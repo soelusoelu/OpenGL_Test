@@ -9,9 +9,6 @@ TransformComponent::TransformComponent(Actor* owner, int updateOrder) :
     mRecomputeTransform(true) {
 }
 
-TransformComponent::~TransformComponent() {
-}
-
 void TransformComponent::update(float deltaTime) {
 }
 

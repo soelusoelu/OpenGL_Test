@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "../Utility/Math.h"
+#include <memory>
 
 class ComponentManagementOfActor;
 class TransformComponent;
@@ -16,7 +17,7 @@ public:
         Dead //死ぬ
     };
     Actor(IGameMediator* iGameMediator, const char* tag = "");
-    virtual ~Actor();
+    virtual ~Actor() {};
 
     //すべての更新
     void update(float deltaTime);
@@ -41,9 +42,10 @@ public:
     //}
     //アクター削除
     static void destroy(Actor* actor);
+    static void destroy(std::shared_ptr<Actor> actor);
 
     //ゲッター、セッター
-    ComponentManagementOfActor* getComponentManager() const;
+    std::shared_ptr<ComponentManagementOfActor> getComponentManager() const;
     const Matrix4& GetWorldTransform() const;
     TransformComponent* getTransform() const;
     State getState() const;
@@ -52,7 +54,7 @@ public:
     IGameMediator* getIGameMediator() const;
 
 private:
-    ComponentManagementOfActor* mComponentManager;
+    std::shared_ptr<ComponentManagementOfActor> mComponentManager;
     State mState;
     Matrix4 mWorldTransform;
     TransformComponent* mTransform;

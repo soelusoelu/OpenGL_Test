@@ -13,9 +13,6 @@ Collider::Collider(Actor* owner, bool isTrigger, int updateOrder) :
     mEnabled(true) {
 }
 
-Collider::~Collider() {
-}
-
 void Collider::update(float deltaTime) {
 }
 

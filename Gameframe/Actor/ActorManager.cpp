@@ -45,26 +45,18 @@ void ActorManager::addActor(Actor* actor) {
 }
 
 void ActorManager::clear() {
-    auto itr = mPendingActors.begin();
-    while (itr != mPendingActors.end()) {
-        delete* itr;
-        itr = mPendingActors.erase(itr);
-    }
-    itr = mActors.begin();
-    while (itr != mActors.end()) {
-        delete* itr;
-        itr = mActors.erase(itr);
-    }
+    mPendingActors.clear();
+    mActors.clear();
 }
 
-const std::unordered_set<Actor*>& ActorManager::getActors() const {
+const std::unordered_set<std::shared_ptr<Actor>>& ActorManager::getActors() const {
     return mActors;
 }
 
-PlayerActor* ActorManager::getPlayer() const {
-    PlayerActor* p = nullptr;
+std::shared_ptr<PlayerActor> ActorManager::getPlayer() const {
+    std::shared_ptr<PlayerActor> p = nullptr;
     for (const auto& actor : mActors) {
-        p = dynamic_cast<PlayerActor*>(actor);
+        p = std::dynamic_pointer_cast<PlayerActor>(actor);
         if (p) {
             return p;
         }
@@ -77,7 +69,6 @@ void ActorManager::removeDeadActor() {
     auto itr = mActors.begin();
     while (itr != mActors.end()) {
         if ((*itr)->getState() == Actor::State::Dead) {
-            delete* itr;
             itr = mActors.erase(itr);
         } else {
             ++itr;

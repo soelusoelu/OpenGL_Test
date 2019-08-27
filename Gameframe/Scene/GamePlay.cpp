@@ -12,6 +12,7 @@
 GamePlay::GamePlay() :
     SceneBase(),
     mState(GameState::Play) {
+    mPlayer = new PlayerActor(this);
 }
 
 GamePlay::~GamePlay() {
