@@ -29,7 +29,7 @@ Renderer::~Renderer() {
     mTextures.clear();
 }
 
-unsigned int Renderer::getMesh(const std::string& filename) {
+unsigned Renderer::getMesh(const std::string& filename) {
     unsigned id;
     auto itr = mMeshes.find(filename);
     if (itr != mMeshes.end()) { //既に読み込まれている
@@ -42,7 +42,7 @@ unsigned int Renderer::getMesh(const std::string& filename) {
     return id;
 }
 
-unsigned int Renderer::getSkeleton(const std::string& filename) {
+unsigned Renderer::getSkeleton(const std::string& filename) {
     unsigned id;
     auto itr = mSkeletons.find(filename);
     if (itr != mSkeletons.end()) { //既に読み込まれている
@@ -55,7 +55,7 @@ unsigned int Renderer::getSkeleton(const std::string& filename) {
     return id;
 }
 
-unsigned int Renderer::getAnimation(const std::string& filename) {
+unsigned Renderer::getAnimation(const std::string& filename) {
     unsigned id;
     auto itr = mAnimations.find(filename);
     if (itr != mAnimations.end()) { //既に読み込まれている
@@ -68,7 +68,7 @@ unsigned int Renderer::getAnimation(const std::string& filename) {
     return id;
 }
 
-unsigned int Renderer::getTexture(const std::string& filename) {
+unsigned Renderer::getTexture(const std::string& filename) {
     unsigned id;
     auto itr = mTextures.find(filename);
     if (itr != mTextures.end()) { //既に読み込まれている
@@ -79,10 +79,6 @@ unsigned int Renderer::getTexture(const std::string& filename) {
         mTextures.emplace(filename, id);
     }
     return id;
-}
-
-void Renderer::drawMesh(unsigned id) {
-    gsDrawMesh(id);
 }
 
 void Renderer::printf(float x, float y, const char* str, ...) {

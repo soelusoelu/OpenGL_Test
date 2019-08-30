@@ -16,8 +16,6 @@ public:
     unsigned getAnimation(const std::string& filename);
     unsigned getTexture(const std::string& filename);
 
-    void drawMesh(unsigned id);
-
     void printf(float x, float y, const char* str, ...);
 
 private:

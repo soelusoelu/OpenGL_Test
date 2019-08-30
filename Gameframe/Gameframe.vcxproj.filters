@@ -36,6 +36,7 @@
     <ClCompile Include="Actor\ActorManager.cpp" />
     <ClCompile Include="Actor\ComponentManagementOfActor.cpp" />
     <ClCompile Include="Utility\Singleton.cpp" />
+    <ClCompile Include="UI\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite3D.h" />
@@ -73,5 +74,6 @@
     <ClInclude Include="Scene\IGameMediator.h" />
     <ClInclude Include="Actor\ComponentManagementOfActor.h" />
     <ClInclude Include="Utility\Singleton.h" />
+    <ClInclude Include="UI\Texture.h" />
   </ItemGroup>
 </Project>

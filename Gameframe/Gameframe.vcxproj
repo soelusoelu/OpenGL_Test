@@ -131,6 +131,7 @@
     <ClCompile Include="Actor\ComponentManagementOfActor.cpp" />
     <ClCompile Include="Component\Collider\Collider.cpp" />
     <ClCompile Include="Component\Collider\BoxComponent.cpp" />
+    <ClCompile Include="UI\Texture.cpp" />
     <ClCompile Include="Utility\Singleton.cpp" />
     <ClCompile Include="UI\UIManager.cpp" />
     <ClCompile Include="UI\Pause.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Component\Collider\Collider.h" />
     <ClInclude Include="Component\Collider\BoxComponent.h" />
     <ClInclude Include="Scene\IGameMediator.h" />
+    <ClInclude Include="UI\Texture.h" />
     <ClInclude Include="Utility\Singleton.h" />
     <ClInclude Include="UI\UIManager.h" />
     <ClInclude Include="UI\Pause.h" />

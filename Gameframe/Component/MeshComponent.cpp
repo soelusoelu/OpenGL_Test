@@ -4,6 +4,7 @@
 #include "../Scene/IGameMediator.h"
 #include "../System/GameSystem.h"
 #include "../System/Renderer.h"
+#include <GSgraphics.h>
 #include <string>
 
 MeshComponent::MeshComponent(Actor* owner, const std::string& filename) :
@@ -17,7 +18,7 @@ void MeshComponent::update(float deltaTime) {
 
 void MeshComponent::draw() const {
     if (mEnabled) {
-        mOwner->getIGameMediator()->getSystem()->getRenderer()->drawMesh(mID);
+        gsDrawMesh(mID);
     }
 }
 

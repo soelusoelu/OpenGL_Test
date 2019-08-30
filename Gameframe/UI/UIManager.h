@@ -1,9 +1,10 @@
 ﻿#pragma once
 
 #include "../Utility/Singleton.h"
-#include "UI.h"
 #include <list>
 #include <memory>
+
+class UI;
 
 class UIManager {
     friend Singleton<UIManager>;
@@ -15,11 +16,10 @@ public:
     const std::list<std::unique_ptr<UI>>& getUIStack() const;
 
 private:
-    UIManager() {};
-    ~UIManager() {};
+    UIManager();
+    ~UIManager();
     //Closing状態のUIを削除
     void removeClosingUI();
 
     std::list<std::unique_ptr<UI>> mUIStack;
 };
-

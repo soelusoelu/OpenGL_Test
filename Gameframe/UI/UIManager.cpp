@@ -1,4 +1,8 @@
 ﻿#include "UIManager.h"
+#include "UI.h"
+
+UIManager::UIManager() = default;
+UIManager::~UIManager() = default;
 
 void UIManager::pushUI(UI* ui) {
     mUIStack.emplace_back(ui);

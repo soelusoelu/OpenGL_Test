@@ -1,13 +1,16 @@
 #include "Pause.h"
 #include "../Scene/GamePlay.h"
-#include "../System/GameSystem.h"
-#include "../Utility/Input.h"
 #include "../System/Renderer.h"
+#include "../Utility/Input.h"
+#include "Texture.h"
 
-Pause::Pause(std::shared_ptr<GameSystem> system, GamePlay* game) :
-    UI(system),
-    mGame(game) {
+Pause::Pause(std::shared_ptr<Renderer> renderer, GamePlay* game) :
+    UI(renderer),
+    mGame(game),
+    mTexture(std::make_unique<Texture>(renderer)) {
     mGame->setState(GamePlay::GameState::Paused);
+    mTexture->setTexture("./res/kuppa.png");
+    mTexture->setPosition(Vector2(100.f, 100.f));
 }
 
 Pause::~Pause() {
@@ -21,5 +24,6 @@ void Pause::update(float deltaTime) {
 }
 
 void Pause::draw() const {
-    mSystem->getRenderer()->printf(300.f, 200.f, "Pause");
+    mRenderer->printf(300.f, 200.f, "Pause");
+    mTexture->drawTexture();
 }

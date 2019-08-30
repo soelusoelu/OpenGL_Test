@@ -949,7 +949,51 @@ public:
     static const Quaternion identity;
 };
 
-namespace Color {
+class Rect {
+public:
+    float left;
+    float top;
+    float right;
+    float bottom;
+
+    Rect() :
+        left(0.f),
+        top(0.f),
+        right(0.f),
+        bottom(0.f) {
+    }
+
+    explicit Rect(float l, float t, float r, float b) :
+        left(l),
+        top(t),
+        right(r),
+        bottom(b) {
+    }
+};
+
+class Color {
+public:
+    float r;
+    float g;
+    float b;
+    float a;
+
+    Color(float r, float g, float b, float a) :
+        r(r),
+        g(g),
+        b(b),
+        a(a) {
+    }
+
+    Color(const Vector3& rgb, float a) :
+        a(a) {
+        r = rgb.x;
+        g = rgb.y;
+        b = rgb.z;
+    }
+};
+
+namespace ColorPalette {
     static const Vector3 black(0.0f, 0.0f, 0.0f);
     static const Vector3 white(1.0f, 1.0f, 1.0f);
     static const Vector3 red(1.0f, 0.0f, 0.0f);

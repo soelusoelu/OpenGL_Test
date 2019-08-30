@@ -4,6 +4,7 @@
 #include <unordered_set>
 
 class PlayerActor;
+class CubeActor;
 
 class GamePlay : public SceneBase {
 public:
@@ -25,5 +26,6 @@ public:
 private:
     GameState mState;
     PlayerActor* mPlayer;
+    CubeActor* mCube;
 };
 

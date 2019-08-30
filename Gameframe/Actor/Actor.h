@@ -29,11 +29,11 @@ public:
 
     //アクター生成
     //template<typename T>
-    //void instantiate(const char* tag = "") {
+    //static void instantiate(const char* tag = "") {
     //    T* t = new T(mMediator, tag);
     //}
     //template<typename T>
-    //void instantiate(const char* tag, const Vector3& position, const Quaternion& rotation) {
+    //static void instantiate(const char* tag, const Vector3& position, const Quaternion& rotation) {
     //    T* t = new T(mMediator, tag);
     //    t->mTransform->setPosition(position);
     //    t->mTransform->setRotation(rotation);
