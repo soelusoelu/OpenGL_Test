@@ -169,7 +169,6 @@
     <ClInclude Include="Actor\ComponentManagementOfActor.h" />
     <ClInclude Include="Component\Collider\Collider.h" />
     <ClInclude Include="Component\Collider\BoxComponent.h" />
-    <ClInclude Include="Scene\IGameMediator.h" />
     <ClInclude Include="UI\Texture.h" />
     <ClInclude Include="Utility\Singleton.h" />
     <ClInclude Include="UI\UIManager.h" />

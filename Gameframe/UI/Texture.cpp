@@ -1,21 +1,21 @@
 ﻿#include "Texture.h"
+#include "../System/GameSystem.h"
 #include "../System/Renderer.h"
 #include <GSgraphics.h>
 #include <GLFW/glfw3.h>
 
-Texture::Texture(std::shared_ptr<Renderer> renderer) :
+Texture::Texture() :
     mTextureID(0),
     mPosition(Vector2::zero),
     mScale(Vector2::one),
     mRotation(0.f),
     mColor(ColorPalette::white, 1.f),
     mRect(-0.5f, -0.5f, 0.5f, 0.5f),
-    mTextureCoord(0.f, 0.f, 1.f, 1.f),
-    mRenderer(renderer) {
+    mTextureCoord(0.f, 0.f, 1.f, 1.f) {
 }
 
 void Texture::setTexture(const std::string& filename) {
-    mTextureID = mRenderer->getTexture(filename);
+    mTextureID = Singleton<GameSystem>::instance().getRenderer()->getTexture(filename);
 }
 
 void Texture::setPosition(const Vector2& position) {

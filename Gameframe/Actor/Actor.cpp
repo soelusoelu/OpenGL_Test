@@ -1,15 +1,13 @@
 ﻿#include "Actor.h"
 #include "ComponentManagementOfActor.h"
 #include "../Component/TransformComponent.h"
-#include "../Scene/IGameMediator.h"
 #include "ActorManager.h"
 
-Actor::Actor(IGameMediator* iGameMediator, const char* tag) :
+Actor::Actor(const char* tag) :
     mComponentManager(std::make_shared<ComponentManagementOfActor>()),
     mState(State::Active),
     mTransform(new TransformComponent(this)),
-    mTag(tag),
-    mIGameMediator(iGameMediator) {
+    mTag(tag) {
     Singleton<ActorManager>::instance().addActor(this);
 }
 
@@ -67,8 +65,4 @@ void Actor::setState(State state) {
 
 const char* Actor::getTag() const {
     return mTag;
-}
-
-IGameMediator* Actor::getIGameMediator() const {
-    return mIGameMediator;
 }

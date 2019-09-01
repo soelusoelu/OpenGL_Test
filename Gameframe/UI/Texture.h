@@ -4,11 +4,9 @@
 #include <string>
 #include <memory>
 
-class Renderer;
-
 class Texture {
 public:
-    Texture(std::shared_ptr<Renderer> renderer);
+    Texture();
     void setTexture(const std::string& filename);
     void setPosition(const Vector2& position);
     void setScale(const Vector2& scale);
@@ -27,6 +25,5 @@ private:
     Color mColor;
     Rect mRect;
     Rect mTextureCoord;
-    std::shared_ptr<Renderer> mRenderer;
 };
 

@@ -1,16 +1,16 @@
 #include "MeshComponent.h"
 #include "Component.h"
 #include "../Actor/Actor.h"
-#include "../Scene/IGameMediator.h"
 #include "../System/GameSystem.h"
 #include "../System/Renderer.h"
+#include "../Utility/Singleton.h"
 #include <GSgraphics.h>
 #include <string>
 
 MeshComponent::MeshComponent(Actor* owner, const std::string& filename) :
     Component(owner),
     mEnabled(true) {
-    mID = mOwner->getIGameMediator()->getSystem()->getRenderer()->getMesh(filename);
+    mID = Singleton<GameSystem>::instance().getRenderer()->getMesh(filename);
 }
 
 void MeshComponent::update(float deltaTime) {

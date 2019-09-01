@@ -12,9 +12,10 @@ public:
     };
 
     IDManager();
-    ~IDManager();
+    ~IDManager() {};
     void push(unsigned id, Type type);
     unsigned pop(Type type);
+    void clear();
 
 private:
     std::list<unsigned> mMeshIDs;

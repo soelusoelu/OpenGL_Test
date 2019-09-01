@@ -6,28 +6,7 @@ Renderer::Renderer() :
     mIDManager(std::make_unique<IDManager>()) {
 }
 
-Renderer::~Renderer() {
-    for (const auto& mesh : mMeshes) {
-        gsDeleteMesh(mesh.second);
-        mIDManager->push(mesh.second, IDManager::Type::Mesh);
-    }
-    mMeshes.clear();
-    for (const auto& skeleton : mSkeletons) {
-        gsDeleteSkeleton(skeleton.second);
-        mIDManager->push(skeleton.second, IDManager::Type::Skeleton);
-    }
-    mSkeletons.clear();
-    for (const auto& animation : mAnimations) {
-        gsDeleteAnimation(animation.second);
-        mIDManager->push(animation.second, IDManager::Type::Animation);
-    }
-    mAnimations.clear();
-    for (const auto& texture : mTextures) {
-        gsDeleteTexture(texture.second);
-        mIDManager->push(texture.second, IDManager::Type::Texture);
-    }
-    mTextures.clear();
-}
+Renderer::~Renderer() = default;
 
 unsigned Renderer::getMesh(const std::string& filename) {
     unsigned id;
@@ -95,6 +74,31 @@ void Renderer::printf(float x, float y, const char* str, ...) {
 
     //可変引数リストの終了
     va_end(args);
+}
+
+void Renderer::clear() {
+    for (const auto& mesh : mMeshes) {
+        gsDeleteMesh(mesh.second);
+        mIDManager->push(mesh.second, IDManager::Type::Mesh);
+    }
+    mMeshes.clear();
+    for (const auto& skeleton : mSkeletons) {
+        gsDeleteSkeleton(skeleton.second);
+        mIDManager->push(skeleton.second, IDManager::Type::Skeleton);
+    }
+    mSkeletons.clear();
+    for (const auto& animation : mAnimations) {
+        gsDeleteAnimation(animation.second);
+        mIDManager->push(animation.second, IDManager::Type::Animation);
+    }
+    mAnimations.clear();
+    for (const auto& texture : mTextures) {
+        gsDeleteTexture(texture.second);
+        mIDManager->push(texture.second, IDManager::Type::Texture);
+    }
+    mTextures.clear();
+
+    mIDManager->clear();
 }
 
 void Renderer::drawChar(float x, float y, char c) {

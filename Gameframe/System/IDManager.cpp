@@ -7,13 +7,6 @@ IDManager::IDManager() {
     mTextureIDs.emplace_back(0);
 }
 
-IDManager::~IDManager() {
-    mMeshIDs.clear();
-    mSkeletonIDs.clear();
-    mAnimationIDs.clear();
-    mTextureIDs.clear();
-}
-
 void IDManager::push(unsigned id, IDManager::Type type) {
     if (type == IDManager::Type::Mesh) {
         mMeshIDs.emplace_front(id);
@@ -64,4 +57,11 @@ unsigned int IDManager::pop(IDManager::Type type) {
     }
 
     return id;
+}
+
+void IDManager::clear() {
+    mMeshIDs.clear();
+    mSkeletonIDs.clear();
+    mAnimationIDs.clear();
+    mTextureIDs.clear();
 }

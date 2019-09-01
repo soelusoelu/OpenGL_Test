@@ -71,7 +71,6 @@
     <ClInclude Include="UI\Pause.h" />
     <ClInclude Include="UI\UIManager.h" />
     <ClInclude Include="Actor\ActorManager.h" />
-    <ClInclude Include="Scene\IGameMediator.h" />
     <ClInclude Include="Actor\ComponentManagementOfActor.h" />
     <ClInclude Include="Utility\Singleton.h" />
     <ClInclude Include="UI\Texture.h" />

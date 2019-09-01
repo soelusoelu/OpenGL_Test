@@ -1,9 +1,7 @@
 ﻿#include "UI.h"
-#include "../System/Renderer.h"
 #include "UIManager.h"
 
-UI::UI(std::shared_ptr<Renderer> renderer) :
-    mRenderer(renderer),
+UI::UI() :
     mState(State::Active) {
     Singleton<UIManager>::instance().pushUI(this);
 }

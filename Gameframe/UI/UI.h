@@ -1,17 +1,12 @@
 ﻿#pragma once
 
-#include "../Utility/Math.h"
-#include <memory>
-
-class Renderer;
-
 class UI {
 public:
     enum State {
         Active,
         Closing
     };
-    UI(std::shared_ptr<Renderer> renderer);
+    UI();
     virtual ~UI() {};
     virtual void update(float deltaTime) = 0;
     virtual void draw() const = 0;
@@ -19,7 +14,6 @@ public:
     State getState() const;
 
 protected:
-    std::shared_ptr<Renderer> mRenderer;
     State mState;
 };
 

@@ -5,9 +5,9 @@
 #include "../Utility/Input.h"
 #include "../Utility/Collision.h"
 #include "Collider/BoxComponent.h"
-#include "../Scene/IGameMediator.h"
 #include "../System/GameSystem.h"
 #include "../System/Physics.h"
+#include "../Utility/Singleton.h"
 #include "../Actor/ComponentManagementOfActor.h"
 
 PlayerMoveComponent::PlayerMoveComponent(Actor* owner, int updateOrder) :
@@ -45,7 +45,7 @@ bool PlayerMoveComponent::canMovement() {
     playerBox.mMin += mOwner->getTransform()->forward() * mSpeed;
     playerBox.mMax += mOwner->getTransform()->forward() * mSpeed;
 
-    const auto& boxes = mOwner->getIGameMediator()->getSystem()->getPhysics()->getBoxes();
+    const auto& boxes = Singleton<GameSystem>::instance().getPhysics()->getBoxes();
     for (const auto& box : boxes) {
         if (box->getIsTrigger() || !box->getEnable() || box->getOwner()->getTag() == "Player") {
             continue;

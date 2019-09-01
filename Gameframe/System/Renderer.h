@@ -18,6 +18,8 @@ public:
 
     void printf(float x, float y, const char* str, ...);
 
+    void clear();
+
 private:
     void drawChar(float x, float y, char c);
     void drawString(float x, float y, const char str[]);

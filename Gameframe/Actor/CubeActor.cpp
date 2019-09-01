@@ -2,11 +2,10 @@
 #include "../Component/TransformComponent.h"
 #include "../Component/Collider/BoxComponent.h"
 #include "../Utility/Math.h"
-#include "../Scene/IGameMediator.h"
 #include <GLFW/glfw3.h>
 
-CubeActor::CubeActor(IGameMediator* iGameMediator) :
-    Actor(iGameMediator),
+CubeActor::CubeActor() :
+    Actor(),
     mBox(new BoxComponent(this)) {
     //glDisable(GL_CULL_FACE);
     //glDisable(GL_LIGHTING);

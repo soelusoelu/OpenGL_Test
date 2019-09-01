@@ -5,7 +5,6 @@
 
 class ComponentManagementOfActor;
 class TransformComponent;
-class IGameMediator;
 
 class Actor {
 public:
@@ -14,7 +13,7 @@ public:
         Paused, //アップデート×、描画○
         Dead //死ぬ
     };
-    Actor(IGameMediator* iGameMediator, const char* tag = "");
+    Actor(const char* tag = "");
     virtual ~Actor() {};
 
     //すべての更新
@@ -49,7 +48,6 @@ public:
     State getState() const;
     void setState(State state);
     const char* getTag() const;
-    IGameMediator* getIGameMediator() const;
 
 private:
     std::shared_ptr<ComponentManagementOfActor> mComponentManager;
@@ -57,6 +55,5 @@ private:
     Matrix4 mWorldTransform;
     TransformComponent* mTransform;
     const char* mTag;
-    IGameMediator* mIGameMediator;
 };
 

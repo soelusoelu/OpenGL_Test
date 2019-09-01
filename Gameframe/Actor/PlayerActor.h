@@ -1,9 +1,7 @@
 #pragma once
 
-#include "../Utility/Math.h"
 #include "Actor.h"
 
-class IGameMediator;
 class PlayerMoveComponent;
 class MeshComponent;
 class SkeletonComponent;
@@ -12,7 +10,7 @@ class BoxComponent;
 
 class PlayerActor : public Actor {
 public:
-    PlayerActor(IGameMediator* iGameMediator, const char* tag = "Player");
+    PlayerActor(const char* tag = "Player");
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
 

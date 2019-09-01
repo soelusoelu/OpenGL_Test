@@ -2,20 +2,20 @@
 #include "../Component.h"
 #include "../../Actor/Actor.h"
 #include "../TransformComponent.h"
-#include "../../Scene/IGameMediator.h"
 #include "../../System/GameSystem.h"
 #include "../../System/Physics.h"
+#include "../../Utility/Singleton.h"
 
 BoxComponent::BoxComponent(Actor* owner, bool isTrigger) :
     Collider(owner, isTrigger),
     mDefaultCollision(Vector3::negOne, Vector3::one),
     mCollision(mDefaultCollision),
     mShouldRotate(true) {
-    mOwner->getIGameMediator()->getSystem()->getPhysics()->addBox(this);
+    Singleton<GameSystem>::instance().getPhysics()->addBox(this);
 }
 
 BoxComponent::~BoxComponent() {
-    mOwner->getIGameMediator()->getSystem()->getPhysics()->removeBox(this);
+    Singleton<GameSystem>::instance().getPhysics()->removeBox(this);
 }
 
 void BoxComponent::onUpdateWorldTransform() {

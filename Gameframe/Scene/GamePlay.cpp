@@ -12,13 +12,14 @@
 GamePlay::GamePlay() :
     SceneBase(),
     mState(GameState::Play) {
-    mPlayer = new PlayerActor(this);
-    mCube = new CubeActor(this);
+    mPlayer = new PlayerActor();
+    mCube = new CubeActor();
 }
 
 GamePlay::~GamePlay() {
     Singleton<ActorManager>::instance().clear();
     Singleton<UIManager>::instance().clear();
+    Singleton<GameSystem>::instance().clear();
 }
 
 void GamePlay::update(float deltaTime) {
@@ -26,7 +27,7 @@ void GamePlay::update(float deltaTime) {
         Singleton<ActorManager>::instance().update(deltaTime);
 
         if (Input::getKeyDown(Input::KeyCode::Space)) {
-            new Pause(mSystem->getRenderer(), this);
+            new Pause(this);
         }
     }
 
