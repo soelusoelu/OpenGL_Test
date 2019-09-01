@@ -5,6 +5,7 @@
 class Random {
 public:
     Random();
+    ~Random();
     int random();
     int randomRange(int min, int max);
     float randomRange(float min, float max);

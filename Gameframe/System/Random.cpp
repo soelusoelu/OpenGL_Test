@@ -5,6 +5,8 @@ Random::Random() {
     mt.seed(rd());
 }
 
+Random::~Random() = default;
+
 int Random::random() {
     return mt();
 }

@@ -1,7 +1,7 @@
 ﻿#include "Actor.h"
+#include "ActorManager.h"
 #include "ComponentManagementOfActor.h"
 #include "../Component/TransformComponent.h"
-#include "ActorManager.h"
 
 Actor::Actor(const char* tag) :
     mComponentManager(std::make_shared<ComponentManagementOfActor>()),

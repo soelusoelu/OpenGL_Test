@@ -1,19 +1,19 @@
 ﻿#include "GamePlay.h"
-#include "../Actor/PlayerActor.h"
+#include "../Actor/ActorManager.h"
 #include "../Actor/CubeActor.h"
+#include "../Actor/PlayerActor.h"
 #include "../Camera.h"
 #include "../System/GameSystem.h"
 #include "../UI/Pause.h"
-#include "../Utility/Input.h"
 #include "../UI/UIManager.h"
-#include "../Actor/ActorManager.h"
+#include "../Utility/Input.h"
 #include "../Utility/Singleton.h"
 
 GamePlay::GamePlay() :
     SceneBase(),
     mState(GameState::Play) {
-    mPlayer = new PlayerActor();
-    mCube = new CubeActor();
+    Actor::instantiate<PlayerActor>();
+    Actor::instantiate<CubeActor>();
 }
 
 GamePlay::~GamePlay() {

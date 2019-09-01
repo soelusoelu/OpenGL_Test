@@ -27,16 +27,16 @@ public:
     void computeWorldTransform();
 
     //アクター生成
-    //template<typename T>
-    //static void instantiate(const char* tag = "") {
-    //    T* t = new T(mMediator, tag);
-    //}
-    //template<typename T>
-    //static void instantiate(const char* tag, const Vector3& position, const Quaternion& rotation) {
-    //    T* t = new T(mMediator, tag);
-    //    t->mTransform->setPosition(position);
-    //    t->mTransform->setRotation(rotation);
-    //}
+    template<typename T>
+    static void instantiate() {
+        T* t = new T();
+    }
+    template<typename T>
+    static void instantiate(const Vector3& position, const Quaternion& rotation) {
+        T* t = new T();
+        t->mTransform->setPosition(position);
+        t->mTransform->setRotation(rotation);
+    }
     //アクター削除
     static void destroy(Actor* actor);
     static void destroy(std::shared_ptr<Actor> actor);

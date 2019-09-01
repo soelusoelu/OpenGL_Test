@@ -9,12 +9,15 @@ class AnimationComponent;
 class BoxComponent;
 
 class PlayerActor : public Actor {
+    friend class Actor;
 public:
-    PlayerActor(const char* tag = "Player");
     virtual void updateActor(float deltaTime) override;
     virtual void drawActor() const override;
 
 private:
+    PlayerActor(const char* tag = "Player");
+    ~PlayerActor() {};
+
     PlayerMoveComponent* mPlayerMove;
     MeshComponent* mMesh;
     SkeletonComponent* mSkelton;
