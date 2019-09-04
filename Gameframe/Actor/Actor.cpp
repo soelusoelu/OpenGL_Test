@@ -29,9 +29,7 @@ void Actor::computeWorldTransform() {
         mWorldTransform *= Matrix4::createFromQuaternion(mTransform->getRotation());
         mWorldTransform *= Matrix4::createTranslation(mTransform->getPosition());
 
-        for (auto&& comp : mComponentManager->getAllComponents()) {
-            comp->onUpdateWorldTransform();
-        }
+        mComponentManager->executeOnUpdateWorldTransform();
     }
 }
 
@@ -57,10 +55,6 @@ TransformComponent* Actor::getTransform() const {
 
 Actor::State Actor::getState() const {
     return mState;
-}
-
-void Actor::setState(State state) {
-    mState = state;
 }
 
 const char* Actor::getTag() const {

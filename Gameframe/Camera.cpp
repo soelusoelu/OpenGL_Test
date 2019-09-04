@@ -1,7 +1,8 @@
 ﻿#include "Camera.h"
 #include "Actor/PlayerActor.h"
 #include "Component/TransformComponent.h"
-#include <gslib.h>
+#include <GLFW/glfw3.h>
+#include <GL/GLU.h>
 
 void Camera::update(std::shared_ptr<PlayerActor> player) {
     if (player) {

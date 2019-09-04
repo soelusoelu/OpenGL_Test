@@ -1,9 +1,9 @@
 #include "Pause.h"
+#include "Texture.h"
 #include "../Scene/GamePlay.h"
 #include "../System/GameSystem.h"
 #include "../System/Renderer.h"
 #include "../Utility/Input.h"
-#include "Texture.h"
 
 Pause::Pause(GamePlay* game) :
     UI(),

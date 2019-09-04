@@ -28,10 +28,6 @@ void UIManager::clear() {
     mUIStack.clear();
 }
 
-const std::list<std::unique_ptr<UI>>& UIManager::getUIStack() const {
-    return mUIStack;
-}
-
 void UIManager::removeClosingUI() {
     auto itr = mUIStack.begin();
     while (itr != mUIStack.end()) {

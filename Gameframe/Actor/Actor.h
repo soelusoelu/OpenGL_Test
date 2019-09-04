@@ -9,9 +9,8 @@ class TransformComponent;
 class Actor {
 public:
     enum State {
-        Active, //アップデート○、描画○
-        Paused, //アップデート×、描画○
-        Dead //死ぬ
+        Active,
+        Dead
     };
     Actor(const char* tag = "");
     virtual ~Actor() {};
@@ -29,7 +28,7 @@ public:
     //アクター生成
     template<typename T>
     static void instantiate() {
-        T* t = new T();
+        new T();
     }
     template<typename T>
     static void instantiate(const Vector3& position, const Quaternion& rotation) {
@@ -46,7 +45,6 @@ public:
     const Matrix4& GetWorldTransform() const;
     TransformComponent* getTransform() const;
     State getState() const;
-    void setState(State state);
     const char* getTag() const;
 
 private:

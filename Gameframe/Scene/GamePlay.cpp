@@ -7,7 +7,6 @@
 #include "../UI/Pause.h"
 #include "../UI/UIManager.h"
 #include "../Utility/Input.h"
-#include "../Utility/Singleton.h"
 
 GamePlay::GamePlay() :
     SceneBase(),

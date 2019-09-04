@@ -7,8 +7,6 @@
 #include "../System/Physics.h"
 #include "../Utility/Collision.h"
 #include "../Utility/Input.h"
-#include "../Utility/Math.h"
-#include "../Utility/Singleton.h"
 
 PlayerMoveComponent::PlayerMoveComponent(Actor* owner, int updateOrder) :
     Component(owner, updateOrder),

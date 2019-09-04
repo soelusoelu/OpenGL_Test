@@ -1,11 +1,6 @@
 #include "Collider.h"
-#include "../../Actor/Actor.h"
-#include "../../Scene/GamePlay.h"
-#include "../../System/GameSystem.h"
-#include "../../System/Physics.h"
-#include "BoxComponent.h"
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 Collider::Collider(Actor* owner, bool isTrigger, int updateOrder) :
     Component(owner, updateOrder),

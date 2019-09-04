@@ -19,12 +19,12 @@ public:
     //所有アクターをすべて削除
     void clear();
 
+    //アクター配列の中からプレイヤーを取得
     std::shared_ptr<PlayerActor> getPlayer() const;
-    const std::unordered_set<std::shared_ptr<Actor>>& getActors() const;
 
 private:
     ActorManager();
-    ~ActorManager() {};
+    ~ActorManager();
     //Dead状態のアクターを削除
     void removeDeadActor();
 

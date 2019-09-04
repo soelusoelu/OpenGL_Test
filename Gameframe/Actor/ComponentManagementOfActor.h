@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include <list>
-#include <unordered_set>
 #include <memory>
 
 class Component;
@@ -15,8 +14,9 @@ public:
     void update(float deltaTime);
     //コンポーネントの追加
     void addComponent(Component* component);
-    //全コンポーネントの取得
-    const std::list<std::shared_ptr<Component>>& getAllComponents() const;
+
+    //所有するすべてのコンポーネントのonUpdateWorldTransformを実行
+    void executeOnUpdateWorldTransform();
 
     //コンポーネントの取得
     template<typename T>
@@ -39,7 +39,7 @@ public:
     }
 
 private:
-    std::unordered_set<std::shared_ptr<Component>> mStartComponents;
+    std::list<std::shared_ptr<Component>> mStartComponents;
     std::list<std::shared_ptr<Component>> mComponents;
 };
 

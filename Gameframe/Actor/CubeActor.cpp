@@ -8,7 +8,6 @@ CubeActor::CubeActor() :
     Actor(),
     mBox(new BoxComponent(this)) {
     //glDisable(GL_CULL_FACE);
-    //glDisable(GL_LIGHTING);
     getTransform()->setPosition(Vector3(0.f, 0.f, 30.f));
 }
 

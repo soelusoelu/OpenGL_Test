@@ -1,7 +1,6 @@
 ﻿#include "BoxComponent.h"
-#include "../Component.h"
-#include "../../Actor/Actor.h"
 #include "../TransformComponent.h"
+#include "../../Actor/Actor.h"
 #include "../../System/GameSystem.h"
 #include "../../System/Physics.h"
 #include "../../Utility/Singleton.h"

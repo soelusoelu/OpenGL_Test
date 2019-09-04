@@ -7,6 +7,8 @@ ActorManager::ActorManager() :
     mUpdatingActors(false) {
 }
 
+ActorManager::~ActorManager() = default;
+
 void ActorManager::update(float deltaTime) {
     mUpdatingActors = true;
     for (auto&& actor : mActors) {
@@ -47,10 +49,6 @@ void ActorManager::addActor(Actor* actor) {
 void ActorManager::clear() {
     mPendingActors.clear();
     mActors.clear();
-}
-
-const std::unordered_set<std::shared_ptr<Actor>>& ActorManager::getActors() const {
-    return mActors;
 }
 
 std::shared_ptr<PlayerActor> ActorManager::getPlayer() const {

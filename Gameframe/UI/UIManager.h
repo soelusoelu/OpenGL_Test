@@ -13,7 +13,6 @@ public:
     void update(float deltaTime);
     void draw() const;
     void clear();
-    const std::list<std::unique_ptr<UI>>& getUIStack() const;
 
 private:
     UIManager();

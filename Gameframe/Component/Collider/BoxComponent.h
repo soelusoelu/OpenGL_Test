@@ -2,7 +2,6 @@
 
 #include "Collider.h"
 #include "../../Utility/Collision.h"
-#include "../../Utility/Math.h"
 
 class Actor;
 
@@ -12,6 +11,7 @@ public:
     ~BoxComponent();
     virtual void onUpdateWorldTransform() override;
     virtual ColliderType getColliderType() const override;
+
     void setCollision(const AABB& model);
     const AABB& getCollision() const;
     void setShouldRotate(bool set);

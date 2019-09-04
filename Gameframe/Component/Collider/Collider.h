@@ -3,7 +3,6 @@
 #include "../Component.h"
 
 class Actor;
-class BoxComponent;
 
 class Collider : public Component {
 public:

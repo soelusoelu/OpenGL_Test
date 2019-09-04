@@ -30,9 +30,11 @@ void ComponentManagementOfActor::update(float deltaTime) {
 }
 
 void ComponentManagementOfActor::addComponent(Component* component) {
-    mStartComponents.emplace(component);
+    mStartComponents.emplace_back(component);
 }
 
-const std::list<std::shared_ptr<Component>>& ComponentManagementOfActor::getAllComponents() const {
-    return mComponents;
+void ComponentManagementOfActor::executeOnUpdateWorldTransform() {
+    for (auto&& comp : mComponents) {
+        comp->onUpdateWorldTransform();
+    }
 }

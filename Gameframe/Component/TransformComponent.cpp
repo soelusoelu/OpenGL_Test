@@ -1,5 +1,4 @@
 ﻿#include "TransformComponent.h"
-#include "Component.h"
 
 TransformComponent::TransformComponent(Actor* owner, int updateOrder) :
     Component(owner, updateOrder),
